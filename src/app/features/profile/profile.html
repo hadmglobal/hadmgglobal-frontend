@@ -1,0 +1,149 @@
+<div class="profile-container">
+  <!-- 🔹 Top Blue Banner -->
+  <div class="banner">
+    <div class="banner-content">
+      <div class="profile-circle">
+        <span>{{ getInitials(user.name) }}</span>
+      </div>
+      <div class="user-info">
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-cards">
+    <!-- 🔹 Wallet Section -->
+    <div class="wallet-section">
+      <div class="wallet-buttons">
+        <div class="wallet-btn" *ngFor="let action of walletActions" (click)="onWalletAction(action.label)">
+          <img [src]="action.icon" alt="{{ action.label }}" />
+          <span>{{ action.label }}</span>
+        </div>
+      </div>
+      <app-deposit #depositModal></app-deposit>
+      <app-transfer #transferModal [mainWallet]="user.workingWallet" [withdrawalWallet]="user.withdrawalWallet"
+        (closed)="onTransferClosed()">
+      </app-transfer>
+      <div class="wallet-values">
+        <div class="wallet-item">
+          <p class="ptag">{{ 'Main Wallet' | translate }}</p>
+          <div class="money-item">
+            <span class="money">{{ user.workingWallet }}</span>
+            <span class="curr">USDT</span>
+          </div>
+        </div>
+        <div class="wallet-item">
+          <p class="ptag">{{ 'Withdrawal Account' | translate }}</p>
+          <div class="money-item">
+            <span class="money">{{ user.withdrawalWallet }}</span>
+            <span class="curr">USDT</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wallet-transfer-bar" (click)="onWalletAction('Transfer')">
+      <span>
+        <span style="font-size: 11px;color: #fff;margin-bottom: 4px;opacity: .85;">{{ 'Transfer your' | translate}}</span> <span>{{' '}}</span><span>{{'Withdrawal Amount' | translate}}</span> <span>{{' '}}</span> <span style="font-size: 11px;color: #fff;margin-bottom: 4px;opacity: .85;">{{'to' | translate}}</span><span>{{' '}}</span> <span>{{'Main Wallet' | translate}}</span> <span>{{' '}}</span><span style="font-size: 11px;color: #fff;margin-bottom: 4px;opacity: .85;">{{'here' | translate}}</span>
+      </span>
+      <img src="/chevron_right.svg" alt="arrow" />
+    </div>
+
+    <!-- 🔹 Wallet Summary -->
+    <div class="wallet-summary">
+      <span class="wallet-txt">{{ 'Wallet Summary Details' | translate }}</span>
+      <div class="summary-card" *ngFor="let item of walletSummary">
+        <div class="summary-left">
+          <img src="/profile-summary.svg" alt="icon" />
+          <p>{{ item.label }}</p>
+        </div>
+        <div class="summary-right" [ngClass]="{
+          'summary-right-negative': item.label === 'Your Total withdrawals'
+        }">
+          <span>{{ item.value }} <b>USDT</b></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔹 Other Settings -->
+    <div class="other-section">
+      <span>{{ 'Other settings' | translate }}</span>
+      <div class="setting-card" *ngFor="let setting of settings" (click)="onSetting(setting.label)">
+        <div class="setting-left">
+          <img src="/profile-summary.svg" alt="icon" />
+          <p style="margin-left: 10px">{{ setting.label }}</p>
+        </div>
+        <!-- <mat-icon>chevron_right</mat-icon> -->
+        <img src="/chevron_right.svg" alt="chevron_righticon" />
+      </div>
+
+      <div class="logout-card" (click)="logout()" style="height: 50px">
+        <img src="/logout.svg" alt="logout" />
+        <p>{{ 'Log out' | translate }}</p>
+        <!-- <img src="/chevron_right.svg" alt="chevron_righticon" /> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🔹 Support Popup Overlay -->
+<div class="support-overlay" *ngIf="showSupport" (click)="closeSupportPopup()"></div>
+
+<!-- 🔹 Support Popup -->
+<div class="support-popup" *ngIf="showSupport">
+  <div class="support-header">
+    <h3>{{ 'We’re here to help' | translate }}</h3>
+    <button class="close-btn" (click)="closeSupportPopup()">×</button>
+  </div>
+
+  <div class="support-content">
+    <p>TowerBNB</p>
+
+    <p>{{ '• Sign-up and explore the Free Trial and earn 8 USDT fund.' | translate }}</p>
+
+    <p>
+      {{ '• Join the group and contact your Manager or Customer Support to receive a 2 USDT joining bonus.' | translate
+      }}
+    </p>
+
+    <p>
+      {{ '• Claim a total of 10 USDT and use the funds to circulate Tower Upgrade or withdraw upon upgrading to Core 1G
+      Tower Computing.' | translate }}
+    </p>
+
+    <p>{{ '• $2 bonus when activating your account with $50.' | translate }}</p>
+  </div>
+
+  <button class="support-btn" (click)="onSupport()">{{ 'Support' | translate }}</button>
+</div>
+
+<!-- 🔹 Logout Popup Overlay -->
+<div class="logout-overlay" *ngIf="showLogout" (click)="closeLogout()"></div>
+
+<!-- 🔹 Logout Popup -->
+<div class="logout-popup" *ngIf="showLogout">
+  <!-- Header -->
+  <div class="logout-header">
+    <h3>{{ 'Log out!' | translate }}</h3>
+    <button class="close-btn" (click)="closeLogout()">×</button>
+  </div>
+  <div class="logout-body">
+    <!-- Icon -->
+    <div class="logout-icon">
+      <img src="logout.gif" alt="logout" />
+    </div>
+
+    <!-- Text -->
+    <div class="logout-text">
+      <h4>{{ 'Are you sure?' | translate }}</h4>
+      <p>{{ 'You will now be logged out of your current account' | translate }}</p>
+    </div>
+
+    <!-- Buttons -->
+    <button class="logout-confirm" (click)="confirmLogout()">{{ 'Yes, log out' | translate }}</button>
+
+    <button class="logout-cancel" (click)="closeLogout()">{{ 'No, Cancel' | translate }}</button>
+  </div>
+</div>

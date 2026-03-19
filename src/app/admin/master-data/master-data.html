@@ -1,0 +1,113 @@
+<div class="master-container">
+
+  <h2 class="title">Master Data</h2>
+
+  <!-- Maintenance Toggle -->
+  <div class="section">
+    <label class="label">Application Under Maintenance?</label>
+
+    <label class="toggle-switch">
+      <input type="checkbox"
+             [(ngModel)]="formData.isMaintenance"
+             (change)="checkIfChanged()" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="section">
+    <label class="label">Enable new game card</label>
+
+    <label class="toggle-switch">
+      <input type="checkbox"
+             [(ngModel)]="formData.isGameEnabled"
+             (change)="checkIfChanged()" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Telegram URL -->
+  <div class="section">
+    <label class="label">Home Group Link</label>
+    <input type="text"
+           [(ngModel)]="formData.telegramUrl"
+           class="input-box"
+           (input)="checkIfChanged()" />
+  </div>
+
+    <!-- Secondary Telegram URL -->
+  <div class="section">
+    <label class="label">Home Telegram URL</label>
+    <input type="text"
+           [(ngModel)]="formData.telegramUrlOne"
+           class="input-box"
+           (input)="checkIfChanged()" />
+  </div>
+
+      <!-- Secondary Telegram URL -->
+  <div class="section">
+    <label class="label">Support Telegram URL</label>
+    <input type="text"
+           [(ngModel)]="formData.telegramUrlTwo"
+           class="input-box"
+           (input)="checkIfChanged()" />
+  </div>
+
+  <!-- UPDATE BUTTON -->
+  <button class="update-btn"
+          [disabled]="!isChanged"
+          (click)="updateMasterData()">
+    Update
+  </button>
+
+</div>
+
+
+
+<!-- Retrieve / Reset Password Section -->
+<div class="section" style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px;max-width: 500px;">
+
+  <label class="label">Retrieve / Reset Password</label>
+
+  <!-- Email Input -->
+  <input type="email"
+         [(ngModel)]="resetEmail"
+         placeholder="Enter email"
+         class="input-box"
+         (input)="generatedPassword=''"
+  />
+
+  <!-- Generate New Password Button -->
+  <button class="update-btn"
+          style="margin-top: 10px;"
+          [disabled]="!resetEmail"
+          (click)="generateNewPassword()">
+    Generate New Password
+  </button>
+
+  <!-- Show Generated Password -->
+  <div *ngIf="generatedPassword" style="margin-top: 15px;">
+    <label class="label">Generated Password</label>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <input type="text"
+             [value]="generatedPassword"
+             readonly
+             class="input-box"
+             style="flex: 1; background: #eef1ff;" />
+
+      <!-- Copy Icon -->
+      <button class="update-btn" style="padding: 10px;" (click)="copyPassword()">
+        Copy
+      </button>
+    </div>
+
+    <!-- Update Password Button -->
+    <button class="update-btn"
+            style="margin-top: 10px;"
+            (click)="updatePassword()">
+      Update Password
+    </button>
+
+  </div>
+
+</div>

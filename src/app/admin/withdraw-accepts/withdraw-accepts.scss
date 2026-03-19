@@ -1,0 +1,7 @@
+@import '../withdraw-request/withdraw-request.scss';
+
+/* override only status badge color */
+.status-badge.success {
+  background: #27ae60;
+  color: #fff;
+}

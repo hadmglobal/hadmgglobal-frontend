@@ -1,0 +1,125 @@
+<div class="layout-container" fxLayout="column" fxFlexFill>
+  <!-- 🔹 Top Navigation -->
+  <header>
+    <app-top-nav></app-top-nav>
+  </header>
+
+  <!-- 🔹 Banner -->
+  <div class="banner">
+    <div class="banner-align">
+      <button class="back-btn" (click)="goBack()">
+        <img src="/leftarraow.svg" alt="back" />
+      </button>
+      <div class="banner-text">
+        <h2>{{ 'Terms and Conditions' | translate }}</h2>
+      </div>
+    </div>
+    <p>{{ 'This agreement was last updated on' | translate }} {{ lastUpdated }}</p>
+  </div>
+
+  <!-- 🔹 Scrollable Content Section -->
+  <div class="content-container">
+
+    <h3>{{ 'TowerBNB Service Agreement: A Summary' | translate }}</h3>
+
+    <p>
+      {{"This document outlines the Service Agreement for the use of products and services provided by" | translate}}
+      <strong>{{'TowerBNB Technologies Inc.' | translate}}</strong> {{" (referred to as " | translate}}
+      <strong>{{'TowerBNB' | translate}}</strong> {{" or \"the Platform\"). By registering or using the Platform, you
+      agree to be bound by all the terms herein. If you do not agree, you must not use the Platform’s services." |
+      translate}}
+    </p>
+
+    <h4>{{ 'Key Provisions of the Agreement' | translate }}</h4>
+
+    <!-- User Eligibility -->
+    <h5>{{ 'User Eligibility and Registration (Article 2):' | translate }}</h5>
+    <ul>
+      <li>{{'You must be at least 18 years old and possess the full legal capacity to enter into this agreement.' |
+        translate}}</li>
+      <li>{{'All registration information must be true, accurate, complete, and kept up-to-date.' | translate}}</li>
+      <li>{{'You are prohibited from using the Platform for any illegal activities or those that infringe upon the
+        rights
+        of others.' | translate}}</li>
+    </ul>
+
+    <!-- Service Offerings -->
+    <h5>{{ 'Service Offerings (Article 3):' | translate }}</h5>
+    <p>{{'TowerBNB provides registered users with services including:' | translate}}</p>
+    <ul>
+      <li>{{"Digital asset management, staking functions, and fund circulation (e.g., USDT)." | translate}}</li>
+      <li>{{"A smartphone Tower mining system (running a computing power package to generate income)." | translate}}
+      </li>
+      <li>{{"Team incentive plans (fission income and node ecological incentives)." | translate}}</li>
+      <li>{{"Digital asset exchange and withdrawal services." | translate}}</li>
+    </ul>
+    <p>{{'TowerBNB reserves the right to adjust the services offered at its discretion.' | translate}}</p>
+
+    <!-- Account Security -->
+    <h5>{{ 'Account Security and Management (Article 4):' | translate }}</h5>
+    <ul>
+      <li>{{'You are solely responsible for the safekeeping of your account, password, transaction password, and other
+        key
+        information. Any asset loss resulting from your negligence is your responsibility.' | translate}}</li>
+      <li>{{'Accounts may not be transferred, rented, loaned, or authorized for use by others.' | translate}}</li>
+      <li>{{'You must immediately notify TowerBNB of any abnormal activity, password leaks, or unauthorized use.' |
+        translate}}</li>
+      <li>{{'The Platform reserves the right to freeze or restrict accounts for security purposes.' | translate}}</li>
+    </ul>
+
+    <!-- Deposit / Withdraw -->
+    <h5>{{ 'Deposit and Withdrawal Rules (Article 5):' | translate }}</h5>
+    <ul>
+      <li>{{"You must ensure the correct currency, mainnet type, and address for all deposits, as incorrect operations
+        may result in asset loss for which you are responsible." | translate}}</li>
+      <li>{{"Withdrawals require a fund or payment password and must comply with the Platform's limits and fee
+        structures." | translate}}</li>
+      <li>{{"The Platform may delay processing withdrawals or deposits due to technical maintenance, compliance
+        requirements, or security reviews." | translate}}</li>
+    </ul>
+
+    <!-- Profit Distribution -->
+    <h5>{{ 'Profit Distribution and Disclaimer (Articles 6 & 8):' | translate }}</h5>
+    <ul>
+      <li>{{'Income is distributed in USDT tokens.' | translate}}</li>
+      <li><strong>{{'TowerBNB does not promise any fixed income.' | translate}}</strong> {{"All earnings depend on
+        actual mining operations, market fluctuations, and platform development." | translate}}</li>
+      <li>{{'The Platform is a technical service provider and does not guarantee user investment decisions or returns.'
+        | translate}}</li>
+      <li>{{'Users assume sole responsibility for risks associated with participating in digital asset activities.' |
+        translate}}</li>
+      <li>{{"TowerBNB is not liable for losses caused by force majeure (natural disasters, hacker attacks, blockchain
+        failures), but will attempt to assist in recovery." | translate}}</li>
+    </ul>
+
+    <!-- Prohibited Conduct -->
+    <h5>{{ 'Prohibited Conduct (Article 7):' | translate }}</h5>
+    <p>{{'Users are strictly forbidden from:' | translate}}</p>
+    <ul>
+      <li>{{'Exploiting vulnerabilities or using scripts to illegally profit.' | translate}}</li>
+      <li>{{'Engaging in illegal financial activities such as money laundering, fraud, or pyramid schemes.' |
+        translate}}</li>
+      <li>{{'Maliciously attacking the system or tampering with data.' | translate}}</li>
+      <li>{{"Publishing false information or damaging the Platform's reputation." | translate}}</li>
+    </ul>
+    <p>{{"TowerBNB has the right to suspend or terminate services and pursue legal action against users who engage in
+      these behaviors." | translate}}</p>
+
+    <!-- Intellectual Property -->
+    <h5>{{ 'Intellectual Property and Agreement Updates (Articles 9 & 10):' | translate }}</h5>
+    <ul>
+      <li>{{'All Platform content (trademarks, codes, etc.) is protected by law and cannot be used without
+        authorization.' | translate}}</li>
+      <li>{{'TowerBNB reserves the right to update this Agreement at any time. Continued use of the Platform after an
+        update constitutes acceptance of the revised terms.' | translate}}</li>
+      <li>{{'TowerBNB Technologies Inc. holds the final right of interpretation of this Agreement.' | translate}}</li>
+    </ul>
+
+    <!-- Conclusion -->
+    <h5>{{ 'Conclusion' | translate }}</h5>
+    <p>{{'TowerBNB aims to be user-centric, ensuring asset security and promoting access to intelligent computing
+      power. By choosing TowerBNB, you agree to these terms as you embark on a journey of smart mining and asset
+      growth.' | translate}}</p>
+
+  </div>
+</div>

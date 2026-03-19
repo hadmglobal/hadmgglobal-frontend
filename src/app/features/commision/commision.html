@@ -1,0 +1,32 @@
+<div class="layout-container" fxLayout="column" fxFlexFill>
+  <header>
+    <app-top-nav></app-top-nav>
+  </header>
+
+  <div class="commission-container">
+    <!-- 🔹 Header -->
+    <div class="header-section">
+      <button class="back-btn" (click)="goBack()">
+        <img src="/leftarrow-black.svg" alt="back" />
+      </button>
+      <h2>{{ "Commission History" | translate }}</h2>
+    </div>
+
+    <!-- 🔹 Commission List -->
+    <div class="commission-list">
+      <div class="commission-card" *ngFor="let item of commissionDetails">
+        <div class="top-row">
+          <p class="email">{{ item.email }}</p>
+          <span class="date">{{ formatDate(item.timestamp) }}</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="bottom-row">
+          <span class="label">{{ "Circulation Points" | translate }}</span>
+          <span class="amount">{{ item.commission | number: '1.2-2' }} <span>USDT</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="deposit-modal" *ngIf="isVisible" [class.fade-in]="!isClosing" [class.fade-out]="isClosing">
+  <div class="modal-header-blue">
+    <h3>{{ 'Congratulations!' | translate }}</h3>
+    <img src="/close_round.svg" (click)="closeModal()" alt="close" />
+  </div>
+
+  <div class="modal-body success-content">
+    <img src="/success.gif" alt="success" />
+    <p class="title">{{ 'Successful Purchase!' | translate }}</p>
+    <p class="desc">
+      {{ 'Your Core Tower Computing has been unlocked.' | translate }}<br />
+      {{ 'Start your daily trading strategy and watch your earnings level up with every order.' | translate }}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="layout-container" fxLayout="column" fxFlexFill>
+  <header>
+    <app-top-nav
+></app-top-nav>
+  </header>
+  <div class="signin-container">
+    <div class="welcome-section">
+      <h2>{{'Welcome' | translate}}</h2>
+      <h4>{{'to Mission Town' | translate}}</h4>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+
+      <img src="/verify-email.svg" alt="Verify Email" class="verify-img" />
+      <div class="verification-text">Open your Gmail and Kindly verify your registered Gmail address to complete your account creation by tapping the create account button</div>
+    </div>
+  </div>
+  <footer class="footer">
+    <!-- <button mat-raised-button type="submit" class="login-button" style="color: #ffffff;">
+      {{'Check my inbox' | translate}}
+    </button> -->
+    <!-- Sign Up Link -->
+    <div class="signup-link" (click)="onSubmit()">
+      <span>{{"Resend email" | translate}} </span>
+      <!-- <a [routerLink]="['/signup']" class="signup-text"> {{'Sign Up' | translate}}</a> -->
+    </div>
+  </footer>
+</div>

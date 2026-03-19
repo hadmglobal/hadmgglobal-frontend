@@ -1,0 +1,156 @@
+.deposits-container {
+  padding: 20px;
+  background: #f4f6fb;
+  min-height: calc(100vh - 60px);
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #2440a0;
+}
+
+.table-wrapper {
+  background: #fff;
+  border-radius: 10px;
+  padding: 0;
+  overflow-x: auto;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  white-space: nowrap;
+}
+
+.deposits-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+
+  thead {
+    background: #eef2ff;
+
+    th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+  }
+
+  tbody {
+    tr {
+      border-top: 1px solid #eee;
+
+      &:hover {
+        background: #f9fbff;
+      }
+
+      td {
+        padding: 12px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/* Status Chips */
+.status-chip {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+
+  &.success {
+    background: #27ae60;
+  }
+  &.failed {
+    background: #e74c3c;
+  }
+  &.pending {
+    background: #f1c40f;
+    color: #000;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .deposits-table {
+    min-width: 700px;
+  }
+}
+
+.users-container {
+  padding: 20px;
+  background: #f8faff;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  input, select {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+
+.table-container {
+  background: #fff;
+  border-radius: 8px;
+  overflow-x: auto;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background: #eef2ff;
+    padding: 10px;
+    font-weight: 600;
+  }
+
+  td {
+    padding: 10px;
+    border-top: 1px solid #eee;
+    white-space: nowrap;
+  }
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 10px;
+}
+
+button {
+  border: none;
+  background: #2752e7;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+.deposits-table th,
+.deposits-table td,
+.responsive-table th,
+.responsive-table td {
+  text-align: center !important;
+}

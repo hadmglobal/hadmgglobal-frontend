@@ -1,0 +1,353 @@
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  font-family: 'Poppins';
+  box-sizing: border-box;
+}
+
+.layout-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.withdrawal-container {
+  flex: 1;
+  background: #F9F9F9;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+}
+
+/* 🔹 Two-tone Blue Banner */
+.blue-banner {
+  position: relative;
+  height: 180px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upper-blue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  content: '';
+  top: -35px;
+  left: 0;
+  width: 100%;
+  background: url('/top-banner.svg') center top / cover no-repeat;
+  opacity: 1;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.blue-banner h2 {
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
+  font-size: 20px;
+  bottom: 20px;
+}
+
+.back-btn {
+  position: absolute;
+  left: 16px;
+  top: 71px;
+  background: none;
+  border: none;
+  color: white;
+  z-index: 3;
+  cursor: pointer;
+}
+
+/* 🔹 Wallet Card */
+.wallet-card {
+  position: relative;
+  z-index: 5;
+  // background: #fff;
+  border: 1px solid white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: -50px auto 0;
+  width: 353px;
+  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0px 16px 20px;
+  height: 105px;
+  bottom: 45px;
+
+  content: '';
+  // position: absolute;
+  top: -35px;
+  left: 0;
+  // height: clamp(260px, 45vh, 420px); /* consistent band height across devices */
+  background: url('/wallet-bg.svg') center / cover no-repeat;
+  opacity: 1;
+  pointer-events: none;
+  .wallet-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: #ffffff;
+      .money-item {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 3px;
+      }
+      .ptag {
+        font-family: Poppins;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 140%;
+        text-align: center;
+        color: #FFFFFFAD;
+        margin: 0px;
+      }
+
+      .money {
+        font-family: Poppins;
+        font-weight: 600;
+        font-style: SemiBold;
+        font-size: 24px;
+        line-height: 140%;
+        letter-spacing: -1%;
+        text-align: center;
+      }
+      .curr {
+        font-family: Poppins;
+        font-weight: 600;
+        font-style: Medium;
+        font-size: 16px;
+        line-height: 140%;
+        letter-spacing: -1%;
+        text-align: center;
+      }
+    }
+}
+
+.wallet-info{
+  width: 297px;
+height: 57px;
+opacity: 1;
+gap: 125px;
+
+ p {
+  margin: 0;
+  color: white;
+  font-size: 10px;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+}
+
+.wallet-info h3 {
+  margin: 4px 0 0;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.wallet-info span {
+  font-size: 13px;
+  color: white;
+}
+
+/* 🔹 Form Section */
+.form-section {
+  width: 90%;
+  max-width: 400px;
+  margin: 0px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap:16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-family: Poppins;
+font-weight: 500;
+font-style: Medium;
+font-size: 16px;
+line-height: 140%;
+letter-spacing: -1%;
+color: #202020;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/* 🔹 Confirm Button */
+// .confirm-btn {
+//   width: 100%;
+//   height: 60px;
+//   background: #2752E7 !important;
+//   color: #fff !important;
+//   font-weight: 600;
+//   border-radius: 8px;
+//   text-transform: none;
+//   margin-top: 8px;
+//   box-shadow: 0 4px 10px rgba(0, 87, 255, 0.2);
+// }
+
+/* 🔹 Warm Reminder */
+.reminder-box {
+  width: 90%;
+  max-width: 400px;
+  background: #E3E9F6;
+  border-radius: 12px;
+  margin: 24px auto 0;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.reminder-box h4 {
+  color: #2752E7;
+  font-weight: 600;
+  padding-bottom: 16px;
+  border-bottom: 1.5px #D1DCFF solid;
+  font-size: 16px;
+  margin-top: 0px;
+}
+
+.reminder-box ul {
+  padding-left: 20px;
+  margin: 0;
+  color: #202020;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ✅ Responsive */
+@media (min-width: 768px) {
+  .withdrawal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wallet-card,
+  .form-section,
+  .reminder-box {
+    width: 420px;
+  }
+}
+
+.wallet-gif {
+  flex-shrink: 0;
+  /* prevents the image from being squished */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  /* or fix a box width if you want alignment */
+}
+
+.wallet-gif img {
+  width: 137px !important;
+  /* increase width */
+  height: 147px !important;
+  /* increase height */
+  object-fit: contain;
+  display: block;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  bottom: 0px;
+  /* for pseudo-element */
+  /* Stronger, more visible upward shadow */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.06), 0 -6px 18px -4px rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  pointer-events: none;
+  /* Soft gradient fade to enhance separation */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+  opacity: 0.25;
+  /* adjust to taste */
+}
+
+.confirm-btn {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 10px auto;
+  border-radius: 8px;
+  font-weight: 600;
+  background: #2752E7 !important;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: background .25s ease, box-shadow .25s ease, transform .15s ease;
+  border: none;
+  height: 56px;
+  color: #F9F9F9 !important;
+}
+
+.confirm-btn:hover:not([disabled]) {
+  background: #0f59f0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.confirm-btn:active:not([disabled]) {
+  background: #0a47c4;
+  transform: translateY(1px);
+}
+
+.confirm-btn:focus-visible {
+  outline: 2px solid #90c2ff;
+  outline-offset: 2px;
+}
+
+.confirm-btn[disabled] {
+  background: #d5d9e0;
+  color: #ffffff;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.numbered-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #42474e;
+  line-height: 1.55;
+
+  li {
+    margin-bottom: 8px;
+  }
+}
+::ng-deep .mat-mdc-form-field .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: #CFCFCF !important;
+}

@@ -1,0 +1,46 @@
+<div class="timer-modal" *ngIf="isVisible">
+
+  <div class="overlay" [class.fade-out]="isClosing" (click)="close()"></div>
+  <div class="modal-box" [class.fade-out]="isClosing">
+    <div class="header">
+      <h3>{{ 'You’re On a Roll!' | translate }}</h3>
+      <img src="/close_round.svg" alt="close" class="close-btn" (click)="close()" />
+    </div>
+
+    <div class="body">
+      <div class="badge">
+        <img src="/game-timer.gif" alt="Badge" />
+      </div>
+
+      <h4>{{ 'Core computing started successful' | translate }}</h4>
+
+      <p class="desc" [innerHTML]="msg"></p>
+
+      <div class="countdown">
+        <div class="cell">
+          <span class="num">{{ hours }}</span>
+          <span class="label">{{ 'HOURS' | translate }}</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="cell">
+          <span class="num">{{ minutes }}</span>
+          <span class="label">{{ 'MINUTES' | translate }}</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="cell">
+          <span class="num">{{ seconds }}</span>
+          <span class="label">{{ 'SECONDS' | translate }}</span>
+        </div>
+      </div>
+
+
+      <p class="footer-text">
+        {{ 'You can start your next Circulation Trading session after the Tower cooldown period.' | translate }}
+      </p>
+    </div>
+  </div>
+</div>

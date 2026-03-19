@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  font-family: 'Poppins';
+  box-sizing: border-box;
+}
+
+.game-container {
+  background: #f8faff;
+  min-height: 100vh;
+}
+
+/* 🔹 Blue Banner */
+.blue-banner {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .banner-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .banner-text {
+    color: white;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+  }
+
+  .banner-img img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+  }
+}
+
+/* 🔹 Game Cards Wrapper */
+.cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+/* 🔹 Game Cards */
+.game-card {
+   height: 191px; // default for first card
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  // z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease;
+
+  // all cards except first
+  &:not(:first-child) {
+    height: 229px;
+  }
+
+  &:hover:not(.disabled-card) {
+    transform: translateY(-3px);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 87%);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    line-height: 28px;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    z-index: 9999;
+  }
+
+  .chip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    background:#FFFFFF;
+    opacity: 68%;
+    color: #333;
+    padding: 0px 5px;
+    padding-top: 2px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &.small {
+      position: static;
+      background: rgba(255, 255, 255, 0.39);
+      color: #fff;
+      font-size: 8px;
+      margin-right: 6px;
+      font-weight: 600;
+    }
+  }
+
+  .card-content {
+    padding: 28px;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent);
+    border-radius: 0 0 14px 14px;
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+      color: black;
+      margin-left: 6px;
+      line-height: 24px;
+    }
+
+    .reward {
+      font-size: 14px;
+      font-weight: 400;
+      opacity: 0.9;
+      margin: 4px 0 12px;
+      color: black;
+      margin-left: 6px;
+    }
+
+    .status-chips {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      width: 65%;
+      background: #fff;
+      color: #2752e7;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover:not(:disabled) {
+        background: #eaf0ff;
+      }
+
+      &:disabled {
+        background: #aeadad;
+        color: #666;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.disabled-card {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  .blue-banner {
+    height: 160px;
+
+    .banner-text h2 {
+      font-size: 16px;
+    }
+
+    .banner-img img {
+      width: 130px;
+      height: 170px;
+    }
+  }
+
+  .cards-wrapper {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .game-card {
+    // min-height: 215px;
+
+    .card-content {
+      // padding: 12px;
+
+      .title {
+        font-size: 16px;
+      }
+
+      .reward {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.first-card {
+  color: #E0CEA0 !important; // 🔥 Bright red same as screenshot
+
+  .reward,
+  // .validity,
+  // .status,
+  // .miningCycle,
+  // .buttonText,
+  h3,
+  p {
+    color: #E0CEA0 !important;
+  }
+
+  .validity {
+    background:#FFFFFF;
+  }
+}
+
+.blue-banner .banner-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #2752e7, #2440a0);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}

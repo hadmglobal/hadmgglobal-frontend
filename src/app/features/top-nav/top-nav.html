@@ -1,0 +1,11 @@
+<div class="header">
+    <div class="logo-section">
+        <!-- <span class="logo">TMTB</span> -->
+         <img src="/logo.svg" alt="TMTB"/>
+        <mat-form-field class="language-selector" appearance="fill">
+            <mat-select [value]="selectedLang" (selectionChange)="onLanguageChange($event.value)">
+                <mat-option *ngFor="let lang of languages" [value]="lang">{{ lang }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>

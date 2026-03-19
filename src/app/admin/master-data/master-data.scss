@@ -1,0 +1,135 @@
+.master-container {
+  padding: 20px;
+  background: #f8faff;
+  min-height: calc(100vh - 60px);
+  max-width: 500px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.section {
+  margin-bottom: 20px;
+
+  .label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .input-box {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+  }
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  display: inline-block;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #d9534f;
+    border-radius: 24px;
+    transition: .3s;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: .3s;
+    }
+  }
+
+  input:checked + .slider {
+    background: #5cb85c;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(24px);
+  }
+}
+
+/* Update Button */
+.update-btn {
+  background: #2752e7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: .25s;
+
+  &:disabled {
+    background: #9bb3f7;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background: #1f45c3;
+  }
+}
+
+@media (max-width: 480px) {
+  .master-container {
+    padding: 15px;
+  }
+}
+
+
+.retrieve-row {
+  display: flex;
+  gap: 10px;
+}
+
+.get-btn {
+  background: #2752e7;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:disabled {
+    background: #9bb3f7;
+    cursor: not-allowed;
+  }
+}
+
+.password-display {
+  margin-top: 10px;
+  padding: 10px;
+  background: #eef3ff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copy-icon {
+  cursor: pointer;
+  font-size: 18px;
+}

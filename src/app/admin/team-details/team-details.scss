@@ -1,0 +1,207 @@
+.team-wrapper {
+  padding: 20px;
+  background: #f6f7f8;
+  min-height: 100vh;
+}
+
+.back-top {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+
+  .stat-card {
+    background: #fff;
+    border: 1px solid #cdd8ff;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: left;
+
+    h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #000;
+    }
+    p {
+      margin: 0;
+      font-size: 13px;
+      color: #777;
+    }
+  }
+}
+
+.level-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  button {
+    flex: 1;
+    padding: 10px;
+    background: #d7d7d7;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &.active {
+      background: #2f66f8;
+      color: white;
+    }
+  }
+}
+
+.users-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  min-height: 280px;
+
+  .user-card {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 40px 0;
+    color: #777;
+  }
+}
+
+.bottom-back-section {
+  margin-top: 30px;
+  text-align: right;
+
+  .back-bottom {
+    background: #2f66f8;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 22px;
+  }
+}
+
+.level-section {
+  margin-top: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.table-container {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.team-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+
+  th, td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  th {
+    background: #eef2ff;
+    font-weight: 600;
+  }
+
+  .no-data {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+  }
+
+  .status {
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: #bbb;
+
+    &.active {
+      background: #2ecc71;
+      color: white;
+    }
+  }
+}
+
+.pagination {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+
+  button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    background: #2f66f8;
+    color: white;
+    cursor: pointer;
+
+    &:disabled {
+      background: #9bb6ff;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .search-input {
+    font-size: 13px;
+  }
+
+  .pagination span {
+    font-size: 13px;
+  }
+}
+
+.search-input {
+  width: 100%;
+  max-width: 350px;   // 🔥 prevents breaking layout
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .search-input {
+    max-width: 100%;   // full width on mobile
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,139 @@
+<div class="home-container">
+  <!-- 🔹 Carousel Section -->
+  <div class="carousel-container" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)"
+    (touchend)="onTouchEnd()">
+    <!-- 🖼️ Dynamic Image with smooth crossfade -->
+    <div class="carousel-track" [style.transform]="transformStyle">
+      <img *ngFor="let img of carouselImages" [src]="img" class="carousel-image" />
+    </div>
+
+    <!-- 🔵 Dots (square indicators) -->
+    <div class="carousel-dots">
+      <span *ngFor="let img of carouselImages; let i = index" class="dot" [class.active]="i === currentIndex"
+        (click)="setCurrentSlide(i)"></span>
+    </div>
+  </div>
+
+  <!-- 🔹 Wallet Section -->
+  <div class="wallet-section">
+    <div class="wallet-buttons">
+      <div class="wallet-btn" *ngFor="let action of walletActions" (click)="onWalletAction(action.label)">
+        <img [src]="action.icon" alt="{{ action.label }}" />
+        <span>{{ action.label }}</span>
+      </div>
+    </div>
+    <app-deposit #depositModal (depositCompleted)="onDepositCompleted()"></app-deposit>
+    <div class="wallet-values">
+      <div class="wallet-item">
+        <p class="ptag">{{ 'Main Wallet' | translate }}</p>
+        <div class="money-item">
+          <span class="money">{{ workingWallet }}</span>
+          <span class="curr">USDT</span>
+        </div>
+      </div>
+      <div class="wallet-item">
+        <p class="ptag">{{ 'Withdrawal Account' | translate }}</p>
+        <div class="money-item">
+          <span class="money">{{ withdrawalWallet }}</span>
+          <span class="curr">USDT</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Referral Section -->
+  <div class="referral-section">
+    <div class="code-row">
+      <div class="code-box">
+        <span class="code-title">{{ 'SHARE YOUR LINK' | translate }}</span>
+        <span class="code-body">{{ 'Earn up to 21% profit bonus when your friends sign up' | translate }}</span>
+      </div>
+      <div class="rferal-box">
+        <span>{{ refferalCode }}</span>
+        <img src="/copy.svg" alt="copy" (click)="copyReferralLink()" />
+      </div>
+    </div>
+    <img src="/gift1.gif" class="referral-gif" alt="gif" />
+  </div>
+
+  <div class="bnb-section">
+    <h3>{{ 'Tower BNB Core Concept' | translate }}</h3>
+
+    <p>
+      {{"At TowerBNB," | translate}}<strong>{{" the Circulation Yield Protocol (CYP)" | translate}}</strong>{{"
+      redefines how digital assets generate value. Built on an"| translate}}
+      <strong>{{"EVM-based framework"| translate}}</strong>{{" with intelligent algorithmic architecture
+      and"|translate}}<strong>{{" quantitative trading bots"|translate}}</strong>{{", it allows users
+      to"|translate}}<strong>{{" circulate their assets seamlessly and earn reliable"|translate}}</strong>{{" ,
+      optimized returns, fostering a secure and evolving financial environment for sustainable growth."|translate}}
+    </p>
+
+    <p>
+      <strong>{{"TowerBNB Circulation Strategy" | translate}}</strong>{{" is a protocol based on the" |
+      translate}}<strong>{{" Ethereum network (EVM)" | translate}}</strong>{{" with" | translate}}
+      {{" for leasing and profit-sharing model. Users can securely deposit or share cryptocurrency assets and enjoy fair
+      profit distribution. " | translate}}
+      <strong>{{"Through technology, TowerBNB Circulation Strategy" | translate}}</strong>{{" offers a secure and
+      transparent environment for users to circulate their assets and earn reliable returns." | translate}}
+      {{" does not require credit scores or complex review processes; instead, "|translate}} <strong>{{"it uses
+        algorithms and quantitative trading bots to automatically match supply and demand, "|translate}}</strong>
+      {{"providing efficient global asset allocation while ensuring security and fairness for both parties
+      involved, maximizing profit potential for both parties."|translate}}
+    </p>
+  </div>
+
+  <!-- 🔹 Telegram Banner -->
+  <!-- <div class="telegram-banner" (click)="opentelegramLinkOne()">
+        <img src="telegram.svg" alt="Telegram" class="telegram-icon" />
+        <div>
+            <p>Join us on Telegram</p>
+            <span>Get the latest updates here!</span>
+        </div>
+        <div>
+            <img src="go-inside.svg" alt="go" class="telegram-icon" />
+        </div>
+    </div> -->
+</div>
+<!-- 🔹 Telegram Banner -->
+<div class="telegram-banner" (click)="opentelegramLinkTwo()">
+  <div class="telegram-section">
+    <div class="tele-icon">
+      <img src="tele.svg" alt="Telegram" class="telegram-icon" />
+      <div class="tele-text">
+        <span class="tele-head-text">{{ 'Join our Telegram channel to stay updated' | translate }}</span>
+        <span class="tele-body-text">{{ 'Get the latest updates insights!' | translate }}</span>
+      </div>
+    </div>
+    <div class="expend-icon">
+      <img src="go-inside.svg" alt="go" />
+    </div>
+  </div>
+</div>
+<!-- 🔹 Support Popup Overlay -->
+<div class="support-overlay" *ngIf="showSupport" (click)="closeSupportPopup()"></div>
+
+<!-- 🔹 Support Popup -->
+<div class="support-popup" *ngIf="showSupport">
+  <div class="support-header">
+    <h3>{{ 'We’re here to help' | translate }}</h3>
+    <button class="close-btn" (click)="closeSupportPopup()">×</button>
+  </div>
+
+  <div class="support-content">
+    <p>{{ '• Sign-up and explore the Free Trial and earn 8 USDT fund.' | translate }}</p>
+
+    <p>
+      {{ '• Join the group and contact your Manager or Customer Support to receive a 2 USDT joining bonus.' | translate
+      }}
+    </p>
+
+    <p>
+      {{ '• Claim a total of 10 USDT and use the funds to circulate Tower Upgrade or withdraw upon upgrading to Core 1G
+      Tower Computing.' | translate }}
+    </p>
+
+    <p>{{ '• $2 bonus when activating your account with $50.' | translate }}</p>
+  </div>
+
+  <button class="support-btn">{{ 'Support' | translate }}</button>
+</div>

@@ -1,0 +1,49 @@
+<div class="dashboard-container">
+  <h2 class="dashboard-title">Dashboard Overview</h2>
+
+  <div class="cards-container">
+    <!-- Total Deposits -->
+    <div class="stat-card">
+      <div class="icon-box purple">
+        <!-- <mat-icon>account_balance_wallet</mat-icon> -->
+      </div>
+      <div class="card-info">
+        <p>Total Depositors</p>
+        <h3>{{ stats.totalDeposits }}</h3>
+      </div>
+    </div>
+
+    <!-- Total Amount -->
+    <div class="stat-card">
+      <div class="icon-box blue">
+        <!-- <mat-icon>attach_money</mat-icon> -->
+      </div>
+      <div class="card-info">
+        <p>Total Amount</p>
+        <h3>{{ stats.totalAmount }}</h3>
+      </div>
+    </div>
+
+    <!-- Total Withdraw -->
+    <div class="stat-card">
+      <div class="icon-box green">
+        <!-- <mat-icon>autorenew</mat-icon> -->
+      </div>
+      <div class="card-info">
+        <p>Total Withdraw</p>
+        <h3>${{ stats.totalWithdraw }}</h3>
+      </div>
+    </div>
+
+    <!-- Total Users -->
+    <div class="stat-card">
+      <div class="icon-box violet">
+        <!-- <mat-icon>shopping_cart</mat-icon> -->
+      </div>
+      <div class="card-info">
+        <p>Total Users</p>
+        <h3>{{ stats.totalUsers }}</h3>
+      </div>
+    </div>
+  </div>
+</div>

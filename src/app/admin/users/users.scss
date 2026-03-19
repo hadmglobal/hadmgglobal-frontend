@@ -1,0 +1,446 @@
+.users-container {
+  padding: 20px;
+  background: #f8faff;
+  min-height: calc(100vh - 60px);
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+
+  .send-email-btn {
+    background: #2752e7;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #1f45c3;
+    }
+  }
+
+  .right-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    select,
+    input {
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    input {
+      min-width: 160px;
+    }
+  }
+}
+
+.table-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+
+  /* 🔹 Horizontal scroll fix */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  white-space: nowrap; /* Prevent wrapping */
+
+  /* Make sure scrollbar visible on mobile */
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #888;
+  }
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px; /* 👈 Ensures scroll when small screens */
+
+  thead {
+    background: #eef2ff;
+
+    th {
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+      white-space: nowrap; /* Keep headers in one line */
+    }
+  }
+
+  tbody {
+    td {
+      padding: 10px 12px;
+      border-top: 1px solid #eaeaea;
+      font-size: 14px;
+      vertical-align: middle;
+      white-space: nowrap; /* Prevent row wrapping */
+    }
+
+    tr:hover {
+      background: #f9fbff;
+    }
+  }
+}
+
+
+.add-btn {
+  background: #fff;
+  border: 1px solid #2752e7;
+  color: #2752e7;
+  border-radius: 4px;
+  font-size: 13px;
+  padding: 2px 10px;
+  margin-left: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #2752e7;
+    color: #fff;
+  }
+}
+
+.status-btn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 13px;
+
+  &.active {
+    background: #27ae60;
+    color: white;
+  }
+
+  &.inactive {
+    background: #e74c3c;
+    color: white;
+  }
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+
+  button {
+    background: #2752e7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:disabled {
+      background: #b7c4f1;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background: #1f45c3;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    color: #333;
+  }
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+}
+
+/* ⭐ Users table — perfect mobile responsiveness */
+@media (max-width: 768px) {
+  .users-container {
+    padding: 14px !important;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .right-controls {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .responsive-table {
+    min-width: 950px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-table {
+    min-width: 900px !important;
+  }
+
+  .send-email-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ============================== */
+/* ⭐ FIXED ONLY NAME COLUMN      */
+/* ============================== */
+
+.table-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* ⭐ Clean table with no white blocks */
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+/* Sticky only SECOND column */
+.responsive-table td:nth-child(2),
+.responsive-table th:nth-child(2) {
+  position: sticky;
+  left: 60px; /* adjust based on SN column width */
+  background: #fff;
+  z-index: 10;
+  border-right: 1px solid #f0f0f0;
+}
+
+/* SN column — NOT sticky */
+.responsive-table th:first-child,
+.responsive-table td:first-child {
+  background: #fff;
+  z-index: 9;
+}
+
+/* Row styling */
+.responsive-table tbody tr:hover {
+  background: #f9fbff;
+}
+
+/* Header */
+.responsive-table thead th {
+  background: #eef2ff;
+  font-weight: 600;
+  color: #333;
+  padding: 10px 12px;
+}
+
+/* ⭐ Wallet cell: fixed width alignment */
+.wallet-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 140px;
+  max-width: 140px;
+}
+
+.wallet-cell .amount {
+  width: 70px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ⭐ Toggle switch (Active/Inactive) */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #e74c3c; /* INACTIVE RED */
+  border-radius: 22px;
+  transition: 0.3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+/* ACTIVE green */
+.toggle-switch input:checked + .slider {
+  background: #27ae60;
+}
+
+.toggle-switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* ⭐ Email icon button */
+.email-btn {
+  background: #2752e7;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+
+  i {
+    font-size: 14px;
+  }
+
+  &:hover {
+    background: #1f45c3;
+  }
+}
+
+/* ------------------------------------------- */
+/*   FIX FOR ADD BUTTON ALIGNMENT              */
+/* ------------------------------------------- */
+
+.wallet-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 150px;     /* Prevents breaking */
+  max-width: 150px;     /* Keeps both columns equal */
+  white-space: nowrap;
+  padding-right: 8px;
+}
+
+.wallet-cell .amount {
+  flex: 1;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wallet-cell .add-btn {
+  width: 48px;          /* Fixed size */
+  text-align: center;
+  flex-shrink: 0;       /* Prevent push/resize */
+  margin-left: 8px;
+}
+
+/* --- FIXED COLUMN WIDTHS --- */
+.responsive-table th:nth-child(2),
+.responsive-table td:nth-child(2) {
+  min-width: 140px;
+  max-width: 140px;
+  width: 140px;
+
+  position: sticky;
+  left: 60px;
+  background: #fff;
+  z-index: 10;
+  border-right: 1px solid #f0f0f0;
+}
+
+/* SN column width */
+.responsive-table th:first-child,
+.responsive-table td:first-child {
+  min-width: 60px;
+  max-width: 60px;
+  width: 60px;
+}
+
+/* Working Wallet & Withdraw Wallet cell width control */
+.responsive-table td:nth-child(5),
+.responsive-table td:nth-child(6),
+.responsive-table th:nth-child(5),
+.responsive-table th:nth-child(6) {
+  min-width: 160px;
+  max-width: 160px;
+  width: 160px;
+}
+
+/* Add button fixed small width */
+.add-btn {
+  width: 48px;
+  text-align: center;
+  padding: 2px 0;
+}
+
+.table-container {
+  overflow-x: auto !important;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive-table {
+  min-width: 1100px !important;
+}
+
+@media (max-width: 768px) {
+  .responsive-table {
+    min-width: 1000px !important;
+  }
+
+  .responsive-table td:nth-child(2),
+  .responsive-table th:nth-child(2) {
+    left: 60px;
+  }
+}

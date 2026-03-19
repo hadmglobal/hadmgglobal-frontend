@@ -1,0 +1,106 @@
+<div class="users-container">
+  <div class="top-bar">
+    <button class="send-email-btn" (click)="emailModal.open(this.allEmails)">Send email to all user</button>
+
+    <div class="right-controls">
+      <label>Show</label>
+      <select [(ngModel)]="pageSize" (change)="changePageSize(pageSize)">
+        <option *ngFor="let size of [10, 20, 50, 100]" [value]="size">{{ size }}</option>
+      </select>
+      <label>entries</label>
+
+      <input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="searchUsers()" />
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>SN</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Referral ID</th>
+          <th>Working Wallet</th>
+          <th>Withdraw Wallet</th>
+          <th>Referrals</th>
+          <th>Pass Code</th>
+          <th>Status</th>
+          <th>Actions</th> <!-- ⭐ NEW COLUMN -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers; let i = index" >
+
+          <td (click)="openTeamDetails(user)">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td (click)="openTeamDetails(user)">{{ user.name }}</td>
+          <td (click)="openTeamDetails(user)">{{ user.email }}</td>
+          <td (click)="openTeamDetails(user)">{{ user.referralId }}</td>
+
+          <!-- ⭐ FIXED width for wallet + button alignment -->
+          <td (click)="openTeamDetails(user)">
+            <span class="amount">{{ user.wallet }}</span>
+            <!-- <button class="add-btn" (click)="openPopup('Deposit', user)">Add</button> -->
+          </td>
+
+          <td (click)="openTeamDetails(user)">
+            <span class="amount">{{ user.earnings }}</span>
+            <!-- <button class="add-btn" (click)="openPopup('Withdraw', user)">Add</button> -->
+          </td>
+
+          <td (click)="openTeamDetails(user)">{{ user.referrals }}</td>
+
+          <td >{{ user.passcode }}</td>
+
+          <!-- ⭐ TOGGLE switch instead of button -->
+          <td>
+            <label class="toggle-switch">
+              <input type="checkbox" [checked]="user.status" (change)="toggleStatus(user)"  />
+              <span class="slider"></span>
+            </label>
+          </td>
+
+          <!-- ⭐ NEW Send email column -->
+          <td>
+            <!-- {{ user.email }} -->
+            <button class="edit-btn" (click)="openUserDetail(user)" title="Edit user" >
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+    <span>Page {{ currentPage }} of {{ Math.ceil(filteredUsers.length / pageSize) }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage * pageSize >= filteredUsers.length">
+      Next
+    </button>
+  </div>
+</div>
+
+
+<app-update-amount [show]="showPopup" [actionType]="selectedAction" [rowData]="selectedRow"
+  [prefilledWallet]="prefilledWallet" (close)="closePopup()" (submitData)="handleSubmit($event)">
+</app-update-amount>
+
+
+<app-user-detail 
+  #userDetailRef 
+  *ngIf="showDetail"
+  [user]="selectedRow"
+  (close)="closeUserDetail()"
+  (add)="openPopup($event.action, $event.row, $event.wallet)"
+  (toggleStatus)="toggleStatus($event)"
+  (sendEmail)="sendEmail($event)"
+  (openAmount)="openPopup($event.action, $event.row, $event.wallet)">
+</app-user-detail>
+
+<!-- Keep a template ref so you can open programmatically -->
+<app-email-modal #emailModal (sent)="onEmailSent($event)" (closed)="onEmailClosed()"></app-email-modal>

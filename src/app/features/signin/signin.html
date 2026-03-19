@@ -1,0 +1,113 @@
+<div class="layout-container" fxLayout="column" fxFlexFill>
+  <header>
+    <app-top-nav  ></app-top-nav>
+  </header>
+  <div class="signin-container">
+    <div class="welcome-section">
+      <div class="welcome-text">{{'Welcome' | translate}}</div>
+      <div class="bnb-text">{{'to Tower BNB' | translate}}</div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+
+      <!-- Login Card -->
+      <div class="login-card">
+        <div class="hero-coin">
+          <img src="/golden_coin.svg" alt="Golden Coin" />
+        </div>
+        <h2 class="form-heading">{{'Log In' | translate}}</h2>
+
+        <form [formGroup]="loginForm" class="formField" (ngSubmit)="onSubmit()">
+          <div class="password-section">
+            <div class="section-labels">
+              <span
+                [class.error-label]="
+                  loginForm.get('email')?.invalid &&
+                  (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)
+                "
+                >{{'Email' | translate}}</span
+              >
+            </div>
+
+            <mat-form-field class="password-field" appearance="outline">
+              <input
+                matInput
+                type= "email"
+                formControlName="email"
+                placeholder="example@gmail.com"
+              />
+              <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+                {{'Email is required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- Password Section -->
+          <div class="password-section" style="margin-bottom: 0px;">
+            <div class="section-labels">
+              <span
+                [class.error-label]="
+                  loginForm.get('password')?.invalid &&
+                  (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)
+                "
+                >{{'Password' | translate}}</span
+              >
+            </div>
+
+            <mat-form-field class="password-field" appearance="outline">
+              <input
+                matInput
+                [type]="hidePassword ? 'password' : 'text'"
+                formControlName="password"
+                placeholder="Enter your password"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="togglePasswordVisibility()"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword"
+              >
+                <!-- <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon> -->
+                 <img src="/password-eye.svg" alt="password" />
+              </button>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                {{'Password is required' | translate}}
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+                {{'Password must be at least 6 characters' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Remember Me and Forgot Password -->
+          <div class="form-options">
+            <div class="remember-me-wrapper">
+              <mat-checkbox class="remember-checkbox" formControlName="rememberMe"></mat-checkbox>
+              <label class="remember-me-label">{{'Remember me' | translate}}</label>
+            </div>
+            <a [routerLink]="['/forget']"class="forgot-password">{{'Forgot password' | translate}}</a>
+          </div>
+
+          <!-- Login Button -->
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <button
+      mat-raised-button
+      (click)="onSubmit()"
+      type="submit"
+      class="login-button"
+      [disabled]="loginForm.invalid"
+    >
+      {{'Log In' | translate}}
+    </button>
+    <!-- Sign Up Link -->
+    <div class="signup-link">
+      <span>{{"Don't have an account" | translate}} </span>
+      <a [routerLink]="['/signup']" class="signup-text" style="margin-left: 4px;"> {{'Sign Up' | translate}}</a>
+    </div>
+  </footer>
+</div>

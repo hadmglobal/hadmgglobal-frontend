@@ -1,0 +1,133 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+* {
+  font-family: Poppins !important;
+}
+
+i.fa, .fa {
+  font-family: "FontAwesome" !important;
+}
+
+html {
+  @include mat.theme((color: (primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    ));
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/* global styles.css */
+[dir="rtl"] .header {
+  text-align: right;
+}
+
+[dir="ltr"] .header {
+  text-align: left;
+}
+
+/* 🔹 Global Placeholder Color */
+::placeholder {
+  color: #94A3B8 !important;
+  opacity: 1;
+  /* Ensure visible */
+}
+
+/* 🔹 For all browsers */
+input::placeholder,
+textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+input::-webkit-input-placeholder {
+  color: #94A3B8 !important;
+}
+
+input:-ms-input-placeholder {
+  color: #94A3B8 !important;
+}
+
+input::-ms-input-placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Override Angular Material raised-button label color.
+   The Material CSS uses the variable
+   `--mat-button-protected-label-text-color` for raised/contained buttons.
+   Setting it here (root scope) ensures raised button labels use the color
+   you expect. If you prefer a scoped change, move this into a component
+   stylesheet and use `:host ::ng-deep` or a more specific selector. */
+:root {
+  --mat-button-protected-label-text-color: #ffffff;
+}
+
+/* Optional: force the color on the class directly if you need higher specificity */
+.mat-mdc-raised-button {
+  color: var(--mat-button-protected-label-text-color) !important;
+}
+
+
+/* 🔵 Global Scrollbar (Chrome, Edge, Safari) */
+// ::-webkit-scrollbar {
+//   width: 6px;        /* vertical scrollbar thickness */
+//   height: 6px;       /* horizontal scrollbar thickness */
+// }
+
+// ::-webkit-scrollbar-track {
+//   background: #E7EDFF;   /* light blue track */
+//   border-radius: 10px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background: #2752E7;   /* your app blue */
+//   border-radius: 100px;
+// }
+
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #2440A0;   /* darker blue on hover */
+// }
+
+/* Firefox scrollbar */
+// * {
+//   scrollbar-width: thin;
+//   scrollbar-color: #2752E7 #E7EDFF;
+// }
+.mat-mdc-form-field-hint-wrapper,
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 0px !important;
+}

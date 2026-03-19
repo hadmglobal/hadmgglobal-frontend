@@ -1,0 +1,248 @@
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  font-family: 'Poppins';
+  box-sizing: border-box;
+}
+
+.team-container {
+  background: #f8faff;
+  min-height: 100vh;
+}
+
+/* 🔹 Blue Banner */
+.blue-banner {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .banner-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ensures full background coverage */
+    z-index: 0;
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .banner-text {
+    color: white;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+  }
+
+  .banner-img img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+  }
+}
+
+/* 🔹 Overview Section */
+.overview-section {
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  // gap: 12px;
+  padding: 0px 16px 0px 16px;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-bottom: 12px;
+
+    h3 {
+      font-family: Poppins;
+      font-weight: 600;
+      font-style: SemiBold;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: -1%;
+      color: #202020;
+    }
+
+    .details-link {
+      font-family: Poppins;
+      font-weight: 600;
+      font-style: SemiBold;
+      font-size: 12px;
+      line-height: 150%;
+      letter-spacing: -1%;
+      color: #2752e7;
+      text-decoration: none;
+    }
+  }
+
+  .overview-grid {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    .firstcard {
+      opacity: 1;
+      display: flex;
+      flex-direction: row;
+      gap: 9px;
+    }
+    .secondcard {
+      opacity: 1;
+      display: flex;
+      flex-direction: row;
+      gap: 9px;
+    }
+
+    .card {
+      width: 100%;
+      height: 157px;
+      background: linear-gradient(#eef2ff, #eef2ff) padding-box,
+        linear-gradient(311.8deg, #2752e7 36.37%, #c4d6ff 109.45%) border-box;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0px 3px 8px 0px #2752e733;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      img {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 10px;
+width: 36px;
+height: 36px;
+background: linear-gradient(180deg, #2752E7 27.4%, #2440A0 100%);
+border-radius: 100px;
+      }
+
+      .card-data {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+width: 132px;
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+ .card-amnt{
+  font-family: Poppins;
+font-weight: 600;
+font-style: SemiBold;
+font-size: 28px;
+width: 132px;
+height: 39px;
+opacity: 1;
+line-height: 140%;
+letter-spacing: -4%;
+color: #000000;
+ }
+ .card-txt{
+font-family: Poppins;
+font-weight: 400;
+font-style: Regular;
+font-size: 12px;
+line-height: 140%;
+letter-spacing: -1%;
+color: #000000AD;
+}
+      }
+    }
+  }
+}
+
+/* 🔹 Levels Section */
+.levels-section {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .level-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    padding: 12px 14px;
+
+    .level-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+      .level-title{
+        font-family: Poppins;
+font-weight: 500;
+font-style: Medium;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+text-transform: uppercase;
+
+      }
+      .level-percent {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: #eaeaea;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 6px;
+
+      .progress-fill {
+        height: 100%;
+        border-radius: 6px;
+        transition: width 0.6s ease;
+      }
+    }
+
+    .level-info {
+      font-size: 11px;
+      color: #777;
+      margin: 0;
+    }
+  }
+}
+
+/* ✅ Responsive */
+@media (min-width: 768px) {
+  .overview-grid {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .levels-section {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,147 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: 285px;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  animation: fadeIn 0.25s ease;
+  padding: 22px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #555;
+    transition: 0.2s;
+    &:hover {
+      color: #000;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.modal-body {
+  margin-top: 18px;
+
+  .form-group {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    input,
+    textarea,
+    select {
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.3s;
+
+      &:focus {
+        border-color: #2752e7;
+        box-shadow: 0 0 0 2px rgba(39, 82, 231, 0.15);
+      }
+    }
+
+    textarea {
+      resize: none;
+      height: 60px;
+    }
+  }
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+
+  .submit-btn {
+    background: #2752e7;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #1f45c3;
+      transform: scale(1.03);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .modal {
+    width: 90%;
+    padding: 18px;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9998 !important;
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: 285px;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+  z-index: 9999 !important;   /* ⭐ FIX to show ON TOP */
+  animation: fadeIn 0.25s ease;
+  padding: 22px;
+}

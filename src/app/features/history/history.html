@@ -1,0 +1,103 @@
+<div class="layout-container" fxLayout="column" fxFlexFill>
+  <header>
+    <app-top-nav></app-top-nav>
+  </header>
+
+  <div class="withdrawal-container">
+    <!-- 🔹 Blue Gradient Banner (2-layer) -->
+    <div class="blue-banner">
+      <div class="upper-blue">
+        <button class="back-btn" (click)="goBack()">
+          <img src="/leftarraow.svg" alt="back" />
+        </button>
+        <h2>{{ 'Transaction history' | translate }}</h2>
+        <button class="filter-btn" (click)="openFilterPopup()">
+          <img src="/filter.svg" alt="filter" />
+        </button>
+      </div>
+      <p style="z-index: 9; padding: 50px; color: #ffffffad">
+        {{ 'Track your recent spends, transfers, and deposits in one place.' | translate }}
+      </p>
+      <div class="lower-blue"></div>
+    </div>
+
+    <!-- 🔹 Transaction Section (newly added) -->
+    <div class="transaction-section">
+      <div *ngFor="let group of groupedTransactions" class="transaction-group">
+        <h4 class="date-label">{{ group.date }}</h4>
+
+        <div *ngFor="let tx of group.transactions" class="transaction-card">
+          <div class="tx-icon">
+            <img [src]="
+                tx.type === 'credit'
+                  ? '/credit.svg'
+                  : tx.type === 'deposit'
+                  ? '/credit.svg'
+                  : tx.type === 'withdraw'
+                  ? '/deposits.svg'
+                  : '/credit.svg'
+              " alt="icon" />
+          </div>
+
+          <div class="tx-details">
+            <p class="tx-type">
+              {{
+              tx?.isConverted === true
+              ? ('Withdrawal Funds Transfer' | translate)
+              : tx.type === 'withdraw'
+              ? ('PAYOUT WITHDRAW' | translate)
+              : tx.type === 'reward'
+              ? tx?.adminReward === true
+              ? ('Admin Internal Background' | translate)
+              : ('Circulation Quantitative Trading Earn' | translate)
+              : tx.type.toUpperCase()
+              }}
+
+            </p>
+
+            <h3 [ngClass]="{
+                credit: tx.type === 'credit',
+                deposit: tx.type === 'deposit',
+                reward: tx.type === 'reward'
+              }">
+              {{ tx.type === 'credit' || tx.type === 'reward' ? '+' : ''
+              }}{{ tx.amount | number : '1.0-2' }}
+              <span>USDT</span>
+              <span *ngIf="tx.type === 'withdraw' || tx.type === 'deposit'" class="tx-status">
+                • {{ tx.status === 'paid' ? 'success' : tx.status }}
+              </span>
+            </h3>
+            <div style="display: flex">
+              <p class="tx-id">{{ tx.transactionId }}</p>
+              <button class="copy-btn">
+                <img src="/copy.svg" alt="copy" (click)="copyCode(tx.transactionId)" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Filter Popup (bottom sheet) -->
+  <div class="filter-overlay" *ngIf="showFilter" (click)="closeFilterPopup()"></div>
+
+  <div class="filter-popup" *ngIf="showFilter">
+    <div class="filter-header">
+      <h3>{{ 'Smart Filters' | translate }}</h3>
+      <button class="close-btn" (click)="closeFilterPopup()">×</button>
+    </div>
+
+    <div class="filter-option" *ngFor="let filter of filters" [class.active]="filter.value === activeFilter"
+      (click)="selectFilter(filter.value)">
+      <div class="filter-icon">
+        <img [src]="filter.icon" alt="{{ filter.label }}" />
+      </div>
+      <div class="filter-text">
+        <h4>{{ filter.label }}</h4>
+        <p>{{ filter.desc }}</p>
+      </div>
+      <div class="filter-arrow">›</div>
+    </div>
+  </div>
+</div>

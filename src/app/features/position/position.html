@@ -1,0 +1,80 @@
+<div class="layout-container" fxLayout="column" fxFlexFill>
+    <!-- <header>
+    <app-top-nav
+
+></app-top-nav>
+  </header> -->
+
+    <div class="positions-container" (scroll)="onScroll($event)" #scrollContainer>
+        <!-- 🔹 Top 3 Dynamic Ranks -->
+        <div class="top-banner">
+            <!-- <img src="/positions-banner.svg" alt="bg" class="bg-image" /> -->
+
+            <div class="top3">
+                <!-- 🔹 Rank 2 -->
+                <div class="rank-card second" *ngIf="topThree[1]">
+                    <div class="circle second-bg">
+                        <img src="/crown2.svg" alt="crown" class="crown" />
+                        <span>{{ getInitials(topThree[1].name) }}</span>
+                        <div class="rank-badge silver">2</div>
+                    </div>
+                    <div class="name-chip">{{ topThree[1].name }}</div>
+                    <p class="points">{{ topThree[1].points | number: '1.0-2' }}</p>
+                </div>
+
+                <!-- 🔹 Rank 1 -->
+                <div class="rank-card first" *ngIf="topThree[0]">
+                    <div class="circle first-bg">
+                        <img src="/crown1.svg" alt="crown" class="crown" />
+                        <span>{{ getInitials(topThree[0].name) }}</span>
+                        <div class="rank-badge gold">1</div>
+                    </div>
+                    <div class="name-chip">{{ topThree[0].name }}</div>
+                    <p class="points">{{ topThree[0].points | number: '1.0-2' }}</p>
+                </div>
+
+                <!-- 🔹 Rank 3 -->
+                <div class="rank-card third" *ngIf="topThree[2]">
+                    <div class="circle third-bg">
+                        <img src="/crown3.svg" alt="crown" class="crown" />
+                        <span>{{ getInitials(topThree[2].name) }}</span>
+                        <div class="rank-badge bronze">3</div>
+                    </div>
+                    <div class="name-chip">{{ topThree[2].name }}</div>
+                    <p class="points">{{ topThree[2].points | number: '1.0-2' }}</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 🔹 All Positions -->
+        <div class="positions-list">
+            <div *ngFor="let p of allPositions; let i = index" class="position-card"
+                [class.current]="p.pid === currentPosition.pid" [id]="'rank-' + p.pid"
+                [style.--circleColor]="getRandomColor(p.pid)">
+                <div class="rank">{{ p.pid | number: '2.0' }}</div>
+                <div class="initials" [style.background]="getRandomColor(p.pid)">
+                    {{ getInitials(p.name) }}
+                </div>
+                <div class="details">
+                    <h4>{{ p.name }}</h4>
+                    <p>{{ p.points | number: '1.0-2' }} WD Bal</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔹 Sticky Current User (animated show/hide) -->
+    <div class="sticky-card" [class.visible]="showSticky" *ngIf="currentPosition">
+        <div class="rank">{{ currentPosition.pid }}</div>
+        <div class="initials" [style.background]="getRandomColor(currentPosition.pid)">
+            {{ getInitials(currentPosition.name) }}
+        </div>
+        <div class="details">
+            <h4>You</h4>
+            <p>{{ currentPosition.points | number: '1.0-2' }} WD Bal</p>
+        </div>
+        <img [src]="arrowDirection === 'up' ? '/arrow-down.svg' : '/arrow-up.svg'" alt="arrow" class="arrow" (click) ="this.scrollToCurrent()"/>
+    </div>
+</div>

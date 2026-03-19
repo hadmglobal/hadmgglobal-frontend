@@ -1,0 +1,36 @@
+<div class="layout-container" fxLayout="column" fxFlexFill>
+  <!-- <header class="top-nav" fxLayout="row" fxLayoutAlign="space-between center"> -->
+  <app-top-nav
+
+></app-top-nav>
+  <!-- </header> -->
+
+  <!-- 🧭 Main Content -->
+  <main class="main-content" fxFlex>
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- 🧩 Bottom Navbar -->
+  <footer class="bottom-nav" fxLayout="row" fxLayoutAlign="space-around center">
+    <a routerLink="/home" routerLinkActive="active" fxLayout="column" fxLayoutAlign="center center">
+      <img src="home.svg" alt="Home" class="nav-icon" />
+      <span>Home</span>
+    </a>
+    <a routerLink="/rank" routerLinkActive="active" fxLayout="column" fxLayoutAlign="center center">
+      <img src="position.svg" alt="Position" class="nav-icon" />
+      <span>My Rank</span>
+    </a>
+    <a routerLink="/tower" routerLinkActive="active" class="game-icon" fxLayout="column" fxLayoutAlign="center center">
+      <img src="game.svg" alt="Game" class="nav-icon" style="width:50px;height: 50px;" />
+    </a>
+    <a routerLink="/team" routerLinkActive="active" fxLayout="column" fxLayoutAlign="center center">
+      <img src="team.svg" alt="Team" class="nav-icon" />
+      <span>Team</span>
+    </a>
+    <a routerLink="/profile" routerLinkActive="active" fxLayout="column" fxLayoutAlign="center center">
+      <img src="profile.svg" alt="Profile" class="nav-icon" />
+      <span>Profile</span>
+    </a>
+  </footer>
+
+</div>

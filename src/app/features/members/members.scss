@@ -1,0 +1,170 @@
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    font-family: 'Poppins';
+    box-sizing: border-box;
+}
+
+.members-container {
+    background: #f8faff;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 🔹 Blue Banner */
+.blue-banner {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .banner-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    .banner-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-bottom: 10px;
+
+        h2 {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+
+    .search-box {
+        position: relative;
+        z-index: 2;
+        background: #4960B1;
+        border-radius: 10px;
+        margin: 0 16px;
+        padding: 6px 10px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        mat-icon {
+            color: #7c7c7c;
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: #fff;
+            /* Make typed text white */
+            background: transparent;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.8);
+                /* White placeholder with slight transparency */
+            }
+        }
+
+    }
+}
+
+/* 🔹 Members List */
+.members-list {
+    padding: 16px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .member-card {
+        background: #fff;
+        border: 1px solid #dfe6ff;
+        border-radius: 12px;
+        padding: 14px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.04);
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .email {
+                font-weight: 500;
+                color: #101432;
+                font-size: 14px;
+            }
+
+            .balance {
+                font-weight: 600;
+                color: #2440a0;
+
+                span {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .divider {
+            height: 1px;
+            background: #eaeaea;
+            margin: 8px 0;
+        }
+
+        .bottom-row {
+            display: flex;
+            justify-content: space-between;
+
+            .label {
+                font-size: 11px;
+                color: #999;
+                margin-bottom: 4px;
+            }
+
+            .value {
+                font-size: 12px;
+                color: #222;
+                font-weight: 500;
+                text-align: center;
+            }
+        }
+    }
+}
+
+/* ✅ Responsive */
+@media (min-width: 768px) {
+    .members-list {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .search-box {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+}

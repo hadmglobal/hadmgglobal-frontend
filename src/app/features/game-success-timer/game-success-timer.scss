@@ -1,0 +1,147 @@
+.timer-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.modal-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 420px;
+  margin: auto;
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+  animation: slideUp 0.35s ease-out;
+  overflow: hidden;
+}
+
+.fade-out {
+  animation: fadeOut 0.25s ease-out forwards;
+}
+
+.header {
+  background: #2752e7;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .close-btn {
+    width: 20px;
+    cursor: pointer;
+  }
+}
+
+.body {
+  padding: 20px;
+  text-align: center;
+
+  .badge img {
+    width: 120px;
+    margin-bottom: 15px;
+  }
+
+  h4 {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .desc {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    padding-bottom: 25px;
+    border-bottom: 1px #DDDDDD solid;
+  }
+}
+.countdown {
+  width: 100%;
+  background: #eef3ff;     // light bluish background EXACTLY like screenshot
+  padding: 10px 0;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.cell {
+  text-align: center;
+  min-width: 70px;
+}
+
+.num {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2752E7;         // dark navy color same as screenshot
+  margin-bottom: 2px;
+  display: block;
+}
+
+.label {
+  font-size: 11px;
+  color: #6073a9;        // soft blue-gray text
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.divider {
+  width: 1px;
+  height: 35px;
+  background: #ccd6f6;   // faint divider line EXACT match
+}
+
+
+.footer-text {
+  color: #707070;
+  font-size: 12px;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(120%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+
+
+.overlay.fade-out {
+  animation: overlayFadeOut 0.25s ease-out forwards;
+}
+
+@keyframes overlayFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

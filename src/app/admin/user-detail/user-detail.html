@@ -1,0 +1,63 @@
+<div class="user-details-overlay" (click)="close.emit()"></div>
+
+<div class="user-details-card">
+
+  <!-- NAME BADGE -->
+  <div class="name-badge">{{ formattedName }}</div>
+
+  <!-- USER BASIC INFO -->
+  <div class="user-info">
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Referral ID:</strong> {{ user.referralId }}</p>
+  </div>
+
+  <!-- WALLET SECTIONS -->
+  <div class="wallet-box">
+    <label>Working Wallet</label>
+    <div class="wallet-actions">
+      <span>{{ user.wallet }}</span>
+      <button class="add-btn" (click)="openAmountPopup('Deposit', user.wallet)">Add</button>
+    </div>
+  </div>
+
+  <div class="wallet-box">
+    <label>Withdraw Wallet</label>
+    <div class="wallet-actions">
+      <span>{{ user.earnings }}</span>
+      <button class="add-btn" (click)="openAmountPopup('Withdraw', user.earnings)">Add</button>
+    </div>
+  </div>
+
+  <div class="wallet-box">
+    <label>Passcode</label>
+
+    <div class="wallet-actions">
+      <input type="text" [(ngModel)]="editablePasscode" class="passcode-input" placeholder="Enter passcode" />
+
+      <button class="add-btn" (click)="editPasscode()">
+        Update
+      </button>
+    </div>
+  </div>
+
+  <!-- ACTIVE/INACTIVE TOGGLE -->
+  <div class="status-toggle">
+    <label>Status</label>
+
+    <label class="toggle-switch">
+      <input type="checkbox" [checked]="user.status" (change)="triggerStatusToggle()" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- EMAIL ICON -->
+  <button class="email-btn" (click)="emailModal.open(user.email)">
+    <i class="fa fa-envelope"></i> Send Email
+  </button>
+
+  <!-- Close -->
+  <button class="close-detail" (click)="close.emit()">Close</button>
+
+</div>
+
+<app-email-modal #emailModal (sent)="onEmailSent($event)" (closed)="onEmailClosed()"></app-email-modal>

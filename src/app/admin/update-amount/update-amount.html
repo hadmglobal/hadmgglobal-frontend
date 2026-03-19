@@ -1,0 +1,42 @@
+<div class="modal-overlay" *ngIf="show" (click)="closeModal()"></div>
+
+<div class="modal" *ngIf="show" (click)="$event.stopPropagation()">
+  <div class="modal-header">
+    <h3>Update Amount</h3>
+    <button class="close-btn" (click)="closeModal()">×</button>
+  </div>
+
+  <div class="modal-body">
+    <!-- 🔹 Action Dropdown -->
+    <div class="form-group">
+      <label>Action</label>
+      <select [(ngModel)]="formData.action">
+        <option value="">Select Action</option>
+        <option value="Credit">Credit</option>
+        <option value="Debit">Debit</option>
+      </select>
+    </div>
+
+    <!-- 🔹 Wallet Field -->
+    <div class="form-group" style="display: none;">
+      <label>Wallet</label>
+      <input type="text" [value]="formData.wallet" readonly />
+    </div>
+
+    <!-- 🔹 Amount Field -->
+    <div class="form-group">
+      <label>Amount</label>
+      <input type="number" [(ngModel)]="formData.amount" placeholder="Enter amount" />
+    </div>
+
+    <!-- 🔹 Description Field -->
+    <div class="form-group">
+      <label>Description</label>
+      <textarea [(ngModel)]="formData.description" placeholder="Enter description"></textarea>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="submit-btn" (click)="submitForm()">Submit</button>
+  </div>
+</div>

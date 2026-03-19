@@ -1,0 +1,132 @@
+.header {
+  height: 62px;
+  display: flex;
+  justify-content: space-between;
+    text-align: center;
+    padding: 0px 10px;
+    background: #fff;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // Spread items to both corners
+  width: 100%; // Take full width
+  gap: 0; // Remove gap since items are at opposite ends
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a102a;
+}
+
+.language-selector {
+  min-width: 120px;
+
+  // Remove all Material Design styling to make it look clean
+  ::ng-deep .mat-mdc-form-field-underline {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-line-ripple {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-form-field-bottom-align {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-form-field-wrapper {
+    background: white !important;
+    padding: 0;
+  }
+
+  ::ng-deep .mat-mdc-form-field-flex {
+    background: white !important;
+    border: none;
+    padding: 0;
+  }
+
+  // Make the select field background white
+  ::ng-deep .mat-mdc-select-value {
+    background: white !important;
+  }
+
+  ::ng-deep .mat-mdc-form-field-infix {
+    background: white !important;
+  }
+
+  // Remove width from mdc-line-ripple to prevent underlines
+  ::ng-deep .mdc-line-ripple::before,
+  ::ng-deep .mdc-line-ripple::after {
+    width: 0 !important;
+  }
+
+  // Set width for text field wrapper specifically for language selector
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    width: 100% !important;
+  }
+
+  // Remove padding from mdc-text-field for language selector
+  ::ng-deep .mdc-text-field {
+    padding: 0 !important;
+  }
+
+  // Higher specificity to override Material Design styles
+  ::ng-deep.language-selector .mat-mdc-form-field {
+    text-align: unset !important;
+    display: block !important;
+  }
+
+  // Multiple selectors for maximum coverage
+  ::ng-deep .language-selector .mat-mdc-form-field,
+  ::ng-deep .language-selector.mat-mdc-form-field,
+  ::ng-deep mat-form-field.language-selector {
+    text-align: unset !important;
+    display: block !important;
+  }
+
+  // Target the specific class combination from your inspection
+  ::ng-deep .mat-mdc-form-field.language-selector.mat-mdc-form-field-type-mat-select.mat-form-field-appearance-fill {
+    text-align: unset !important;
+    display: block !important;
+  }
+}
+::ng-deep .mat-mdc-select-trigger {
+  padding-right: 4px !important;   /* Remove extra gap */
+  width: 50% !important;
+}
+
+::ng-deep .mat-mdc-select-value {
+  padding-right: 0 !important;
+}
+::ng-deep .mat-mdc-select {
+  margin-left: 85px !important;
+}
+/* Selected option background */
+::ng-deep .mat-mdc-option.mdc-list-item--selected {
+  background-color: #2752E7 !important;
+}
+
+/* Text color for selected option */
+::ng-deep .mat-mdc-option.mdc-list-item--selected .mdc-list-item__primary-text {
+  color: #fff !important;
+}
+
+/* Tick/check icon color */
+::ng-deep .mat-mdc-option.mdc-list-item--selected .mat-pseudo-checkbox-checked::after {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+::ng-deep .mat-mdc-option:hover {
+  background-color: #345ff5 !important;
+}
+::ng-deep .mat-mdc-select-panel {
+  border-radius: 12px !important;
+}

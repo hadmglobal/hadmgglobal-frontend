@@ -1,0 +1,51 @@
+<div class="layout-container" fxLayout="column" fxFlexFill>
+  <header>
+    <app-top-nav></app-top-nav>
+  </header>
+
+  <div class="members-container">
+    <!-- 🔹 Blue Banner -->
+    <div class="blue-banner">
+      <img src="/common-top.svg" alt="banner background" class="banner-bg" />
+
+      <div class="banner-content">
+        <button class="back-btn" (click)="goBack()">
+          <img src="/leftarraow.svg" alt="back" />
+        </button>
+        <h2>{{ 'Members list' | translate }}</h2>
+      </div>
+
+      <!-- 🔹 Search Box -->
+      <div class="search-box">
+        <!-- <mat-icon>search</mat-icon> -->
+        <img src="/search.svg" alt="search" />
+        <input type="text" placeholder="{{ 'Search members' | translate }}" [(ngModel)]="searchText"
+          (input)="filterMembers()" />
+      </div>
+    </div>
+
+    <!-- 🔹 Members List -->
+    <div class="members-list">
+      <div *ngFor="let member of filteredMembers" class="member-card">
+        <div class="top-row">
+          <p class="email">{{ maskEmail(member.email) }}</p>
+          <p class="balance">{{ member.balance }} <span>USDT</span></p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="bottom-row">
+          <div>
+            <p class="label">{{ "REGISTRATION DATE" | translate }}</p>
+            <p class="value">{{ formatDate(member.timestamp) }}</p>
+          </div>
+
+          <div>
+            <p class="label">{{ "LEVEL INVITE COUNT" | translate }}</p>
+            <p class="value">{{ member.inviteCode }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

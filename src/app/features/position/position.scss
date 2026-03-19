@@ -1,0 +1,302 @@
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  font-family: 'Poppins';
+  box-sizing: border-box;
+}
+
+.positions-container {
+  flex: 1;
+  background: #f8faff;
+  overflow-y: auto;
+  height: calc(100vh - 120px);
+  scroll-behavior: smooth;
+  // padding-bottom: 100px;
+  z-index: -1;
+  background: linear-gradient(180deg, #1540d5 4.8%, #00005d 41.15%);
+}
+
+/* 🔹 Top Banner */
+.top-banner {
+  position: relative;
+  height: 270px;
+  overflow: hidden;
+
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .top3 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    gap: 40px;
+    padding-top: 50px;
+    bottom: 50px;
+  }
+
+  .rank-card {
+    text-align: center;
+    position: relative;
+
+    .circle {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2440a0;
+      font-weight: 700;
+      font-size: 20px;
+      margin: 0 auto;
+    }
+
+    .crown {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 28px;
+    }
+
+    .rank-badge {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      font-weight: 600;
+      color: white;
+      padding: 1.5px 8px;
+      border-radius: 20px;
+    }
+
+    .gold {
+      background: #f5b200;
+    }
+    .silver {
+      background: #bfc4ce;
+    }
+    .bronze {
+      background: #b87333;
+    }
+
+    .name-chip {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 14px;
+      padding: 4px 12px;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .points {
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      margin: 4px 0 0;
+    }
+  }
+
+  .first {
+    transform: translateY(-20px);
+    .circle {
+      width: 90;
+      height: 90px;
+      border: 3px solid #f5b200;
+    }
+  }
+
+  .second {
+    transform: translateY(15px);
+    .circle {
+      width: 70px;
+      height: 70px;
+      border: 2px solid #bfc4ce;
+    }
+  }
+
+  .third {
+    transform: translateY(15px);
+    .circle {
+      width: 70px;
+      height: 70px;
+      border: 2px solid #b87333;
+    }
+  }
+}
+
+/* 🔹 List */
+.positions-list {
+  background: #fff;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 16px;
+  margin-top: 0px;
+  border: 1px solid #ffffff33;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.position-card {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+  background: #fff;
+  padding: 16px 0px 16px 16px;
+  border-bottom: 1px solid #0000001f;
+  transition: all 0.2s ease;
+
+  .rank {
+    font-family: Poppins;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #000000cc;
+  }
+
+  .initials {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: #2440a0;
+    margin-right: 12px;
+  }
+
+  .details {
+    flex: 1;
+
+    h4 {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 140%;
+      color: #282828;
+      margin: 0;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 13px;
+      margin: 0;
+      color: #00000099;
+    }
+  }
+
+  &.current {
+    background: linear-gradient(90deg, #2440a0, #2752e7);
+    color: white;
+    border-radius: 12px;
+    .rank{
+      color: white;
+    }
+    .initials {
+      background: white;
+      color: #2752e7;
+    }
+
+    .details p {
+      color: #e0e0e0;
+    }
+    .details h4 {
+      color: #e0e0e0;
+    }
+  }
+}
+
+/* 🔹 Sticky Card */
+/* 🔹 Sticky Card - matches top banner style */
+.sticky-card {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  max-width: 100%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 16px;
+
+  /* 🟦 Same gradient as top blue banner */
+  background: linear-gradient(135deg, #2440a0 0%, #2752e7 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .rank {
+    width: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  .initials {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    color: #2440a0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin-right: 10px;
+  }
+
+  .details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    h4 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+    }
+
+    p {
+      margin: 0;
+      font-size: 12px;
+      color: #dfe6ff;
+      opacity: 0.9;
+    }
+  }
+
+  .arrow {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1); /* ensures white arrow visibility */
+  }
+}

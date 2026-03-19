@@ -1,0 +1,51 @@
+<div class="users-container">
+
+  <div class="top-bar">
+    <h2>User Deposits</h2>
+
+    <div class="right-controls">
+      <label>Show</label>
+      <select [(ngModel)]="pageSize" (change)="changePageSize(pageSize)">
+        <option *ngFor="let size of [10,20,50,100]" [value]="size">{{ size }}</option>
+      </select>
+      <label>entries</label>
+
+      <input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="searchDeposits()" />
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>SN</th>
+          <th>Username</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Transaction ID</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let d of paginatedDeposits; let i = index">
+          <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td>{{ d.username }}</td>
+          <td>{{ d.amount }}</td>
+          <td>{{ d.status }}</td>
+          <td>{{ d.transactionId }}</td>
+          <td>{{ d.time }}</td>
+          <td (click)="checkStatus(d.track_id)"><button>Status</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+    <span>Page {{ currentPage }} of {{ Math.ceil(filteredDeposits.length / pageSize) }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage * pageSize >= filteredDeposits.length">Next</button>
+  </div>
+
+</div>

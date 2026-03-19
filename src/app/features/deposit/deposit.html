@@ -1,0 +1,116 @@
+<!-- 🔹 Overlay -->
+<div class="overlay" *ngIf="isVisible" (click)="closeModal()"></div>
+
+<!-- 🔹 Deposit Modal -->
+<div class="deposit-modal" *ngIf="isVisible" [class.fade-in]="isVisible" [class.fade-out]="!isVisible">
+
+  <!-- 🔹 Blue Header -->
+  <div class="modal-header-blue">
+    <h3 *ngIf="this.compoletedDeposit == false">{{ 'Create deposit' | translate }}</h3>
+    <h3 *ngIf="this.compoletedDeposit == true">{{ 'Congratulations' | translate }}</h3>
+    <!-- <mat-icon class="close-icon" (click)="animateClose()">delete</mat-icon> -->
+    <img src="/close_round.svg" (click)="animateClose()" alt="close" />
+  </div>
+
+  <!-- 🔹 Modal Body -->
+  <div class="modal-body">
+    <div *ngIf="this.compoletedDeposit == false">
+      <p class="info-text">
+        {{ 'You are about to start deposit process. The process is fully automated and usually takes about 20 minutes.
+        Make sure to send exact total amount, including fees.' | translate }}
+      </p>
+      <hr style="border: 0.5px solid #00000029;" />
+      <div class="input-section">
+        <label>{{ 'Enter amount' | translate }}</label>
+        <input matInput type="number" [(ngModel)]="amount" placeholder="2500" />
+      </div>
+
+      <div class="quick-amounts">
+        <button *ngFor="let amt of quickAmounts" class="quick-btn" [class.active]="amt === amount"
+          (click)="setAmount(amt)">
+          {{ amt }}
+        </button>
+      </div>
+
+      <div class="token-section">
+        <label>{{ 'USDT Recharge' | translate }}
+          <img src="/tooltip.svg" class="info-icon" (click)="openRechargeInfo()" />
+        </label>
+        <div class="token-options">
+          <div class="token-row">
+            <button *ngFor="let token of transactionAccounts.slice(0,2)" class="token-btn"
+              [class.active]="token.id === selectedToken?.id" (click)="selectToken(token)">
+              {{ token.name }}
+            </button>
+          </div>
+          <div class="token-row">
+            <button *ngIf="transactionAccounts.length > 2" class="token-btn full-width"
+              [class.active]="transactionAccounts[2].id === selectedToken?.id"
+              (click)="selectToken(transactionAccounts[2])">
+              {{ transactionAccounts[2].name }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button mat-raised-button color="primary" class="confirm-btn" (click)="confirmDeposit()">
+          {{ 'Confirm' | translate }}
+        </button>
+        <button mat-stroked-button class="cancel-btn" (click)="closeModal()">{{ 'Cancel' | translate }}</button>
+      </div>
+    </div>
+    <div *ngIf="this.compoletedDeposit == true" class="success-content">
+      <img src="/success.gif" alt="success" />
+    </div>
+    <div *ngIf="this.compoletedDeposit == true" class="success-content"
+      style="color: #111111;font-weight: 500;font-size: 16px;">
+      <p>{{ 'Deposit Successful!' | translate }}</p>
+    </div>
+    <div *ngIf="this.compoletedDeposit == true" class="success-content" style="color: #707070;font-size: 13px;">
+      <p>{{ 'Your payment has been submitted. You can track it anytime in your transaction history.' | translate }}</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- 🔹 Recharge Info Popup -->
+<div class="recharge-popup" *ngIf="showRechargeInfo">
+  <div class="popup-overlay" (click)="closeRechargeInfo()"></div>
+
+  <div class="popup-content">
+    <h3>{{ 'USDT BEP20 Deposit Instructions' | translate }}</h3>
+
+    <p><strong>{{ 'Please read these instructions carefully before making a deposit:' | translate }}</strong></p>
+
+    <ul>
+      <li><strong>{{ 'Network Requirement:' | translate }}</strong> {{ 'Only deposit' | translate }} <strong>{{ 'USDT
+          (BEP-20)' | translate }}</strong> {{ 'on the Binance Smart Chain. Deposits from any other network may result
+        in permanent asset loss.' | translate }}</li>
+
+      <li><strong>{{ 'Minimum Deposit:' | translate }}</strong> {{ '50 USDT. Deposits below 50 USDT are not
+        auto-credited — contact support for manual help.' | translate }}</li>
+
+      <li><strong>{{ 'Quick Deposit Options:' | translate }}</strong> {{ 'You may use preset amounts like 50, 100, 150,
+        200, 250, 300 USDT or enter your own.' | translate }}</li>
+
+      <li><strong>{{ 'Confirmation Time:' | translate }}</strong> {{ 'Your account will be credited after the network
+        confirms your transfer.' | translate }}
+      </li>
+
+      <li><strong>{{ 'Unsupported Deposits:' | translate }}</strong>
+        <ul>
+          <li>{{ 'Do NOT send NFTs' | translate }}</li>
+          <li>{{ 'Smart contract deposits are NOT supported' | translate }}
+            {{ '(ERC20 / Arbitrum / Optimism etc.)' | translate }}</li>
+        </ul>
+      </li>
+
+      <li><strong>{{ 'Important:' | translate }}</strong> {{ 'Always use' | translate }} <strong>{{ 'USDT-BEP20' |
+          translate }}</strong> {{ 'and deposit at least' | translate }} <strong>{{ '50 USDT' | translate }}</strong> {{
+        'to avoid loss.' | translate }}</li>
+    </ul>
+
+    <button class="close-btn" (click)="closeRechargeInfo()">{{ 'Close' | translate }}</button>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="game-container">
+  <!-- 🔹 Blue Banner -->
+  <div class="blue-banner">
+    <div class="banner-bg"></div>
+
+    <div class="banner-content">
+      <div class="banner-text">
+        <h2>{{ 'Earn more, level up' | translate }}</h2>
+        <p>
+          {{ 'Unlock your Tower Strategy Level, circulate your digital assets, and generate sustainable returns with
+          smart circulation' | translate }}
+        </p>
+      </div>
+
+      <div class="banner-img">
+        <img src="/game-banner.svg" alt="Game Banner" style="margin-top: 10px;" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Game Cards Section -->
+  <div class="cards-wrapper">
+    <div class="game-card" *ngFor="let card of cards; let i = index" [ngClass]="{
+    'first-card': i === 0,
+    'disabled-card': card.disableType === 'card' && !card.enabled,
+    'disabled-button': card.disableType === 'button' && !card.enabled
+  }" [style.background-image]="'url(' + card.background + ')'">
+      <div class="overlay" *ngIf="card.disableType === 'card' && !card.enabled">
+        <div style="width: 220px;"> {{ 'Open on 2026 First Quarter (Q1)' | translate }}</div>
+      </div>
+
+      <div class="chip validity">
+        <div style="position: relative; top: 3px;">
+          <img src="game-clock.svg" alt="clock" />
+        </div>
+        <div style="margin-left: 4px;">{{ card.validity }}</div>
+      </div>
+
+      <div class="card-content">
+        <h3 class="title">{{ card.title }}</h3>
+        <p class="reward">{{ card.reward }}</p>
+
+        <div *ngIf="card.status || card.miningCycle" class="status-chips">
+          <span class="chip small">{{ card.status }}</span>
+          <span class="chip small">{{ card.miningCycle }}</span>
+        </div>
+
+        <button class="action-btn" [disabled]="!card.enabled && card.disableType === 'button'" (click)="onAction(card)">
+          {{ card.buttonText }}
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ✅ Place modal outside loop -->
+
+  </div>
+</div>
+
+<app-game-success-screen #gameSuccessModel (closed)="onPopupClosed()"></app-game-success-screen>
+<app-game-success-timer #timer (closed)="onPopupClosed()"></app-game-success-timer>

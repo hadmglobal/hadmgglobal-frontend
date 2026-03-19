@@ -1,0 +1,73 @@
+<div class="withdraw-container">
+  <div class="top-bar">
+    <div class="right-controls">
+      <label>Show</label>
+      <select [(ngModel)]="itemsPerPage">
+        <option [value]="10">10</option>
+        <option [value]="20">20</option>
+        <option [value]="50">50</option>
+        <option [value]="100">100</option>
+      </select>
+      <span>entries</span>
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (input)="filterWithdraws()"
+        placeholder="Search..."
+      />
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>SN</th>
+          <th>User</th>
+          <th>Amount</th>
+          <th>Charge</th>
+          <th>Total Amount</th>
+          <th>Wallet Address</th>
+          <th>withdraw Id</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let w of paginatedWithdraws; let i = index">
+          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+          <td class="user-link">{{ w.user }}</td>
+          <td>${{ w.amount }}</td>
+          <td>${{ w.charge }}</td>
+          <td>${{ w.total }}</td>
+          <td class="wallet-cell">
+            {{ w.wallet }}
+            <i class="fas fa-copy copy-icon" (click)="copyWallet(w.wallet)"></i>
+          </td>
+          <td>{{ w.withdrawId }}</td>
+          <td class="action-buttons">
+            <button class="accept-btn" (click)="handleDecision('Approve', w)">Accept</button>
+            <button class="reject-btn" (click)="handleDecision('Reject', w)">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ✅ Pagination -->
+  <div class="pagination-controls">
+    <button (click)="changePage(-1)" [disabled]="currentPage === 1">Prev</button>
+    <span>
+      Page {{ currentPage }} of
+      {{ Math.ceil(filteredWithdraws.length / itemsPerPage) }}
+    </span>
+    <button
+      (click)="changePage(1)"
+      [disabled]="
+        currentPage >= Math.ceil(filteredWithdraws.length / itemsPerPage)
+      "
+    >
+      Next
+    </button>
+  </div>
+</div>

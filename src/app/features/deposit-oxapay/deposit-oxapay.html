@@ -1,0 +1,52 @@
+<div class="layout-container">
+  <header>
+    <app-top-nav></app-top-nav>
+  </header>
+  <div class="deposite-banner">
+    <!-- Blue Banner -->
+    <div class="banner">
+      <div class="banner-align">
+        <button class="back-btn" (click)="goBack()">
+          <img src="/leftarraow.svg" alt="back" />
+        </button>
+        <!-- <span class="back-btn" (click)="goBack()"><</span> -->
+        <div class="banner-text">
+          <h2>{{ 'Deposit' | translate }}</h2>
+        </div>
+      </div>
+      <p>{{ 'Experience smooth and secure deposits designed for effortless funding.' | translate }}</p>
+    </div>
+
+    <!-- Body -->
+    <div class="content">
+      <div class="card">
+        <img class="qr" [src]="data?.qr_code" />
+
+        <p class="label">{{ 'Amount for payment' | translate }}</p>
+        <h3 class="amount">{{ data?.amount }} USDT-BEP20</h3>
+
+        <p class="label">{{ 'Your deposit address for payment' | translate }}</p>
+
+        <div class="address-box">
+          <span class="address-text">{{ getMaskedAddress(data?.address) }}</span>
+          <button class="copy-btn" (click)="copyToClipboard(data?.address)"
+            style="border: none;background-color: white;">
+            <img src="/copy.svg" alt="copy" />
+          </button>
+        </div>
+
+        <p class="note">
+          {{ 'Only use this address for the network you selected. Sending assets to other networks may prevent them from
+          being recovered.' | translate }}
+        </p>
+
+        <p class="timer">{{ countdownText }}</p>
+      </div>
+    </div>
+
+    <!-- Cancel button -->
+    <div class="cancel-box">
+      <button class="cancel-btn" (click)="cancel()">{{ 'Cancel' | translate }}</button>
+    </div>
+  </div>
+</div>

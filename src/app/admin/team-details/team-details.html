@@ -1,0 +1,105 @@
+<div class="team-wrapper" *ngIf="!loading">
+
+  <!-- 🔙 TOP BACK -->
+  <button class="back-top" (click)="back()">← Back</button>
+
+  <h2 class="title">Team List</h2>
+
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <h3>{{ data.totalDownlines }}</h3>
+      <p>Total Number of Downlines</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>${{ data.totalPromationComission }}</h3>
+      <p>Total Team Commission</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>${{ data.teamRecharge }}</h3>
+      <p>Total amount of the team recharge</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>${{ data.teamWitdrawls }}</h3>
+      <p>The team’s total withdrawals</p>
+    </div>
+  </div>
+
+  <!-- Level Tabs -->
+  <div class="level-tabs">
+    <button [class.active]="activeLevel === 1" (click)="activeLevel = 1">Level 1</button>
+    <button [class.active]="activeLevel === 2" (click)="activeLevel = 2">Level 2</button>
+    <button [class.active]="activeLevel === 3" (click)="activeLevel = 3">Level 3</button>
+  </div>
+
+<!-- LEVEL SEARCH + TABLE -->
+<div class="level-section">
+
+  <!-- 🔽 SEARCH BAR -->
+  <input
+    class="search-input"
+    type="text"
+    [(ngModel)]="searchQuery[activeLevel]"
+    placeholder="Search by name, email, or referral ID"
+    (input)="filterUsers()"
+  />
+
+  <!-- 📄 TABLE -->
+  <div class="table-container">
+    <table class="team-table">
+      <thead>
+        <tr>
+          <th>Referral ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Wallet</th>
+          <th>Earnings</th>
+          <th>Referrals</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let u of paginated[activeLevel]">
+          <td>{{ u.referralId }}</td>
+          <td>{{ u.name }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.wallet }}</td>
+          <td>{{ u.earnings }}</td>
+          <td>{{ u.referrals }}</td>
+          <td>
+            <span class="status" [class.active]="u.status">{{ u.status ? 'Active' : 'Inactive' }}</span>
+          </td>
+        </tr>
+
+        <tr *ngIf="paginated[activeLevel].length === 0">
+          <td colspan="7" class="no-data">No users found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage[activeLevel] === 1">
+      Prev
+    </button>
+
+    <span>Page {{ currentPage[activeLevel] }} / {{ totalPages[activeLevel] }}</span>
+
+    <button (click)="nextPage()" [disabled]="currentPage[activeLevel] === totalPages[activeLevel]">
+      Next
+    </button>
+  </div>
+</div>
+
+
+  <!-- 🔙 BOTTOM BACK -->
+  <div class="bottom-back-section">
+    <button class="back-bottom" (click)="back()">← Back</button>
+  </div>
+
+</div>

@@ -1,0 +1,168 @@
+* {
+  font-family: 'Poppins';
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 98;
+}
+
+/* Modal */
+.transfer-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 420px;
+  margin: auto;
+  background: #2752E7;
+  border-radius: 20px 20px 0 0;
+  z-index: 99;
+  animation: slideUp 0.3s ease;
+  overflow: hidden;
+}
+
+/* Header */
+.modal-header-blue {
+  background: #2752E7;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+  }
+
+  img {
+    width: 22px;
+    cursor: pointer;
+  }
+}
+
+/* Body */
+.modal-body {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Wallet card */
+.wallet-card {
+  background: linear-gradient(180deg, #2752E7, #2440A0);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  position: relative;
+}
+
+.wallet-item {
+  text-align: center;
+
+  p {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+
+    span {
+      font-size: 13px;
+    }
+  }
+}
+
+.divider {
+  width: 1px;
+  background: rgba(255,255,255,0.4);
+}
+
+/* Info box */
+.info-box {
+  margin: 14px 0;
+  background: #EEF2FF;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* Input */
+.input-section {
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .max-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2752E7;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 13px;
+  }
+}
+
+/* Buttons */
+.action-buttons {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirm-btn {
+  height: 52px;
+  border-radius: 10px;
+  border: none;
+  background: #2752E7;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.cancel-btn {
+  height: 52px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: transparent;
+  font-weight: 600;
+}
+
+/* Anim */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}

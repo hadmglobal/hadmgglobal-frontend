@@ -1,0 +1,58 @@
+<!-- 🔹 Overlay -->
+<div class="overlay" *ngIf="isVisible" (click)="closeModal()"></div>
+
+<!-- 🔹 Transfer Modal -->
+<div class="transfer-modal" *ngIf="isVisible">
+
+  <!-- 🔹 Blue Header -->
+  <div class="modal-header-blue">
+    <h3>{{'Transfer Funds' | translate}}</h3>
+    <img src="/close_round.svg" (click)="closeModal()" alt="close" />
+  </div>
+
+  <!-- 🔹 Body -->
+  <div class="modal-body">
+
+    <!-- Wallet Card -->
+    <div class="wallet-card">
+      <div class="wallet-item">
+        <p>{{'Main Wallet' | translate}}</p>
+        <h3>{{ mainWallet }} <span>USDT</span></h3>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="wallet-item">
+        <p>{{'Withdrawal Account' | translate}}</p>
+        <h3>{{ withdrawalWallet }} <span>USDT</span></h3>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="info-box">
+      {{'Funds transferred from your Withdrawal Account to your Main Wallet' | translate}},
+      {{'the transferred amount will be compounded for up to 120 days' | translate}}.
+    </div>
+
+    <!-- Amount -->
+    <div class="input-section">
+      <label>{{'Transfer amount' | translate}}</label>
+
+      <div class="input-wrapper">
+        <input
+          type="number"
+          [(ngModel)]="amount"
+          placeholder="0"
+        />
+        <span class="max-btn" (click)="setMax()">{{'Max' | translate}}</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-buttons">
+      <button class="confirm-btn" (click)="transfer()">{{'Transfer Funds' | translate}}</button>
+      <button class="cancel-btn" (click)="closeModal()">{{'Cancel' | translate}}</button>
+    </div>
+
+  </div>
+</div>
