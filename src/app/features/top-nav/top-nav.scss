@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between; // Spread items to both corners
-  width: 100%; // Take full width
+  width: 94%; // Take full width
   gap: 0; // Remove gap since items are at opposite ends
 }
 
@@ -159,17 +159,21 @@
     display: block !important;
   }
 }
+
 ::ng-deep .mat-mdc-select-trigger {
-  padding-right: 4px !important;   /* Remove extra gap */
+  padding-right: 4px !important;
+  /* Remove extra gap */
   width: 50% !important;
 }
 
 ::ng-deep .mat-mdc-select-value {
   padding-right: 0 !important;
 }
+
 ::ng-deep .mat-mdc-select {
   margin-left: 85px !important;
 }
+
 /* Selected option background */
 ::ng-deep .mat-mdc-option.mdc-list-item--selected {
   background-color: #2752E7 !important;
@@ -185,9 +189,11 @@
   color: #fff !important;
   border-color: #fff !important;
 }
+
 ::ng-deep .mat-mdc-option:hover {
   background-color: #345ff5 !important;
 }
+
 ::ng-deep .mat-mdc-select-panel {
   border-radius: 12px !important;
 }
