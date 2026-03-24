@@ -33,7 +33,7 @@
       <div class="guide-box">
         <h4>{{ 'Recharge Guide:' | translate }}</h4>
         <ul>
-          <li>{{ '-Minimum Deposit is 30 USDT' | translate }}</li>
+          <li>-{{ 'Minimum Deposit is' | translate }} {{ minDeposit }} USDT</li>
           <li>{{ '-Please confirm platform deposit address before depositing.' | translate }}</li>
           <li>{{ '-Copy the address above or scan the QR code and select the corresponding network to deposit USDT.' | translate }}</li>
           <li>{{ '-After the recharge to the above address, the entire network needs to confirm the transaction. The account will be credited only after the network confirmation is completed.' | translate }}</li>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="bottom-actions">
-      <button class="submit-btn" [class.disabled]="!amount" [disabled]="!amount" (click)="confirmDeposit()">
+      <button class="submit-btn" [class.disabled]="!amount || amount < minDeposit" [disabled]="!amount || amount < minDeposit" (click)="confirmDeposit()">
         {{ 'Get Recharge Address' | translate }}
       </button>
       <button class="cancel-btn" (click)="cancel()">
