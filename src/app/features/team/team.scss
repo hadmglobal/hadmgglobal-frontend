@@ -5,23 +5,25 @@
   background: #f7f9fc;
   font-family: 'Clash Display', sans-serif;
   padding-bottom: 80px; /* Space for bottom nav */
+  overflow-x: hidden; /* Global clamp for horizontal scrollbar */
 }
+
 
 /* 🔹 Top Banner */
 .team-banner {
-  padding: 30px 16px 40px; /* Nice padding around the content */
+  padding: 30px 0 40px; /* Top and bottom padding only */
   background: url('/mainbg.svg') no-repeat center top;
   background-size: cover;
   color: white;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
-  width: 100%;
   overflow: hidden; /* prevents layout breakage */
+  box-sizing: border-box; /* Ensure padding doesn't widen it */
 }
 
 .banner-text {
   margin-bottom: 20px;
-  padding: 0 8px; /* Align text exactly with grid edge */
+  padding: 0 16px; /* Align text exactly with grid edge */
   
   h2 {
     font-size: 20px;
@@ -44,35 +46,38 @@
   gap: 12px;
   position: relative;
   z-index: 5;
+  padding: 0 16px; /* Add padding to prevent touching edges */
 }
 
 .summary-card {
-  background: rgba(255, 255, 255, 0.1); 
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   border: 1px solid rgba(255, 255, 255, 0.4); 
-  border-radius: 12px; 
+  border-radius: 8px; /* Sharper rectangle exactly like design */
   padding: 14px 12px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* Use subtle backdrop blur without glitchy shadows */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateZ(0); /* Prevent Safari blur streaks */
+  
   display: flex;
   flex-direction: row; 
   align-items: center;
-  gap: 10px;
-  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+  gap: 12px; 
 
   .icon-wrap {
-    width: 32px;
-    height: 32px;
-    min-width: 32px; /* Prevent shrinking */
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    width: 28px;
+    height: 28px;
+    min-width: 28px; 
+    border: 1px solid rgba(255, 255, 255, 1);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 
     .icon {
-      width: 16px;
-      height: 16px;
-      opacity: 0.95;
+      width: 14px;
+      height: 14px;
+      opacity: 1;
       filter: brightness(0) invert(1);
       object-fit: contain;
     }
@@ -81,24 +86,28 @@
   .info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
     justify-content: center;
-    overflow: hidden; /* Prevent text overflow */
-
+    width: 100%;
+    
     .label {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 1);
+      font-size: 10px; /* Small exactly like design */
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
       font-weight: 500;
+      line-height: 1.1;
+      /* Avoid wrapping arbitrarily */
       white-space: nowrap;
-      overflow: hidden;
       text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .value {
-      font-size: 18px;
+      font-size: 16px; /* Bold dollar amount */
       color: white;
-      font-weight: 800;
-      line-height: 1.1;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      line-height: 1;
     }
   }
 }

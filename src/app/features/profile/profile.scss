@@ -5,21 +5,26 @@
   background: #f7f9fc;
   font-family: 'Clash Display', sans-serif;
   padding-bottom: 80px; /* Space for bottom nav */
+  overflow-x: hidden; /* Global clamp for horizontal scrollbar */
 }
+
 
 /* 🔹 Top Banner */
 .banner {
-  padding: 5px 24px 280px; /* Precise padding to cut gradient at row 3 */
+  padding: 10px 16px 30px; /* Reduced and fixed padding */
   background: url('/mainbg.svg') no-repeat center top;
   background-size: cover;
-  background-attachment: fixed;
   color: white;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  box-sizing: border-box; /* Ensures padding respects layout bonds instead of widening it */
 }
 
 .banner-content {
   display: flex;
   align-items: center;
   gap: 16px;
+  padding: 0 8px;
 }
 
 .profile-circle {
@@ -81,11 +86,10 @@
   }
 }
 
-.profile-cards {
-  padding: 0 16px;
-  margin-top: -240px; /* Position the grid right below the User Info */
-  z-index: 5;
+.profile-cards-grid-layer {
+  margin-top: 24px;
   position: relative;
+  z-index: 5;
 }
 
 /* 🔹 9 Stats Grid */
@@ -93,39 +97,48 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-bottom: 24px;
 }
 
 .stat-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 12px;
-  padding: 18px 12px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px; /* Sharper rectangular card */
+  padding: 16px 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateZ(0); /* Prevent Safari blur streaks */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0, 0, 0, 0.05);
   aspect-ratio: 0.9;
   text-align: left;
 }
 
 .stat-value {
   color: white;
-  font-size: 18px;
-  font-weight: 800;
-  margin: 0 0 16px;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 10px;
   line-height: 1;
 }
 
 .stat-label {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 11px;
-  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.2;
+}
+
+.profile-cards {
+  padding: 0 16px;
+  /* margin-top is removed as the stats grid is now inside the banner */
+  margin-top: 24px;
+  position: relative;
 }
 
 /* 🔹 Guidelines Video */
@@ -271,7 +284,7 @@
 /* 🔹 Support & Logout Overlays (keep existing css for them) */
 .support-overlay, .logout-overlay {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }

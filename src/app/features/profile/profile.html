@@ -13,16 +13,19 @@
         <a class="edit-link" (click)="openAvatar()">Edit Avatar<small>></small></a>
       </div>
     </div>
+
+    <!-- 🔹 9 Data Cards now inside banner so it sits on mainbg.svg naturally -->
+    <div class="profile-cards-grid-layer">
+      <div class="stats-grid">
+        <div class="stat-card" *ngFor="let stat of walletSummary">
+          <h3 class="stat-value">$ {{ stat.value | number:'1.2-2' }}</h3>
+          <p class="stat-label">{{ stat.label | translate }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="profile-cards">
-    <!-- 🔹 9 Data Cards -->
-    <div class="stats-grid">
-      <div class="stat-card" *ngFor="let stat of walletSummary">
-        <h3 class="stat-value">$ {{ stat.value | number:'1.2-2' }}</h3>
-        <p class="stat-label">{{ stat.label | translate }}</p>
-      </div>
-    </div>
 
     <!-- 🔹 Guidelines Section -->
     <div class="guidelines-section">
