@@ -16,7 +16,8 @@
 /* Gradient Banner */
 .top-gradient-banner {
   padding: 20px 24px 75px;
-  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%);
+  background: url('/mainbg.svg') no-repeat center top;
+  background-size: cover;
   background-attachment: fixed;
   color: white;
 }

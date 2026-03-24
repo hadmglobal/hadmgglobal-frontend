@@ -4,7 +4,8 @@
   justify-content: space-between;
   text-align: center;
   padding: 0px 10px;
-  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%);
+  background: url('/mainbg.svg') no-repeat center top;
+  background-size: cover;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
   .nav-logo {

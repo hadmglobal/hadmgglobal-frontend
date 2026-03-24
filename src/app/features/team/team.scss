@@ -9,23 +9,28 @@
 
 /* 🔹 Top Banner */
 .team-banner {
-  padding: 30px 24px 340px; /* Padding to cut gradient right behind the grid */
-  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%);
-  background-attachment: fixed;
+  padding: 30px 16px 40px; /* Nice padding around the content */
+  background: url('/mainbg.svg') no-repeat center top;
+  background-size: cover;
   color: white;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
+  width: 100%;
+  overflow: hidden; /* prevents layout breakage */
 }
 
 .banner-text {
+  margin-bottom: 20px;
+  padding: 0 8px; /* Align text exactly with grid edge */
+  
   h2 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
   }
   
   p {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     margin: 0;
     opacity: 0.9;
@@ -37,48 +42,63 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  padding: 0 16px;
-  margin-top: -300px;
-  z-index: 5;
   position: relative;
-  margin-bottom: 24px;
+  z-index: 5;
 }
 
 .summary-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  padding: 16px;
+  background: rgba(255, 255, 255, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+  border-radius: 12px; 
+  padding: 14px 12px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  flex-direction: row; 
+  align-items: center;
+  gap: 10px;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
 
-  .icon {
-    width: 24px;
-    height: 24px;
-    opacity: 0.9;
-    filter: brightness(0) invert(1);
+  .icon-wrap {
+    width: 32px;
+    height: 32px;
+    min-width: 32px; /* Prevent shrinking */
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      opacity: 0.95;
+      filter: brightness(0) invert(1);
+      object-fit: contain;
+    }
   }
 
   .info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
+    justify-content: center;
+    overflow: hidden; /* Prevent text overflow */
 
     .label {
       font-size: 11px;
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 400;
+      color: rgba(255, 255, 255, 1);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .value {
-      font-size: 16px;
+      font-size: 18px;
       color: white;
-      font-weight: 700;
-      line-height: 1.2;
+      font-weight: 800;
+      line-height: 1.1;
     }
   }
 }

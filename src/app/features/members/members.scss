@@ -8,7 +8,8 @@
 /* 🔹 Gradient Banner */
 .members-banner {
   padding: 10px 24px 30px;
-  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%);
+  background: url('/mainbg.svg') no-repeat center top;
+  background-size: cover;
   color: white;
 
   .banner-header {

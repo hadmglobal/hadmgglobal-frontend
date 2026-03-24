@@ -1,55 +1,55 @@
 <div class="layout-container" fxLayout="column" fxFlexFill>
     <div class="team-container">
-        <!-- 🔹 Gradient Banner -->
+        <!-- 🔹 Background Banner wrapping Text and Grid -->
         <div class="team-banner">
             <div class="banner-text">
                 <h2>{{ 'Teams' | translate }}</h2>
                 <p>{{ 'See your contributions.' | translate }}</p>
             </div>
-        </div>
 
-        <!-- 🔹 6-item Grid for Summary -->
-        <div class="summary-grid">
-            <div class="summary-card">
-                <img src="/total-teams.svg" alt="icon" class="icon" />
-                <div class="info">
-                    <span class="label">{{ 'Register A Member' | translate }}</span>
-                    <span class="value">{{ data.totalTeams }}</span>
+            <!-- 🔹 6-item Grid for Summary -->
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="icon-wrap"><img src="/total-teams.svg" alt="icon" class="icon" /></div>
+                    <div class="info">
+                        <span class="label">{{ 'Register A Member' | translate }}</span>
+                        <span class="value">${{ data.totalTeams | number: '1.2-2' }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="summary-card">
-                <img src="/total-teams.svg" alt="icon" class="icon" />
-                <div class="info">
-                    <span class="label">{{ 'Total Valid Members' | translate }}</span>
-                    <span class="value">{{ data.totalValidMembers }}</span>
+                <div class="summary-card">
+                    <div class="icon-wrap"><img src="/total-teams.svg" alt="icon" class="icon" /></div>
+                    <div class="info">
+                        <span class="label">{{ 'Total Valid Members' | translate }}</span>
+                        <span class="value">${{ data.totalValidMembers | number: '1.2-2' }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="summary-card">
-                <img src="/total-comission.svg" alt="icon" class="icon" />
-                <div class="info">
-                    <span class="label">{{ 'Total Team Commission' | translate }}</span>
-                    <span class="value">${{ data.totalPromationComission | number: '1.2-2' }}</span>
+                <div class="summary-card">
+                    <div class="icon-wrap"><img src="/total-comission.svg" alt="icon" class="icon" /></div>
+                    <div class="info">
+                        <span class="label">{{ 'Total Team Commission' | translate }}</span>
+                        <span class="value">${{ data.totalPromationComission | number: '1.2-2' }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="summary-card">
-                <img src="/total-comission.svg" alt="icon" class="icon" />
-                <div class="info">
-                    <span class="label">{{ 'First Level Bonus' | translate }}</span>
-                    <span class="value">${{ data.firstLevelBonus | number: '1.2-2' }}</span>
+                <div class="summary-card">
+                    <div class="icon-wrap"><img src="/total-comission.svg" alt="icon" class="icon" /></div>
+                    <div class="info">
+                        <span class="label">{{ 'First Level Bonus' | translate }}</span>
+                        <span class="value">${{ data.firstLevelBonus | number: '1.2-2' }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="summary-card">
-                <img src="/total-recharge.svg" alt="icon" class="icon" />
-                <div class="info">
-                    <span class="label">{{ 'Total Team Deposit' | translate }}</span>
-                    <span class="value">${{ data.teamRecharge | number: '1.2-2' }}</span>
+                <div class="summary-card">
+                    <div class="icon-wrap"><img src="/total-recharge.svg" alt="icon" class="icon" /></div>
+                    <div class="info">
+                        <span class="label">{{ 'Total Team Deposit' | translate }}</span>
+                        <span class="value">${{ data.teamRecharge | number: '1.2-2' }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="summary-card">
-                <img src="/total-withdraw.svg" alt="icon" class="icon" />
-                <div class="info">
-                    <span class="label">{{ 'Total Team Withdrawal' | translate }}</span>
-                    <span class="value">${{ data.teamWitdrawls | number: '1.2-2' }}</span>
+                <div class="summary-card">
+                    <div class="icon-wrap"><img src="/total-withdraw.svg" alt="icon" class="icon" /></div>
+                    <div class="info">
+                        <span class="label">{{ 'Total Team Withdrawal' | translate }}</span>
+                        <span class="value">${{ data.teamWitdrawls | number: '1.2-2' }}</span>
+                    </div>
                 </div>
             </div>
         </div>
