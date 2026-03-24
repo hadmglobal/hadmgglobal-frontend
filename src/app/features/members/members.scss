@@ -1,170 +1,197 @@
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-* {
-    font-family: 'Poppins';
-    box-sizing: border-box;
-}
-
 .members-container {
-    background: #f8faff;
-    min-height: 100vh;
-    position: relative;
+  background: #f7f9fc;
+  min-height: 100vh;
+  position: relative;
+  font-family: 'Clash Display', sans-serif;
 }
 
-/* 🔹 Blue Banner */
-.blue-banner {
-    position: relative;
-    height: 150px;
-    overflow: hidden;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
+/* 🔹 Gradient Banner */
+.members-banner {
+  padding: 10px 24px 30px;
+  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%);
+  color: white;
+
+  .banner-header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin-bottom: 20px;
+    
+    .back-btn {
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  }
 
-    .banner-bg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
+  .banner-text {
+    margin-bottom: 24px;
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 6px 0;
+    }
+    p {
+      font-size: 13px;
+      opacity: 0.9;
+      margin: 0;
+    }
+  }
+
+  /* 🔹 Search Box */
+  .search-box {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+
+    .search-icon {
+      stroke: white;
+      opacity: 0.8;
+      margin-right: 12px;
     }
 
-    .banner-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        margin-bottom: 10px;
+    input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 14px;
+      outline: none;
 
-        h2 {
-            font-weight: 600;
-            font-size: 18px;
-        }
-
-        .back-btn {
-            position: absolute;
-            left: 16px;
-            background: none;
-            border: none;
-            cursor: pointer;
-
-            img {
-                width: 20px;
-                height: 20px;
-            }
-        }
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
     }
+  }
+}
 
-    .search-box {
-        position: relative;
-        z-index: 2;
-        background: #4960B1;
-        border-radius: 10px;
-        margin: 0 16px;
-        padding: 6px 10px;
-        display: flex;
-        align-items: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+/* 🔹 Tabs Container */
+.tabs-container {
+  display: flex;
+  overflow-x: auto;
+  background: white;
+  padding: 0 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 
-        mat-icon {
-            color: #7c7c7c;
-            font-size: 20px;
-            margin-right: 8px;
-        }
+  &::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+  }
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
 
-        input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 14px;
-            color: #fff;
-            /* Make typed text white */
-            background: transparent;
+  .tab {
+    padding: 16px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    white-space: nowrap;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-bottom-color 0.2s;
 
-            &::placeholder {
-                color: rgba(255, 255, 255, 0.8);
-                /* White placeholder with slight transparency */
-            }
-        }
-
+    &.active {
+      color: #00AA5B; /* Exact active green */
+      border-bottom: 2px solid #00AA5B;
+      font-weight: 600;
     }
+  }
 }
 
 /* 🔹 Members List */
 .members-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .member-card {
+    background: white;
+    border-radius: 12px;
     padding: 16px;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    .member-card {
-        background: #fff;
-        border: 1px solid #dfe6ff;
-        border-radius: 12px;
-        padding: 14px;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.04);
-
-        .top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .email {
-                font-weight: 500;
-                color: #101432;
-                font-size: 14px;
-            }
-
-            .balance {
-                font-weight: 600;
-                color: #2440a0;
-
-                span {
-                    font-size: 12px;
-                }
-            }
-        }
-
-        .divider {
-            height: 1px;
-            background: #eaeaea;
-            margin: 8px 0;
-        }
-
-        .bottom-row {
-            display: flex;
-            justify-content: space-between;
-
-            .label {
-                font-size: 11px;
-                color: #999;
-                margin-bottom: 4px;
-            }
-
-            .value {
-                font-size: 12px;
-                color: #222;
-                font-weight: 500;
-                text-align: center;
-            }
-        }
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    
+    .card-content {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
     }
+
+    .member-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 14px;
+      background: #f0f0f0;
+      border: 1px solid #f0f0f0;
+    }
+
+    .member-info {
+      flex: 1;
+
+      .member-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #111;
+        margin-bottom: 6px;
+      }
+
+      .member-uid {
+        font-size: 11px;
+        font-weight: 600;
+        color: #222;
+        display: flex;
+        align-items: center;
+
+        .copy-icon {
+          width: 12px;
+          height: 12px;
+          margin-left: 6px;
+          cursor: pointer;
+          opacity: 0.6;
+        }
+      }
+    }
+
+    .member-amount {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .footer-label {
+        font-size: 12px;
+        color: #444;
+      }
+
+      .footer-value {
+        font-size: 13px;
+        font-weight: 600;
+        color: #111;
+      }
+    }
+  }
 }
 
 /* ✅ Responsive */
 @media (min-width: 768px) {
-    .members-list {
-        max-width: 420px;
-        margin: 0 auto;
-    }
-
-    .search-box {
-        max-width: 420px;
-        margin: 0 auto;
-    }
+  .members-list, .members-banner, .tabs-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }

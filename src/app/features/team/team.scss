@@ -1,248 +1,186 @@
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-* {
-  font-family: 'Poppins';
-  box-sizing: border-box;
-}
-
 .team-container {
-  background: #f8faff;
-  min-height: 100vh;
-}
-
-/* 🔹 Blue Banner */
-.blue-banner {
-  position: relative;
-  height: 180px;
-  overflow: hidden;
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .banner-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ensures full background coverage */
-    z-index: 0;
-  }
-
-  .banner-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 20px;
-  }
-
-  .banner-text {
-    color: white;
-
-    h2 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    p {
-      font-size: 13px;
-      opacity: 0.9;
-    }
-  }
-
-  .banner-img img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-  }
-}
-
-/* 🔹 Overview Section */
-.overview-section {
-  opacity: 1;
   display: flex;
   flex-direction: column;
-  // gap: 12px;
-  padding: 0px 16px 0px 16px;
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    // margin-bottom: 12px;
-
-    h3 {
-      font-family: Poppins;
-      font-weight: 600;
-      font-style: SemiBold;
-      font-size: 16px;
-      line-height: 140%;
-      letter-spacing: -1%;
-      color: #202020;
-    }
-
-    .details-link {
-      font-family: Poppins;
-      font-weight: 600;
-      font-style: SemiBold;
-      font-size: 12px;
-      line-height: 150%;
-      letter-spacing: -1%;
-      color: #2752e7;
-      text-decoration: none;
-    }
-  }
-
-  .overview-grid {
-    opacity: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    .firstcard {
-      opacity: 1;
-      display: flex;
-      flex-direction: row;
-      gap: 9px;
-    }
-    .secondcard {
-      opacity: 1;
-      display: flex;
-      flex-direction: row;
-      gap: 9px;
-    }
-
-    .card {
-      width: 100%;
-      height: 157px;
-      background: linear-gradient(#eef2ff, #eef2ff) padding-box,
-        linear-gradient(311.8deg, #2752e7 36.37%, #c4d6ff 109.45%) border-box;
-      border: 1px solid transparent;
-      border-radius: 8px;
-      padding: 14px;
-      box-shadow: 0px 3px 8px 0px #2752e733;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      img {
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-gap: 10px;
-width: 36px;
-height: 36px;
-background: linear-gradient(180deg, #2752E7 27.4%, #2440A0 100%);
-border-radius: 100px;
-      }
-
-      .card-data {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-width: 132px;
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
- .card-amnt{
-  font-family: Poppins;
-font-weight: 600;
-font-style: SemiBold;
-font-size: 28px;
-width: 132px;
-height: 39px;
-opacity: 1;
-line-height: 140%;
-letter-spacing: -4%;
-color: #000000;
- }
- .card-txt{
-font-family: Poppins;
-font-weight: 400;
-font-style: Regular;
-font-size: 12px;
-line-height: 140%;
-letter-spacing: -1%;
-color: #000000AD;
+  min-height: 100vh;
+  background: #f7f9fc;
+  font-family: 'Clash Display', sans-serif;
+  padding-bottom: 80px; /* Space for bottom nav */
 }
-      }
-    }
+
+/* 🔹 Top Banner */
+.team-banner {
+  padding: 30px 24px 340px; /* Padding to cut gradient right behind the grid */
+  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%);
+  background-attachment: fixed;
+  color: white;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+.banner-text {
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+  }
+  
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    opacity: 0.9;
   }
 }
 
-/* 🔹 Levels Section */
-.levels-section {
+/* 🔹 Summary Grid */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 16px;
+  margin-top: -300px;
+  z-index: 5;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
   padding: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 
-  .level-card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-    padding: 12px 14px;
+  .icon {
+    width: 24px;
+    height: 24px;
+    opacity: 0.9;
+    filter: brightness(0) invert(1);
+  }
 
-    .level-header {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 8px;
-      .level-title{
-        font-family: Poppins;
-font-weight: 500;
-font-style: Medium;
-font-size: 16px;
-line-height: 100%;
-letter-spacing: 0%;
-text-transform: uppercase;
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 
-      }
-      .level-percent {
-        font-size: 14px;
-        font-weight: 500;
-      }
-    }
-
-    .progress-bar {
-      height: 12px;
-      background: #eaeaea;
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 6px;
-
-      .progress-fill {
-        height: 100%;
-        border-radius: 6px;
-        transition: width 0.6s ease;
-      }
-    }
-
-    .level-info {
+    .label {
       font-size: 11px;
-      color: #777;
-      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+    }
+
+    .value {
+      font-size: 16px;
+      color: white;
+      font-weight: 700;
+      line-height: 1.2;
     }
   }
 }
 
-/* ✅ Responsive */
-@media (min-width: 768px) {
-  .overview-grid {
-    max-width: 420px;
-    margin: 0 auto;
+/* 🔹 Layer / Generation Section */
+.layer-section {
+  padding: 0 16px;
+  margin-bottom: 24px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    margin: 0;
   }
 
-  .levels-section {
-    max-width: 420px;
-    margin: 0 auto;
+  .details-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: #00AA5B; /* The exact green color requested */
+    text-decoration: none;
+  }
+}
+
+.layer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.layer-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 18px 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  /* The image has a very faint outline/border */
+  border: 4px solid #f6f8fb;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  .layer-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #eceff4;
+    padding-bottom: 12px;
+    text-align: left;
+  }
+
+  .layer-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      border-right: 1px solid #eef1f6; /* Subtle vertical lines from screenshot */
+      
+      &:last-child {
+        border-right: none;
+      }
+
+      .stat-label {
+        font-size: 11px;
+        color: #72849a; /* Slate/blueish grey */
+        font-weight: 400;
+        line-height: 1.3;
+        white-space: pre-wrap;
+        max-width: 65px;
+      }
+
+      .stat-value {
+        font-size: 15px;
+        font-weight: 600;
+        color: #000;
+      }
+    }
+  }
+}
+
+/* 🔹 Responsive Layout for Tablets/Desktop */
+@media (min-width: 768px) {
+  .summary-grid, .layer-section {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
