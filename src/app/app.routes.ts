@@ -18,6 +18,7 @@ import { Success } from './features/success/success'
 import { ChangePassword } from './features/change-password/change-password'
 import { TermsAndConditions } from './features/terms-and-conditions/terms-and-conditions'
 import { DepositOxapay } from './features/deposit-oxapay/deposit-oxapay'
+import { Deposit } from './features/deposit/deposit'
 import { ForgetPassword } from './features/forget-password/forget-password'
 import { Maintainance } from './features/maintainance/maintainance'
 import { Adminlayout } from './admin/adminlayout/adminlayout'
@@ -47,6 +48,8 @@ export const routes: Routes = [
    { path: 'change-password', component: ChangePassword },
    { path: 't&c', component: TermsAndConditions },
    { path: 'payment', component: DepositOxapay },
+   { path: 'deposit', component: Deposit },
+   { path: 'success', component: Success },
    { path: 'under-maintainance', component: Maintainance },
 {
     path: '',
@@ -58,7 +61,6 @@ export const routes: Routes = [
       { path: 'tower', component: Game },
       { path: 'team', component: Team },
       { path: 'profile', component: Profile },
-      { path: 'success', component: Success },
       
     ],
   },

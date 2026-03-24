@@ -1,50 +1,41 @@
 <div class="layout-container">
-  <header>
-    <app-top-nav></app-top-nav>
-  </header>
-  <div class="deposite-banner">
-    <!-- Blue Banner -->
-    <div class="banner">
-      <div class="banner-align">
-        <button class="back-btn" (click)="goBack()">
-          <img src="/leftarraow.svg" alt="back" />
+  <app-top-nav [isWhite]="true"></app-top-nav>
+
+  <div class="content-body">
+    <div class="header-nav">
+      <button class="back-btn-dark" (click)="goBack()">
+        <img src="/leftarraow.svg" style="filter: brightness(0) invert(0);" alt="back" />
+      </button>
+    </div>
+
+    <div class="page-title-box">
+      <h2 class="main-title">{{ 'Recharge' | translate }}</h2>
+      <p class="sub-title">{{ 'Minimum Deposit 30 USDT/USDC' | translate }}</p>
+    </div>
+
+    <div class="timer-container">
+      <span class="timer-text">{{ countdownText | translate }}</span>
+    </div>
+
+    <div class="qr-container">
+      <img class="qr-image" [src]="data?.qr_code" />
+    </div>
+
+    <div class="amount-container">
+      <p class="amount-label">{{ 'Amount Payable' | translate }}</p>
+      <h3 class="amount-value">{{ data?.amount }} USDT</h3>
+    </div>
+
+    <div class="address-container">
+      <p class="address-label">{{ 'Copy the Deposit address to transfer the amount' | translate }}</p>
+      <div class="address-box">
+        <span class="address-text">{{ data?.address }}</span>
+        <button class="copy-btn" (click)="copyToClipboard(data?.address)">
+          <img src="/copy.svg" alt="copy" />
         </button>
-        <!-- <span class="back-btn" (click)="goBack()"><</span> -->
-        <div class="banner-text">
-          <h2>{{ 'Deposit' | translate }}</h2>
-        </div>
-      </div>
-      <p>{{ 'Experience smooth and secure deposits designed for effortless funding.' | translate }}</p>
-    </div>
-
-    <!-- Body -->
-    <div class="content">
-      <div class="card">
-        <img class="qr" [src]="data?.qr_code" />
-
-        <p class="label">{{ 'Amount for payment' | translate }}</p>
-        <h3 class="amount">{{ data?.amount }} USDT-BEP20</h3>
-
-        <p class="label">{{ 'Your deposit address for payment' | translate }}</p>
-
-        <div class="address-box">
-          <span class="address-text">{{ getMaskedAddress(data?.address) }}</span>
-          <button class="copy-btn" (click)="copyToClipboard(data?.address)"
-            style="border: none;background-color: white;">
-            <img src="/copy.svg" alt="copy" />
-          </button>
-        </div>
-
-        <p class="note">
-          {{ 'Only use this address for the network you selected. Sending assets to other networks may prevent them from
-          being recovered.' | translate }}
-        </p>
-
-        <p class="timer">{{ countdownText }}</p>
       </div>
     </div>
 
-    <!-- Cancel button -->
     <div class="cancel-box">
       <button class="cancel-btn" (click)="cancel()">{{ 'Cancel' | translate }}</button>
     </div>

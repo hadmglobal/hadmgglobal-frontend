@@ -11,14 +11,14 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { Deposit } from '../deposit/deposit';
+
 import { Transfer } from '../transfer/transfer';
 import { AuthService } from '../../services/auth.service';
 import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, RouterModule, MatIconModule, Deposit, Transfer, TranslatePipe],
+  imports: [CommonModule, RouterModule, MatIconModule, Transfer, TranslatePipe],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
@@ -27,7 +27,7 @@ export class Profile implements OnInit {
   private authService = inject(AuthService);
   private ngZone = inject(NgZone);
   private cdr = inject(ChangeDetectorRef);
-  @ViewChild('depositModal') depositModal!: Deposit;
+
   @ViewChild('transferModal') transferModal!: Transfer;
 
 
@@ -135,7 +135,7 @@ export class Profile implements OnInit {
 
   onWalletAction(label: string) {
     if (label === 'Deposit') {
-      this.depositModal.openModal();
+      this.router.navigate(['/deposit']);
     } else if (label === 'Withdrawal') {
       this.router.navigate(['/withdraw']);
     } else if (label === 'History') {

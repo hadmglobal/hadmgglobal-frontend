@@ -21,7 +21,7 @@
           <span>{{ action.label }}</span>
         </div>
       </div>
-      <app-deposit #depositModal></app-deposit>
+
       <app-transfer #transferModal [mainWallet]="user.workingWallet" [withdrawalWallet]="user.withdrawalWallet"
         (closed)="onTransferClosed()">
       </app-transfer>

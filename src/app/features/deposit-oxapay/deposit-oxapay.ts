@@ -98,9 +98,7 @@ export class DepositOxapay implements OnInit {
   updateCountdownText() {
     const min = Math.floor(this.countdownSeconds / 60);
     const sec = this.countdownSeconds % 60;
-    this.countdownText = `Please wait for ${min} min ${sec
-      .toString()
-      .padStart(2, '0')} sec Do not go back, refresh, or close this page.`;
+    this.countdownText = `${min} minutes ${sec.toString().padStart(2, '0')} seconds`;
   }
 
   // --------------------------------------------------------------
@@ -141,7 +139,7 @@ export class DepositOxapay implements OnInit {
           this.countdownText = 'Payment received successfully!';
           this.cdr.detectChanges();
 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/success']);
         }
       },
       error: (err) => {
