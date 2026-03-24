@@ -1,0 +1,114 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f7f9fc;
+  font-family: 'Clash Display', sans-serif;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: #f7f9fc;
+}
+
+.header-left .nav-logo {
+  height: 24px;
+}
+
+.header-right {
+  display: flex;
+  gap: 16px;
+}
+
+.header-right .action-icon img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(0) !important;
+}
+
+.content-body {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f9fc;
+}
+
+.back-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.back-btn img {
+  width: 14px;
+  filter: brightness(0);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 32px;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.avatar-item {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  padding: 4px; /* Space inside the green ring */
+}
+
+.avatar-item img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #D4E0F0; /* Soft blue-ish matching screenshot */
+}
+
+.avatar-item.selected {
+  border-color: #00AA5B; /* EXACT color */
+}
+
+.bottom-actions {
+  padding: 24px;
+  background-color: transparent;
+  margin-top: auto;
+}
+
+.apply-btn {
+  background: #00AA5B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  font-family: inherit;
+}

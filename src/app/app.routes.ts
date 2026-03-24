@@ -61,9 +61,9 @@ export const routes: Routes = [
       { path: 'tower', component: Game },
       { path: 'team', component: Team },
       { path: 'profile', component: Profile },
-      
     ],
   },
+  { path: 'avatar', loadComponent: () => import('./features/avatar/avatar').then(m => m.Avatar) },
   {
   path: 'admin',
   component: Adminlayout,
