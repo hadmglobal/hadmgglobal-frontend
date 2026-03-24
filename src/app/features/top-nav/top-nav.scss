@@ -38,13 +38,14 @@
 }
 
 .transparent-header {
-  background: transparent !important;
-  box-shadow: none !important;
-  position: absolute;
+  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%) !important;
+  background-attachment: fixed !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 50;
+  z-index: 100;
 
   .nav-logo {
     filter: brightness(0) invert(1) !important;
@@ -54,6 +55,27 @@
     stroke: #ffffff !important;
   }
 }
+
+
+/* Add a class specifically for sticky solid header that matches the gradient */
+.sticky-header {
+  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  .nav-logo {
+    filter: brightness(0) invert(1) !important;
+  }
+
+  .action-icon svg {
+    stroke: #ffffff !important;
+  }
+}
+
 
 .logo {
   font-size: 24px;
