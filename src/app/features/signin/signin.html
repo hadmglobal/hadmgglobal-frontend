@@ -1,6 +1,6 @@
 <div class="layout-container" fxLayout="column" fxFlexFill>
   <header>
-    <app-top-nav [isWhite]="true"></app-top-nav>
+    <app-top-nav [isWhite]="false"></app-top-nav>
   </header>
   <div class="signin-container">
     <div class="banner-bg"></div>
@@ -56,13 +56,13 @@
             </div>
           </div>
 
-          <!-- Remember Me and Forgot Password -->
+          <!-- Remember Me & Forgot Password (Non-clickable) -->
           <div class="form-options">
             <div class="remember-me-wrapper">
               <mat-checkbox class="remember-checkbox custom-green-checkbox" formControlName="rememberMe"></mat-checkbox>
               <label class="remember-me-label">{{'Remember me' | translate}}</label>
             </div>
-            <a [routerLink]="['/forget']" class="forgot-password green-text">{{'Forgot password?' | translate}}</a>
+            <span class="forgot-password-text">{{'Forgot password?' | translate}}</span>
           </div>
 
           <!-- Captcha Placeholder -->
@@ -84,9 +84,9 @@
       {{'Log In' | translate}}
     </button>
     <!-- Sign Up Link -->
-    <div class="signup-link">
+    <div class="signup-link-box" [routerLink]="['/signup']">
       <span>{{"Don't have an account" | translate}} </span>
-      <a [routerLink]="['/signup']" class="signup-text" style="margin-left: 4px;"> {{'Sign Up' | translate}}</a>
+      <span class="green-link" style="margin-left: 4px;"> {{'Sign Up' | translate}}</span>
     </div>
   </footer>
 </div>
