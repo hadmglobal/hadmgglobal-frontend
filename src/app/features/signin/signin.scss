@@ -150,8 +150,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
-    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-top: 15px; // Increased to be less clumsy
+}
+
+.forgot-password-text {
+  font-size: 14px;
+  color: #009A44;
+  font-weight: 500;
+  cursor: default; // Non-clickable
+  opacity: 0.9;
 }
 
 .remember-me-wrapper {
