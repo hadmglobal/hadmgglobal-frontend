@@ -9,5 +9,5 @@ import { Loaders } from './features/loader/loader';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('Mission Tower BNB');
+  protected readonly title = signal('Deep Technologies');
 }

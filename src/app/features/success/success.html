@@ -1,21 +1,29 @@
-<div class="success-page">
+<div class="layout-container">
+  <app-top-nav [isWhite]="true"></app-top-nav>
 
-  <!-- Success Icon -->
-  <div class="success-icon">
-    <img src="/success.gif" alt="success" />
+  <div class="content-body">
+    <div class="header-nav">
+      <button class="back-btn-dark" (click)="goBack()">
+        <img src="/leftarraow.svg" style="filter: brightness(0) invert(0);" alt="back" />
+      </button>
+    </div>
+    <div class="page-title-top">
+      <h2>{{ 'Congratulations!' | translate }}</h2>
+    </div>
+
+    <div class="success-illustration">
+      <img src="/success.gif" alt="Success Illustration" />
+    </div>
+
+    <div class="success-text-box">
+      <h2 class="main-title">{{ 'Congratulations!' | translate }}</h2>
+      <p class="sub-title">
+        {{ 'Thank you! Your payment has been submitted and should appear in your wallet within the next 5 minutes' | translate }}
+      </p>
+    </div>
+
+    <div class="confirm-box">
+      <button class="confirm-btn" routerLink="/home">{{ 'Confirm' | translate }}</button>
+    </div>
   </div>
-
-  <!-- Heading -->
-  <h2 class="success-title">Transaction Successful</h2>
-
-  <!-- Message -->
-  <p class="success-message">
-    Your payment has been processed successfully.
-  </p>
-
-  <!-- OK Button -->
-  <!-- <button class="ok-btn" >
-    OK
-  </button> -->
-
 </div>

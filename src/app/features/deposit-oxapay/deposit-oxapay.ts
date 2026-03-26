@@ -98,24 +98,37 @@ export class DepositOxapay implements OnInit {
   updateCountdownText() {
     const min = Math.floor(this.countdownSeconds / 60);
     const sec = this.countdownSeconds % 60;
-    this.countdownText = `Please wait for ${min} min ${sec
-      .toString()
-      .padStart(2, '0')} sec Do not go back, refresh, or close this page.`;
+    this.countdownText = `${min} minutes ${sec.toString().padStart(2, '0')} seconds`;
   }
 
   // --------------------------------------------------------------
   // 🔥 POLLING LOGIC (every 10 sec after 2 minutes)
   // --------------------------------------------------------------
 
+  pollingCount = 0;
+  maxPollingAttempts = 15; // Max 15 attempts (roughly 2.5 minutes of polling)
+
   startPaymentPolling() {
     const trackId = this.data.track_id;
     if (!trackId) return;
+
+    this.pollingCount = 0;
 
     // Call immediately once
     this.callPaymentStatus(trackId);
 
     // Then every 10 seconds
     this.pollingRef = setInterval(() => {
+      this.pollingCount++;
+
+      if (this.pollingCount > this.maxPollingAttempts) {
+        this.stopPaymentPolling();
+        console.warn('Payment check timed out. Stopping API polling.');
+        this.countdownText = 'Verification timed out.';
+        this.cdr.detectChanges();
+        return;
+      }
+
       this.callPaymentStatus(trackId);
     }, 10000);
   }
@@ -141,7 +154,7 @@ export class DepositOxapay implements OnInit {
           this.countdownText = 'Payment received successfully!';
           this.cdr.detectChanges();
 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/success']);
         }
       },
       error: (err) => {

@@ -10,20 +10,21 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TopNav } from '../top-nav/top-nav';
-import { MatIconModule } from '@angular/material/icon';
 import { inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TranslatePipe } from '../../pipes/translate-pipe';
+
 interface Member {
+  name?: string;
   email: string;
   timestamp: string;
   balance: number;
-  inviteCode: string;
+  inviteCode: string; // Used as UID
 }
 
 @Component({
   selector: 'app-members',
-  imports: [CommonModule, RouterModule, FormsModule, MatIconModule, TopNav, TranslatePipe],
+  imports: [CommonModule, RouterModule, FormsModule, TopNav, TranslatePipe],
   templateUrl: './members.html',
   styleUrl: './members.scss'
 })
@@ -31,76 +32,87 @@ export class Members implements OnInit {
   members: Member[] = [];
   filteredMembers: Member[] = [];
   searchText = '';
-  level: number | null = null;
-  // constructor(private router: Router, private route: ActivatedRoute) { }
+  level = 1;
 
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
   private ngZone = inject(NgZone);
   private cdr = inject(ChangeDetectorRef);
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit(): void {
     // 🔹 Extract level from query params
     this.route.queryParams.subscribe((params) => {
-      this.level = params['level'] ? Number(params['level']) : null;
+      this.level = params['level'] ? Number(params['level']) : 1;
       console.log('📘 Selected Level:', this.level);
-
-      if (isPlatformBrowser(this.platformId)) {
-        const userId = localStorage.getItem('userId');
-        if (userId) {
-          this.fetchMembers(userId, this.level);
-        } else {
-          console.error('❌ No userId found in localStorage');
-        }
-      }
+      this.loadData();
     });
   }
 
+  switchLevel(newLevel: number) {
+    this.level = newLevel;
+    this.loadData();
+  }
+
+  loadData() {
+    if (isPlatformBrowser(this.platformId)) {
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        this.fetchMembers(userId, this.level);
+      } else {
+        console.error('❌ No userId found in localStorage');
+        this.loadMockMembers();
+      }
+    }
+  }
+
+  loadMockMembers() {
+    const names = ['Arjun Sharma', 'Priya Patel', 'Rahul Singh', 'Neha Gupta', 'Karan Verma', 'Anita Desai'];
+    // Generate dummy members based on current level to show variations
+    this.members = Array.from({ length: 6 }).map((_, i) => ({
+      name: names[i % names.length] + ' ' + this.level,
+      email: `user${i}@example.com`,
+      timestamp: new Date(2024, 0, 10 - i).toISOString(),
+      balance: 899 + (i * 50) + (this.level * 100),
+      inviteCode: `${53700 + i + (this.level * 10)}`
+    }));
+    this.filteredMembers = [...this.members];
+    this.cdr.detectChanges();
+  }
+
   // 🔹 Fetch Members via Avengers API
-  fetchMembers(userId: string, level: number | null) {
-    // Dynamically map level → screen
+  fetchMembers(userId: string, level: number) {
     let screen = '';
     switch (level) {
-      case 1:
-        screen = 'genOne';
-        break;
-      case 2:
-        screen = 'genTwo';
-        break;
-      case 3:
-        screen = 'genThree';
-        break;
-      default:
-        console.warn('⚠️ Invalid or missing level. Defaulting to genOne.');
-        screen = 'genOne';
+      case 1: screen = 'genOne'; break;
+      case 2: screen = 'genTwo'; break;
+      case 3: screen = 'genThree'; break;
+      case 4: screen = 'genFour'; break;
+      case 5: screen = 'genFive'; break;
+      default: screen = 'genOne';
     }
 
     const payload = { screen, userId: userId };
 
-    console.log('🚀 Fetching members with payload:', payload);
-
     this.authService.avengers(payload).subscribe({
       next: (res) => {
-        console.log('✅ Avengers Members API Response:', res);
-
-        if (res.statusCode === 200 && res.data?.memberDetails) {
-          // Run UI updates inside Angular zone to ensure re-render
+        if (res.statusCode === 200 && res.data?.memberDetails && res.data.memberDetails.length > 0) {
           this.ngZone.run(() => {
             this.members = res.data.memberDetails;
             this.filteredMembers = [...this.members];
             this.cdr.detectChanges();
           });
         } else {
-          console.warn('⚠️ No members found or invalid response.');
-          this.members = [];
-          this.filteredMembers = [];
-          this.cdr.detectChanges();
+            // Load dummy data for preview explicitly requested
+            this.loadMockMembers();
         }
       },
       error: (err) => {
         console.error('❌ Failed to fetch members:', err);
+        // Load dummy data for preview explicitly requested
+        this.loadMockMembers();
       }
     });
   }
@@ -109,25 +121,22 @@ export class Members implements OnInit {
     const text = this.searchText.toLowerCase();
     this.filteredMembers = this.members.filter(
       (m) =>
-        m.email.toLowerCase().includes(text) ||
-        m.balance.toString().includes(text) ||
-        m.inviteCode.toLowerCase().includes(text)
+        (m.name || '').toLowerCase().includes(text) ||
+        (m.inviteCode || '').toLowerCase().includes(text)
     );
   }
 
   maskEmail(email: string): string {
-    const [user, domain] = email.split('@');
-    if (!user || !domain) return email;
-    return (
-      user.slice(0, 3) +
-      '*'.repeat(Math.max(3, user.length - 3)) +
-      '@' +
-      domain
-    );
+    const parts = email.split('@');
+    if (parts.length < 2) return email;
+    const user = parts[0];
+    const domain = parts[1];
+    return user.slice(0, 3) + '*'.repeat(Math.max(3, user.length - 3)) + '@' + domain;
   }
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
@@ -137,5 +146,4 @@ export class Members implements OnInit {
   goBack() {
     this.router.navigate(['/team']);
   }
-
 }

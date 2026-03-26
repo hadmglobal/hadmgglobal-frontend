@@ -5,7 +5,7 @@
     <div class="menu-icon" (click)="toggleSidebar()">
       <i class="fa fa-bars"></i>
     </div>
-    <div class="topnav-title">Mission Tower Admin</div>
+    <div class="topnav-title">DEEP TECHNOLOGIES ADMIN</div>
     <div class="admin-profile"></div>
   </header>
 
@@ -16,65 +16,47 @@
     <ul class="sidebar-menu">
 
       <!-- Dashboard -->
-      <li 
-        (click)="navigateTo('dashboard')" 
-        [class.active]="currentActive === 'dashboard'">
+      <li (click)="navigateTo('dashboard')" [class.active]="currentActive === 'dashboard'">
         <i class="fa fa-home"></i>
         <span>Dashboard</span>
       </li>
 
       <!-- Users -->
-      <li 
-        (click)="navigateTo('users')" 
-        [class.active]="currentActive === 'users'">
+      <li (click)="navigateTo('users')" [class.active]="currentActive === 'users'">
         <i class="fa fa-users"></i>
         <span>Users</span>
       </li>
 
       <!-- Deposits -->
-      <li 
-        (click)="navigateTo('deposits')" 
-        [class.active]="currentActive === 'deposits'">
+      <li (click)="navigateTo('deposits')" [class.active]="currentActive === 'deposits'">
         <i class="fa fa-wallet"></i>
         <span>Deposits</span>
       </li>
 
       <!-- Withdrawls Parent -->
-      <li 
-        class="has-submenu" 
-        [class.active]="activeSection === 'withdrawls'"
-        (click)="toggleWithdrawMenu()">
+      <li class="has-submenu" [class.active]="activeSection === 'withdrawls'" (click)="toggleWithdrawMenu()">
         <i class="fa fa-bank"></i>
         <span>Withdrawls</span>
-        <i 
-          class="fa" 
-          [ngClass]="{
+        <i class="fa" [ngClass]="{
             'fa-chevron-down': !withdrawMenuOpen,
             'fa-chevron-up': withdrawMenuOpen
-          }" 
-          style="margin-left:auto;font-size:12px"></i>
+          }" style="margin-left:auto;font-size:12px"></i>
       </li>
 
       <!-- Withdrawls Submenu -->
       <ul class="submenu" *ngIf="withdrawMenuOpen">
 
-        <li 
-          (click)="navigateTo('withdrawl-requests', $event)" 
-          [class.active]="currentActive === 'withdrawl-requests'">
+        <li (click)="navigateTo('withdrawl-requests', $event)" [class.active]="currentActive === 'withdrawl-requests'">
           <i class="fa fa-list"></i>
           <span>Withdrawl Requests</span>
         </li>
 
-        <li 
-          (click)="navigateTo('withdrawl-accepts', $event)" 
-          [class.active]="currentActive === 'withdrawl-accepts'">
+        <li (click)="navigateTo('withdrawl-accepts', $event)" [class.active]="currentActive === 'withdrawl-accepts'">
           <i class="fa fa-check-circle"></i>
           <span>Withdrawl Accepts</span>
         </li>
 
-        <li 
-          (click)="navigateTo('withdrawl-rejects', $event)" 
-          [class.active]="currentActive === 'withdrawl-rejects'">
+        <li (click)="navigateTo('withdrawl-rejects', $event)" [class.active]="currentActive === 'withdrawl-rejects'">
           <i class="fa fa-times-circle"></i>
           <span>Withdrawl Rejects</span>
         </li>
@@ -82,9 +64,7 @@
       </ul>
 
       <!-- Master Data -->
-      <li 
-        (click)="navigateTo('master-data')" 
-        [class.active]="currentActive === 'master-data'">
+      <li (click)="navigateTo('master-data')" [class.active]="currentActive === 'master-data'">
         <i class="fa fa-database"></i>
         <span>Master Data</span>
       </li>

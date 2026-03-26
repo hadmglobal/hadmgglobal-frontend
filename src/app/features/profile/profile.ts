@@ -11,14 +11,16 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { Deposit } from '../deposit/deposit';
+
 import { Transfer } from '../transfer/transfer';
 import { AuthService } from '../../services/auth.service';
 import { TranslatePipe } from '../../pipes/translate-pipe';
 
+// import { TopNav } from '../top-nav/top-nav';
+
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, RouterModule, MatIconModule, Deposit, Transfer, TranslatePipe],
+  imports: [CommonModule, RouterModule, MatIconModule, TranslatePipe],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
@@ -27,9 +29,8 @@ export class Profile implements OnInit {
   private authService = inject(AuthService);
   private ngZone = inject(NgZone);
   private cdr = inject(ChangeDetectorRef);
-  @ViewChild('depositModal') depositModal!: Deposit;
-  @ViewChild('transferModal') transferModal!: Transfer;
 
+  @ViewChild('transferModal') transferModal!: Transfer;
 
   showSupport = false;
   showLogout = false;
@@ -45,28 +46,29 @@ export class Profile implements OnInit {
     email: 'admin@gmail.com',
     workingWallet: 0,
     withdrawalWallet: 0,
+    avatar: '/avatar1.svg' // default placeholder
   };
   telegramLinkTwo: string = ''
   telegramLinkThree: string = ''
-  walletActions = [
-    { icon: '/deposit.svg', label: 'Deposit' },
-    { icon: '/withdrawal.svg', label: 'Withdrawal' },
-    { icon: '/history.svg', label: 'History' },
-    { icon: '/group.svg', label: 'Group' }
-  ];
 
   walletSummary = [
-    { label: "Today's Personal commission", value: 0 },
-    { label: 'Team daily commission', value: 0 },
-    { label: 'Grand Total commission', value: 0 },
-    { label: 'Your Flexible Deposit', value: 0 },
-    { label: 'Your Total withdrawals', value: 0 }
+    { label: "Recharge Amount", value: 0 },
+    { label: 'Earnings Balance', value: 0 },
+    { label: 'Total Earnings', value: 0 },
+    { label: "Today's Task Earnings", value: 0 },
+    { label: "Today's Team Income", value: 0 },
+    { label: "Total Valid Team Count", value: 0 },
+    { label: "Total Withdrawal", value: 0 },
+    { label: "Total Balance", value: 0 },
+    { label: "Total Revenue", value: 0 },
   ];
 
   settings = [
-    { label: 'Change password' },
-    { label: 'Terms and conditions' },
-    { label: 'Help & support' }
+    { label: 'Change password', icon: '/sync-outline.svg' },
+    { label: 'Terms and conditions', icon: '/document-text.svg' },
+    { label: 'Set Transaction Password', icon: '/lock-closed.svg' },
+    { label: 'Transaction History', icon: '/time-outline.svg' },
+    { label: 'Help & support', icon: '/help-circle.svg' }
   ];
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -106,15 +108,21 @@ export class Profile implements OnInit {
           this.user.email = data.email || 'Email';
           this.user.workingWallet = Number(data.totalDeposits ?? 0);
           this.user.withdrawalWallet = Number(data.totalEarnings ?? 0);
+          this.user.avatar = data.avatar || localStorage.getItem('avatarUrl') || '/avatar1.svg';
           this.telegramLinkTwo = data.telegramLinkTwo;
           this.telegramLinkThree = data.telegramLinkThree;
-          // Update Summary dynamically
+
+          // Using dummy values of 3.66 for now as placeholders for the 9-item grid mapping as requested
           this.walletSummary = [
-            { label: "Today's Personal commission", value: Number(data.usersTodaysCommission ?? 0) },
-            { label: 'Team daily commission', value: Number(data.teamDailyCommission ?? 0) },
-            { label: 'Grand Total commission', value: Number(data.grandTotalCommission ?? 0) },
-            { label: 'Your Flexible Deposit', value: Number(data.flexibleDeposite ?? 0) },
-            { label: 'Your Total withdrawals', value: Number(data.totalWithdrawals ?? 0) }
+            { label: "Recharge Amount", value: 3.66 },
+            { label: "Earnings Balance", value: 3.66 },
+            { label: "Total Earnings", value: 3.66 },
+            { label: "Today's Task Earnings", value: 3.66 },
+            { label: "Today's Team Income", value: 3.66 },
+            { label: "Total Valid Team Count", value: 3.66 },
+            { label: "Total Withdrawal", value: 3.66 },
+            { label: "Total Balance", value: 3.66 },
+            { label: "Total Revenue", value: 3.66 },
           ];
 
           this.cdr.detectChanges();
@@ -127,6 +135,10 @@ export class Profile implements OnInit {
     });
   }
 
+  openAvatar() {
+    this.router.navigate(['/avatar']);
+  }
+
 
   getInitials(name: string): string {
     const parts = name.trim().split(' ');
@@ -135,7 +147,7 @@ export class Profile implements OnInit {
 
   onWalletAction(label: string) {
     if (label === 'Deposit') {
-      this.depositModal.openModal();
+      this.router.navigate(['/deposit']);
     } else if (label === 'Withdrawal') {
       this.router.navigate(['/withdraw']);
     } else if (label === 'History') {

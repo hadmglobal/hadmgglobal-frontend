@@ -13,7 +13,7 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: #2752e7;
+  background: #E81A66;
   color: white;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
   .sidebar-logo {
     padding: 16px;
     font-weight: 600;
-    color: #2752e7;
+    color: #E81A66;
     text-align: center;
   }
 
@@ -73,18 +73,18 @@
 
       i {
         font-size: 18px;
-        color: #2752e7;
+        color: #E81A66;
       }
 
       &:hover {
         background: #e8eeff;
-        border-left: 3px solid #2752e7;
+        border-left: 3px solid #E81A66;
       }
 
       &.active {
-        background: #dce6ff;
-        border-left: 3px solid #2752e7;
-        color: #2752e7;
+        background: #ffe0ec;
+        border-left: 3px solid #E81A66;
+        color: #E81A66;
       }
     }
 
@@ -117,8 +117,8 @@
         }
 
         &.active {
-          background: #dce6ff;
-          color: #2752e7;
+          background: #ffe0ec;
+          color: #E81A66;
         }
       }
     }

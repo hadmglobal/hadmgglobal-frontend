@@ -111,4 +111,7 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/convert-earnings`, payload);
   }
 
+  updateAvatar(payload: { userId: string; imageId: string }): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/save-avatar`, payload);
+  }
 }

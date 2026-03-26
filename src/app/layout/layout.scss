@@ -4,6 +4,7 @@
   background-color: #f7f9fc;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 
@@ -48,10 +49,10 @@
 /* 💻 Laptop Responsiveness */
 @media (min-width: 768px) {
   .layout-container {
-    max-width: 420px;
-    margin: auto;
-    border: 1px solid #eaeaea;
-    border-radius: 12px;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
     overflow: hidden;
   }
 }
@@ -59,37 +60,38 @@
 .bottom-nav a {
   text-decoration: none;
   color: #707070; /* default inactive color */
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 4px; /* spacing between icon and text */
 }
 
 .bottom-nav a.active {
-  color: #0057ff !important; /* blue for active */
+  color: #00AA5B !important; /* EXACT green for active */
+  font-weight: 600;
 }
 
 .bottom-nav .nav-icon {
-  width: 30px;
-  height: 30px;
-  margin-bottom: 4px;
-  filter: grayscale(100%) brightness(1.2);
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%) opacity(0.7);
   transition: filter 0.3s ease;
 }
 
-/* when active, remove gray filter */
+/* when active, convert icon to EXACTLY #00AA5B color via filter */
 .bottom-nav a.active .nav-icon {
-  filter: none;
+  filter: brightness(0) saturate(100%) invert(49%) sepia(74%) saturate(2150%) hue-rotate(122deg) brightness(92%) contrast(103%) !important;
 }
 
-/* 🕹️ keep the middle (game) icon always active color */
+/* 🕹️ keep the middle (game) icon always active color if needed */
 .bottom-nav a.game-icon {
-  color: #0057ff !important;
+  color: #00AA5B !important;
 }
 
 .bottom-nav a.game-icon .nav-icon {
-  filter: none !important;
+  filter: brightness(0) saturate(100%) invert(49%) sepia(74%) saturate(2150%) hue-rotate(122deg) brightness(92%) contrast(103%) !important;
 }
 

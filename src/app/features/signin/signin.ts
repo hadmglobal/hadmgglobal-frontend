@@ -64,9 +64,10 @@ export class Signin implements OnInit {
 
 
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      rememberMe: [false]
+      rememberMe: [false],
+      captcha: [false, Validators.requiredTrue]
     });
   }
   ngOnInit(): void {
@@ -121,6 +122,7 @@ export class Signin implements OnInit {
 
             this.safeSetLocalStorage('userId', res.data.userId);
             this.safeSetLocalStorage('email', email);
+            this.safeSetLocalStorage('isHumanVerified', 'true');
 
             this.router.navigate(['/home']);
           } else {

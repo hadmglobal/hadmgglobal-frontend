@@ -4,47 +4,62 @@
   </header>
 
   <div class="members-container">
-    <!-- 🔹 Blue Banner -->
-    <div class="blue-banner">
-      <img src="/common-top.svg" alt="banner background" class="banner-bg" />
-
-      <div class="banner-content">
+    <!-- 🔹 Gradient Banner -->
+    <div class="members-banner">
+      
+      <div class="banner-header">
         <button class="back-btn" (click)="goBack()">
-          <img src="/leftarraow.svg" alt="back" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
         </button>
-        <h2>{{ 'Members list' | translate }}</h2>
+      </div>
+      
+      <div class="banner-text">
+        <h2>{{ 'Member List' | translate }}</h2>
+        <p>{{ 'See your Member list.' | translate }}</p>
       </div>
 
       <!-- 🔹 Search Box -->
       <div class="search-box">
-        <!-- <mat-icon>search</mat-icon> -->
-        <img src="/search.svg" alt="search" />
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
         <input type="text" placeholder="{{ 'Search members' | translate }}" [(ngModel)]="searchText"
           (input)="filterMembers()" />
       </div>
     </div>
 
+    <!-- 🔹 Tabs -->
+    <div class="tabs-container">
+        <div class="tab" [class.active]="level === 1" (click)="switchLevel(1)">{{ 'Layer 1' | translate }}</div>
+        <div class="tab" [class.active]="level === 2" (click)="switchLevel(2)">{{ 'Layer 2' | translate }}</div>
+        <div class="tab" [class.active]="level === 3" (click)="switchLevel(3)">{{ 'Layer 3' | translate }}</div>
+        <div class="tab" [class.active]="level === 4" (click)="switchLevel(4)">{{ 'Layer 4' | translate }}</div>
+        <div class="tab" [class.active]="level === 5" (click)="switchLevel(5)">{{ 'Layer 5' | translate }}</div>
+    </div>
+
     <!-- 🔹 Members List -->
     <div class="members-list">
-      <div *ngFor="let member of filteredMembers" class="member-card">
-        <div class="top-row">
-          <p class="email">{{ maskEmail(member.email) }}</p>
-          <p class="balance">{{ member.balance }} <span>USDT</span></p>
+      <div *ngFor="let member of filteredMembers; let i = index" class="member-card">
+        
+        <div class="card-content">
+            <img [src]="'/avatar' + ((i % 9) + 1) + '.svg'" alt="avatar" class="member-avatar" />
+            <div class="member-info">
+                <div class="member-name">{{ member.name || 'Arjun Sharma' }}</div>
+                <div class="member-uid">UID: {{ member.inviteCode || '53794' }} <img src="/copy.svg" alt="copy" class="copy-icon" /></div>
+            </div>
+            <div class="member-amount">
+                USD {{ member.balance | number: '1.0-2' }}
+            </div>
         </div>
 
-        <div class="divider"></div>
-
-        <div class="bottom-row">
-          <div>
-            <p class="label">{{ "REGISTRATION DATE" | translate }}</p>
-            <p class="value">{{ formatDate(member.timestamp) }}</p>
-          </div>
-
-          <div>
-            <p class="label">{{ "LEVEL INVITE COUNT" | translate }}</p>
-            <p class="value">{{ member.inviteCode }}</p>
-          </div>
+        <div class="card-footer">
+            <span class="footer-label">{{ "Registration Date:" | translate }}</span>
+            <span class="footer-value">{{ formatDate(member.timestamp) }}</span>
         </div>
+
       </div>
     </div>
   </div>

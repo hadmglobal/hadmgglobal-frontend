@@ -71,8 +71,8 @@
       transition: border 0.3s;
 
       &:focus {
-        border-color: #2752e7;
-        box-shadow: 0 0 0 2px rgba(39, 82, 231, 0.15);
+        border-color: #E81A66;
+        box-shadow: 0 0 0 2px rgba(232, 26, 102, 0.15);
       }
     }
 
@@ -89,7 +89,7 @@
   margin-top: 10px;
 
   .submit-btn {
-    background: #2752e7;
+    background: #E81A66;
     color: white;
     border: none;
     padding: 8px 18px;
@@ -99,7 +99,7 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background: #1f45c3;
+      background: #B61049;
       transform: scale(1.03);
     }
   }

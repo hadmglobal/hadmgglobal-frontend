@@ -1,6 +1,6 @@
 .master-container {
   padding: 20px;
-  background: #f8faff;
+  background: #fcf9fa;
   min-height: calc(100vh - 60px);
   max-width: 500px;
 }
@@ -74,7 +74,7 @@
 
 /* Update Button */
 .update-btn {
-  background: #2752e7;
+  background: #E81A66;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -89,7 +89,7 @@
   }
 
   &:hover:not(:disabled) {
-    background: #1f45c3;
+    background: #B61049;
   }
 }
 
@@ -106,7 +106,7 @@
 }
 
 .get-btn {
-  background: #2752e7;
+  background: #E81A66;
   color: white;
   border: none;
   padding: 10px 14px;

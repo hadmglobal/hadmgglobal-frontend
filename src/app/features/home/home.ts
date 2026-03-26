@@ -1,18 +1,18 @@
 import { Component, OnInit, OnDestroy, ViewChild, NgZone, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { Deposit } from '../deposit/deposit';
+
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ChangeDetectorRef } from '@angular/core';
 
-import { TranslatePipe } from '../../pipes/translate-pipe';
+// import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MatIconModule, Deposit, TranslatePipe],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
@@ -26,7 +26,7 @@ export class Home implements OnInit, OnDestroy {
     private ngZone: NgZone
   ) { }
 
-  @ViewChild('depositModal') depositModal!: Deposit;
+
 
   transformStyle = 'translateX(0%)';
 
@@ -74,12 +74,7 @@ export class Home implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // 🧹 IMPORTANT: reset modal state
-    if (this.depositModal) {
-      this.depositModal.isVisible = false;
-      this.depositModal.isClosing = false;
-      document.body.style.overflow = 'auto';
-    }
+
 
     this.startCarousel();
 
@@ -147,7 +142,7 @@ export class Home implements OnInit, OnDestroy {
 
   onWalletAction(label: string) {
     if (label === 'Deposit') {
-      this.depositModal.openModal();
+      this.router.navigate(['/deposit']);
     } else if (label === 'Withdrawal') {
       this.router.navigate(['/withdraw']);
     } else if (label === 'History') {

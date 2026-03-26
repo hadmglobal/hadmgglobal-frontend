@@ -1,97 +1,98 @@
-<div class="layout-container" fxLayout="column" fxFlexFill>
-  <header>
-    <app-top-nav></app-top-nav>
-  </header>
+<div class="page-container">
+  <app-top-nav [isTransparent]="true"></app-top-nav>
 
-  <div class="withdrawal-container">
-    <!-- 🔹 Blue Gradient Banner (2-layer) -->
-    <div class="blue-banner">
-      <div class="upper-blue">
-        <button class="back-btn" (click)="goBack()">
-          <img src="/leftarraow.svg" alt="back" />
-        </button>
-        <h2>{{ 'Withdrawal' | translate }}</h2>
+  <div class="top-gradient-banner">
+    <div class="header-nav">
+      <button class="back-btn" type="button" (click)="goBack()">
+        <img src="/leftarraow.svg" alt="back" />
+      </button>
+    </div>
+
+    <div class="banner-content">
+      <div class="balance-info">
+        <p class="balance-label">{{ 'Withdraw' | translate }}</p>
+        <h2 class="balance-amount">$ {{ totalRemainingBalance }}</h2>
       </div>
-      <div class="lower-blue"></div>
+      <img src="/wallet_hand.png" class="wallet-img" onerror="this.onerror=null; this.src='/withdraw-icon.svg'" />
     </div>
 
-    <!-- 🔹 Floating Wallet Card -->
-    <div class="wallet-card">
-      <div class="wallet-item">
-        <p class="ptag">{{ 'WITHDRAWAL ACCOUNT' | translate }}</p>
-        <div class="money-item">
-          <span class="money">{{ totalRemainingBalance }}</span>
-          <span class="curr">USDT</span>
-        </div>
-      </div>
-      <div class="wallet-gif">
-        <img src="/wallet1.gif" alt="wallet" />
-      </div>
+    <div class="fee-strip">
+      {{ 'For each withdraw' | translate }} <strong>{{ '10% Fee' | translate }}</strong> {{ 'will be deducted' |
+      translate }}
     </div>
-
-    <!-- 🔹 Form Section -->
-    <div class="form-section">
-      <form [formGroup]="withdrawalForm">
-        <div class="form-group">
-          <label>{{ 'Enter amount' | translate }}</label>
-          <mat-form-field appearance="outline" class="full-width">
-            <input matInput type="number" placeholder="00.00" formControlName="amount" />
-          </mat-form-field>
-        </div>
-
-        <div class="form-group">
-          <label>{{ 'USDT–BEP20 wallet address' | translate }}</label>
-          <mat-form-field appearance="outline" class="full-width">
-            <input matInput placeholder="{{ 'Enter Your USDT–BEP20 wallet address' | translate }}"
-              formControlName="walletAddress" />
-          </mat-form-field>
-        </div>
-
-        <div class="form-group">
-          <label>{{ 'Pass Code' | translate }}</label>
-          <mat-form-field appearance="outline" class="full-width">
-            <input matInput type="password" placeholder="{{ 'Enter Pass Code' | translate }}" formControlName="pin"
-              maxlength="6" />
-          </mat-form-field>
-        </div>
-      </form>
-    </div>
-
-    <!-- 🔹 Warm Reminder -->
-    <div class="reminder-box">
-      <h4>{{ 'Warm reminder' | translate }}</h4>
-
-      <ol class="numbered-list">
-        <li>{{ 'The minimum withdrawal amount is 20 USDT.' | translate }}</li>
-
-        <li>{{ 'The withdrawal fee for all Pioneer\'s level users is fixed at 8%.' | translate }}</li>
-
-        <li>
-          {{ 'The withdrawal process is subject to multi-node, confirmation and audit, and the estimated arrival time is
-          24 to 72 hours.' | translate }}
-        </li>
-
-        <li>
-          {{ 'Each withdrawal is subject to review, and the next withdrawal can only be performed after the previous
-          withdrawal is completed.' | translate }}
-        </li>
-
-        <li>
-          {{ 'You can get one free withdrawal fee every 21 days, and the number of free withdrawals cannot be
-          accumulated.' | translate }}
-        </li>
-
-        <li>
-          <strong>{{ 'Security Hold:' | translate }}</strong> {{ 'After changing login password, transaction password,
-          or wallet address, wait 24 hours to request a withdrawal.' | translate }}
-        </li>
-      </ol>
-    </div>
-
   </div>
-  <footer class="footer">
-    <button mat-raised-button type="submit" (click)="onSubmit()" class="confirm-btn">
-      {{ 'Confirm' | translate }}
-    </button>
-  </footer>
+
+  <div class="content-body">
+    <form [formGroup]="withdrawalForm" class="form-section">
+      <!-- Amount -->
+      <div class="form-group">
+        <label>{{ 'Enter amount' | translate }}</label>
+        <div class="input-wrapper-custom">
+          <span class="currency-symbol">$</span>
+          <input type="number" formControlName="amount" placeholder="00.00" class="custom-input" />
+        </div>
+      </div>
+
+      <div class="quick-amounts">
+        <button type="button" *ngFor="let amt of quickAmounts" class="quick-btn"
+          [class.active]="withdrawalForm.get('amount')?.value === amt" (click)="setAmount(amt)">
+          {{ amt }}
+        </button>
+      </div>
+
+      <!-- Network -->
+      <div class="form-group">
+        <label>{{ 'Select wallet network' | translate }}</label>
+        <div class="network-options">
+          <button type="button" *ngFor="let net of networks" class="network-btn"
+            [class.active]="selectedNetwork === net" (click)="setNetwork(net)">
+            {{ net | translate }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label>{{ 'Wallet address' | translate }}</label>
+        <div class="input-wrapper-custom">
+          <input type="text" formControlName="walletAddress"
+            placeholder="{{ 'Enter your USDT/USDC ( BEP20 ) Wallet address' | translate }}" class="custom-input full" />
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group" style="margin-bottom: 0px;">
+        <label>{{ 'Enter Transaction Password' | translate }}</label>
+        <div class="input-wrapper-custom">
+          <input type="password" formControlName="pin" placeholder="{{ 'Enter Your Transaction Password' | translate }}"
+            class="custom-input full" />
+          <img src="/eye_icon.svg" class="eye-icon" onerror="this.onerror=null; this.src='/eye-off.svg'" />
+        </div>
+      </div>
+    </form>
+
+    <div class="guide-box">
+      <h4>{{ 'Withdrawal Guide:' | translate }}</h4>
+      <ul>
+        <li>{{ '-Minimum withdrawal is 10 USDT.' | translate }}</li>
+        <li>{{ '-Withdrawal requests are processed and sent to the specified wallet address within a maximum of 72
+          hours.' | translate }}</li>
+        <li>{{ '-Members can only submit one withdrawal application per day.' | translate }}</li>
+        <li>{{ '-All withdrawal requests submitted by members will be subject to an automatic 10% handling fee
+          deduction.' | translate }}</li>
+        <li>{{ '-Withdrawals can only be made in multiples of 10 (for example: 10, 20, 30, 40, 50, 100 and so on).*' |
+          translate }}</li>
+      </ul>
+    </div>
+
+    <div class="bottom-actions">
+      <button type="button" class="submit-btn" [class.disabled]="withdrawalForm.invalid"
+        [disabled]="withdrawalForm.invalid" (click)="onSubmit()">
+        {{ 'Withdraw Amount' | translate }}
+      </button>
+      <button type="button" class="cancel-btn" (click)="goBack()">
+        {{ 'Cancel' | translate }}
+      </button>
+    </div>
+  </div>
 </div>

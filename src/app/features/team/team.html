@@ -1,83 +1,92 @@
 <div class="layout-container" fxLayout="column" fxFlexFill>
     <div class="team-container">
-        <!-- 🔹 Blue Banner -->
-        <!-- 🔹 Blue Banner -->
-        <div class="blue-banner">
-            <img src="/common-top.svg" alt="banner background" class="banner-bg" />
+        <!-- 🔹 Background Banner wrapping Text and Grid -->
+        <div class="team-banner">
+            <div class="banner-text">
+                <h2>{{ 'Teams' | translate }}</h2>
+                <p>{{ 'See your contributions.' | translate }}</p>
+            </div>
 
-            <div class="banner-content">
-                <div class="banner-text">
-                    <span>{{ 'Hello' | translate }} {{ userName }},</span>
-                    <p>{{ "An overview of your team’s recent performance." | translate }}</p>
+            <!-- 🔹 6-item Grid for Summary -->
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <img src="/profilecircle.svg" alt="icon" class="icon" />
+                    <div class="info">
+                        <span class="label">{{ 'Register A Member' | translate }}</span>
+                        <span class="value">${{ data.totalTeams | number: '1.2-2' }}</span>
+                    </div>
                 </div>
-
-                <div class="banner-img">
-                    <img src="/team-people.svg" alt="Team Banner" />
+                <div class="summary-card">
+                    <img src="/profilecircle.svg" alt="icon" class="icon" />
+                    <div class="info">
+                        <span class="label">{{ 'Total Valid Members' | translate }}</span>
+                        <span class="value">${{ data.totalValidMembers | number: '1.2-2' }}</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <img src="/profilecircle.svg" alt="icon" class="icon" />
+                    <div class="info">
+                        <span class="label">{{ 'Total Team Commission' | translate }}</span>
+                        <span class="value">${{ data.totalPromationComission | number: '1.2-2' }}</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <img src="/profilecircle.svg" alt="icon" class="icon" />
+                    <div class="info">
+                        <span class="label">{{ 'First Level Bonus' | translate }}</span>
+                        <span class="value">${{ data.firstLevelBonus | number: '1.2-2' }}</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <img src="/profilecircle.svg" alt="icon" class="icon" />
+                    <div class="info">
+                        <span class="label">{{ 'Total Team Deposit' | translate }}</span>
+                        <span class="value">${{ data.teamRecharge | number: '1.2-2' }}</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <img src="/profilecircle.svg" alt="icon" class="icon" />
+                    <div class="info">
+                        <span class="label">{{ 'Total Team Withdrawal' | translate }}</span>
+                        <span class="value">${{ data.teamWitdrawls | number: '1.2-2' }}</span>
+                    </div>
                 </div>
             </div>
         </div>
 
 
-        <!-- 🔹 Team Overview -->
-        <div class="overview-section">
+        <!-- 🔹 Layer / Generation Section -->
+        <div class="layer-section">
             <div class="section-header">
-                <h3>{{ "Team Overview" | translate }}</h3>
-                <a href="/commission" class="details-link">{{ "Commission History" | translate }} ></a>
+                <h3>{{ "Valid Summary Details" | translate }}</h3>
+                <a href="javascript:void(0)" class="details-link">{{ "View team count" | translate }} ></a>
             </div>
 
-            <div class="overview-grid">
-                <div class="firstcard">
-                    <div class="card">
-                        <img src="/total-teams.svg" alt="icon" />
-                        <div class="card-data">
-                            <span class="card-amnt">{{ data.totalTeams }}</span>
-                            <span class="card-txt">{{ "Total Number of Downlines" | translate }}</span>
-                        </div>
+            <div class="layer-list">
+                <div class="layer-card" *ngFor="let level of levels" (click)="openMembers(level.id)">
+                    <div class="layer-title">
+                        <span>{{ level.title | translate }}</span>
                     </div>
-
-                    <div class="card">
-                        <img src="/total-comission.svg" alt="icon" />
-                        <div class="card-data">
-                            <span class="card-amnt">${{ data.totalPromationComission | number: '1.2-2' }}</span>
-                            <span class="card-txt">{{ "Total Team commission" | translate }}</span>
+                    
+                    <div class="layer-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">{{ 'Team Commission' | translate }}</span>
+                            <span class="stat-value">{{ level.commission | number: '1.2-2' }}</span>
                         </div>
-                    </div>
-                </div>
-                <div class="secondcard">
-                    <div class="card">
-                        <img src="/total-recharge.svg" alt="icon" />
-                        <div class="card-data">
-                            <span class="card-amnt">${{ data.teamRecharge | number: '1.2-2' }}</span>
-                            <span class="card-txt">{{ "Total amount of the team recharge" | translate }}</span>
+                        <div class="stat-item">
+                            <span class="stat-label">{{ 'Register Member' | translate }}</span>
+                            <span class="stat-value">{{ level.register }}</span>
                         </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="/total-withdraw.svg" alt="icon" />
-                        <div class="card-data">
-                            <span class="card-amnt">${{ data.teamWitdrawls | number: '1.2-2' }}</span>
-                            <span class="card-txt">{{ "The team's total withdrawals" | translate }}</span>
+                        <div class="stat-item">
+                            <span class="stat-label">{{ 'Valid Member' | translate }}</span>
+                            <span class="stat-value">{{ level.valid }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">{{ 'Team Revenue' | translate }}</span>
+                            <span class="stat-value">{{ level.revenue | number: '1.2-2' }}</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- 🔹 Levels Section -->
-        <div class="levels-section">
-            <div *ngFor="let level of levels" class="level-card" [ngStyle]="{'border': '1px solid ' + level.color}"
-                (click)="openMembers(level.id)">
-                <div class="level-header">
-                    <span class="level-title">{{ level.title | translate }}</span>
-                    <span class="level-percent">{{ level.progress }}%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" [ngStyle]="{'width': level.progress + '%', 'background': level.color}">
-                    </div>
-                </div>
-                <p class="level-info">
-                    {{ 'TOTAL VALID MEMBERS:' | translate }} {{ level.value }}/{{ level.max }}
-                </p>
             </div>
         </div>
     </div>

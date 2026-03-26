@@ -4,9 +4,10 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap');
 
 * {
-  font-family: Poppins !important;
+  font-family: 'Clash Display', sans-serif !important;
 }
 
 i.fa, .fa {
@@ -44,12 +45,22 @@ body {
 html,
 body {
   height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure all main host components expand correctly instead of collapsing to inline widths */
+app-root, app-layout, app-home, app-withdrawal, app-deposit, app-profile, app-team {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Clash Display', "Helvetica Neue", sans-serif;
 }
+
 
 
 /* global styles.css */
@@ -98,7 +109,7 @@ input::-ms-input-placeholder {
 
 /* Optional: force the color on the class directly if you need higher specificity */
 .mat-mdc-raised-button {
-  color: var(--mat-button-protected-label-text-color) !important;
+  color: #ffffff !important;
 }
 
 

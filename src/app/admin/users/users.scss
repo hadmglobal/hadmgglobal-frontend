@@ -1,6 +1,6 @@
 .users-container {
   padding: 20px;
-  background: #f8faff;
+  background: #fcf9fa;
   min-height: calc(100vh - 60px);
 }
 
@@ -12,7 +12,7 @@
   margin-bottom: 16px;
 
   .send-email-btn {
-    background: #2752e7;
+    background: #E81A66;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -22,7 +22,7 @@
     transition: background 0.3s ease;
 
     &:hover {
-      background: #1f45c3;
+      background: #B61049;
     }
   }
 
@@ -77,7 +77,7 @@
   min-width: 1000px; /* 👈 Ensures scroll when small screens */
 
   thead {
-    background: #eef2ff;
+    background: #ffe6f0;
 
     th {
       padding: 10px 12px;
@@ -99,7 +99,7 @@
     }
 
     tr:hover {
-      background: #f9fbff;
+      background: #fff5f8;
     }
   }
 }
@@ -107,8 +107,8 @@
 
 .add-btn {
   background: #fff;
-  border: 1px solid #2752e7;
-  color: #2752e7;
+  border: 1px solid #E81A66;
+  color: #E81A66;
   border-radius: 4px;
   font-size: 13px;
   padding: 2px 10px;
@@ -117,7 +117,7 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background: #2752e7;
+    background: #E81A66;
     color: #fff;
   }
 }
@@ -149,7 +149,7 @@
   margin-top: 16px;
 
   button {
-    background: #2752e7;
+    background: #E81A66;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -158,12 +158,12 @@
     transition: background 0.3s;
 
     &:disabled {
-      background: #b7c4f1;
+      background: #f8bbd0;
       cursor: not-allowed;
     }
 
     &:hover:not(:disabled) {
-      background: #1f45c3;
+      background: #B61049;
     }
   }
 
@@ -267,12 +267,12 @@
 
 /* Row styling */
 .responsive-table tbody tr:hover {
-  background: #f9fbff;
+  background: #fff5f8;
 }
 
 /* Header */
 .responsive-table thead th {
-  background: #eef2ff;
+  background: #ffe6f0;
   font-weight: 600;
   color: #333;
   padding: 10px 12px;
@@ -340,7 +340,7 @@
 
 /* ⭐ Email icon button */
 .email-btn {
-  background: #2752e7;
+  background: #E81A66;
   color: #fff;
   border: none;
   padding: 6px 10px;
@@ -353,7 +353,7 @@
   }
 
   &:hover {
-    background: #1f45c3;
+    background: #B61049;
   }
 }
 

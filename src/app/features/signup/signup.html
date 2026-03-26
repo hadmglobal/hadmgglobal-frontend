@@ -1,61 +1,57 @@
 <div class="layout-container" fxLayout="column" fxFlexFill>
   <header>
-    <app-top-nav></app-top-nav>
+    <app-top-nav [isWhite]="true"></app-top-nav>
   </header>
 
   <div class="signin-container">
-    <div class="welcome-section">
-      <div class="welcome-text">{{'Welcome' | translate}}</div>
-      <div class="bnb-text">{{'to Tower BNB' | translate}}</div>
-    </div>
+    <div class="banner-bg"></div>
 
-    <!-- Main Content -->
-    <div class="main-content">
+    <div class="content-wrapper">
+      <div class="banner-content">
+        <div class="banner-inner">
+          <div class="welcome-section">
+            <div class="welcome-text">{{'Registration' | translate}}</div>
+            <div class="bnb-text">{{'Welcome to Sign-in' | translate}}<br>{{'HADM GLOBAL' | translate}}</div>
+          </div>
+          <img src="/sign-in-icon.svg" class="hero-image-banner" alt="Hand Holding Phone" />
+        </div>
+      </div>
+
       <!-- Signup Card -->
       <div class="login-card">
-        <div class="hero-coin">
-          <img src="/golden_coin.svg" alt="Golden Coin" />
-        </div>
-
-        <h2 class="form-heading">{{ 'Create your account' | translate }}</h2>
 
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="formField">
           <!-- Name -->
           <div class="password-section">
             <div class="section-labels">
-              <span [class.error-label]="
-                  signupForm.get('name')?.invalid &&
-                  (signupForm.get('name')?.touched || signupForm.get('name')?.dirty)
-                ">{{ 'Name' | translate }}*</span>
+              <span [class.error-label]="signupForm.get('name')?.invalid && (signupForm.get('name')?.touched || signupForm.get('name')?.dirty)">
+                {{ 'Username' | translate }}
+              </span>
             </div>
-            <mat-form-field class="password-field" appearance="outline">
-              <input matInput type="text" formControlName="name" placeholder="John Doe" />
-              <mat-error *ngIf="signupForm.get('name')?.hasError('required')">
-                {{ 'Full name is required' | translate }}
-              </mat-error>
-            </mat-form-field>
+            <div class="custom-input-wrapper">
+              <input type="text" class="custom-input-box" formControlName="name" placeholder="{{'Enter your Username' | translate}}" />
+            </div>
+            <div class="error-msg" *ngIf="signupForm.get('name')?.hasError('required') && signupForm.get('name')?.touched">
+              {{ 'Username is required' | translate }}
+            </div>
           </div>
 
           <!-- Email -->
           <div class="password-section">
             <div class="section-labels">
-              <span [class.error-label]="
-                  signupForm.get('email')?.invalid &&
-                  (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)
-                ">{{ 'Email' | translate }}*</span>
+              <span [class.error-label]="signupForm.get('email')?.invalid && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)">
+                {{ 'Email' | translate }}
+              </span>
             </div>
-
-            <mat-form-field class="password-field" appearance="outline">
-              <input matInput type="email" formControlName="email" placeholder="Enter Valid Email ID" />
-              <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
-                {{ 'Email is required' | translate }}
-              </mat-error>
-              <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
-                {{ 'Please enter a valid email' | translate }}
-              </mat-error>
-              <!-- <mat-hint style="color: #808080;">{{'Enter your valid Gmail address to receive the verification link to
-                create an account' | translate }}</mat-hint> -->
-            </mat-form-field>
+            <div class="custom-input-wrapper">
+              <input type="email" class="custom-input-box" formControlName="email" placeholder="{{'Enter your Email ID' | translate}}" />
+            </div>
+            <div class="error-msg" *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched">
+              {{ 'Email is required' | translate }}
+            </div>
+            <div class="error-msg" *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched">
+              {{ 'Please enter a valid email' | translate }}
+            </div>
           </div>
 
 
@@ -63,81 +59,59 @@
           <!-- Password -->
           <div class="password-section">
             <div class="section-labels">
-              <span style="width: 100%;" [class.error-label]="
-                  signupForm.get('password')?.invalid &&
-                  (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)
-                ">{{ 'Login Password' | translate }}</span>
+              <span [class.error-label]="signupForm.get('password')?.invalid && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)">
+                {{ 'Login Password' | translate }}
+              </span>
             </div>
-            <mat-form-field class="password-field" appearance="outline">
-              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password"
-                placeholder="Enter Password" />
-              <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
-                <!-- <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon> -->
-                <img src="/password-eye.svg" alt="password" />
+            <div class="custom-input-wrapper">
+              <input [type]="hidePassword ? 'password' : 'text'" class="custom-input-box" formControlName="password" placeholder="{{'Enter your Password' | translate}}" />
+              <button class="eye-btn" type="button" (click)="togglePasswordVisibility()">
+                <img src="/password-eye.svg" alt="Toggle Password" />
               </button>
-              <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
-                {{ 'Password is required' | translate }}
-              </mat-error>
-            </mat-form-field>
+            </div>
+            <div class="error-msg" *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched">
+              {{ 'Password is required' | translate }}
+            </div>
           </div>
 
           <!-- E-PIN -->
           <div class="password-section">
             <div class="section-labels">
-              <span [class.error-label]="
-                  signupForm.get('epin')?.invalid &&
-                  (signupForm.get('epin')?.touched || signupForm.get('epin')?.dirty)
-                ">{{ 'Pass Code' | translate }} *</span>
+              <span [class.error-label]="signupForm.get('epin')?.invalid && (signupForm.get('epin')?.touched || signupForm.get('epin')?.dirty)">
+                {{ 'Confirm Login Password' | translate }}
+              </span>
             </div>
-            <mat-form-field class="password-field" appearance="outline">
-              <input matInput type="password" formControlName="epin" maxlength="6" placeholder="Enter PassCode" />
-              <mat-error *ngIf="signupForm.get('epin')?.hasError('required')">
-                {{ 'E-PIN is required' | translate }}
-              </mat-error>
-              <mat-error *ngIf="signupForm.get('epin')?.hasError('minlength')">
-                {{ 'E-PIN must be 6 digits' | translate }}
-              </mat-error>
-            </mat-form-field>
+            <div class="custom-input-wrapper">
+              <input [type]="hidePassword ? 'password' : 'text'" class="custom-input-box" formControlName="epin" maxlength="6" placeholder="Re-enter your Password" />
+              <button class="eye-btn" type="button" (click)="togglePasswordVisibility()">
+                <img src="/password-eye.svg" alt="Toggle Password" />
+              </button>
+            </div>
+            <div class="error-msg" *ngIf="signupForm.get('epin')?.hasError('required') && signupForm.get('epin')?.touched">
+              {{ 'Confirm Password is required' | translate }}
+            </div>
           </div>
 
           <!-- Confirm E-PIN -->
           <div class="password-section">
             <div class="section-labels">
-              <span style="width: 100%;" [class.error-label]="
-                  signupForm.get('confirmEpin')?.invalid &&
-                  (signupForm.get('confirmEpin')?.touched || signupForm.get('confirmEpin')?.dirty)
-                ">{{ 'Confirm Pass Code' | translate }} *</span>
+              <span [class.error-label]="signupForm.get('confirmEpin')?.invalid && (signupForm.get('confirmEpin')?.touched || signupForm.get('confirmEpin')?.dirty)">
+                {{ 'Affiliate Key' | translate }}
+              </span>
             </div>
-            <mat-form-field class="password-field" appearance="outline">
-              <input matInput type="password" formControlName="confirmEpin" maxlength="6"
-                placeholder="Confirm PassCode" />
-              <mat-error *ngIf="signupForm.get('confirmEpin')?.hasError('mismatch')">
-                EPIN and Confirm EPIN must match
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <!-- Refferal -->
-          <div class="password-section">
-            <div class="section-labels">
-              <span [class.error-label]="
-                  signupForm.get('refferal')?.invalid &&
-                  (signupForm.get('refferal')?.touched || signupForm.get('refferal')?.dirty)
-                ">{{ 'Referral Code' | translate }}</span>
+            <div class="custom-input-wrapper">
+              <input type="text" class="custom-input-box" formControlName="confirmEpin" maxlength="6" placeholder="Enter Affiliate Key" />
             </div>
-            <mat-form-field class="password-field" appearance="outline">
-              <input matInput type="text" formControlName="refferal" placeholder="Enter Referral Code" />
-              <mat-error *ngIf="signupForm.get('name')?.hasError('required')">
-                {{ 'Referral Code is required' | translate }}
-              </mat-error>
-            </mat-form-field>
+            <div class="error-msg" *ngIf="signupForm.get('confirmEpin')?.hasError('mismatch') && signupForm.get('confirmEpin')?.touched">
+              Passwords do not match
+            </div>
           </div>
 
           <!-- Terms and Conditions -->
           <div class="form-options">
             <mat-checkbox class="remember-checkbox" formControlName="terms">
-              {{ 'I hereby agree to all' |translate }} <span [routerLink]="['/t&c']" class="signup-text">{{'Terms &
-                Conditions' | translate}}</span> {{'of TowerBNB' | translate }}
+              {{ 'By continuing, you acknowledge and agree to the' |translate }} 
+              <span [routerLink]="['/t&c']" class="signup-text">{{'Terms of Service and Privacy Policy.' | translate}}</span>
             </mat-checkbox>
           </div>
         </form>

@@ -1,7 +1,7 @@
 import { Component, PLATFORM_ID, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,9 +10,11 @@ import { TopNav } from '../top-nav/top-nav'
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { TranslatePipe } from '../../pipes/translate-pipe';
+
 @Component({
   selector: 'app-withdrawal',
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -32,20 +34,27 @@ export class Withdrawal implements OnInit {
 
   withdrawalForm: FormGroup;
 
+  quickAmounts = [10, 50, 200, 500];
+  selectedNetwork = 'USDT/USDC ( BEP20 )';
+  networks = ['USDT/USDC ( BEP20 )', 'USDT-TRC20'];
+
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private cdr: ChangeDetectorRef,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private location: Location
   ) {
     this.withdrawalForm = this.fb.group({
-      amount: ['', [Validators.required, Validators.min(20)]],
+      amount: ['', [Validators.required, Validators.min(10)]],
       walletAddress: ['', Validators.required],
       pin: ['', [Validators.required]],
     });
   }
+
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       console.log('🔹 Loading withdrawal data for user');
@@ -57,6 +66,7 @@ export class Withdrawal implements OnInit {
       }
     }
   }
+
   loadWithdrawalData(userId: string) {
     const payload = { screen: 'withdrawal', userId };
 
@@ -75,6 +85,16 @@ export class Withdrawal implements OnInit {
       }
     });
   }
+
+  setAmount(amt: number) {
+    this.withdrawalForm.get('amount')?.setValue(amt);
+    this.withdrawalForm.get('amount')?.markAsTouched();
+  }
+
+  setNetwork(net: string) {
+    this.selectedNetwork = net;
+  }
+
   onSubmit() {
     console.log('🔹 Withdrawal form submitted');
     if (this.withdrawalForm.invalid) {
@@ -91,7 +111,7 @@ export class Withdrawal implements OnInit {
       return;
     }
     console.log('🔹 Withdrawal payload');
-    // 🔹 Prepare payload for withdrawal API
+    
     const payload = {
       userId,
       amount: Number(this.withdrawalForm.value.amount),
@@ -101,7 +121,6 @@ export class Withdrawal implements OnInit {
 
     console.log('🔹 Sending withdrawal request:', payload);
 
-    // 🔹 Call Avengers Withdraw API
     this.authService.withdraw(payload).subscribe({
       next: (res) => {
         console.log('✅ Withdrawal API response:', res);
@@ -131,7 +150,7 @@ export class Withdrawal implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/home']);
+    this.location.back();
   }
 
 }

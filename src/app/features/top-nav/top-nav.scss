@@ -2,19 +2,81 @@
   height: 62px;
   display: flex;
   justify-content: space-between;
-    text-align: center;
-    padding: 0px 10px;
-    background: #fff;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  padding: 0px 10px;
+  background: url('/mainbg.svg') no-repeat center top;
+  background-size: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .nav-logo {
+    filter: brightness(0) invert(1);
+  }
+
+  .action-icon svg {
+    stroke: #ffffff !important;
+  }
+}
+
+.white-header {
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+
+  .nav-logo {
+    filter: none !important;
+  }
+
+  .action-icon svg {
+    stroke: #009A44 !important;
+  }
 }
 
 .logo-section {
   display: flex;
   align-items: center;
   justify-content: space-between; // Spread items to both corners
-  width: 100%; // Take full width
+  width: 94%; // Take full width
   gap: 0; // Remove gap since items are at opposite ends
 }
+
+.transparent-header {
+  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%) !important;
+  background-attachment: fixed !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  .nav-logo {
+    filter: brightness(0) invert(1) !important;
+  }
+
+  .action-icon svg {
+    stroke: #ffffff !important;
+  }
+}
+
+
+/* Add a class specifically for sticky solid header that matches the gradient */
+.sticky-header {
+  background: linear-gradient(160deg, #9C0E4B 0%, #E81A66 45%, #4C0847 100%) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  .nav-logo {
+    filter: brightness(0) invert(1) !important;
+  }
+
+  .action-icon svg {
+    stroke: #ffffff !important;
+  }
+}
+
 
 .logo {
   font-size: 24px;
@@ -98,17 +160,21 @@
     display: block !important;
   }
 }
+
 ::ng-deep .mat-mdc-select-trigger {
-  padding-right: 4px !important;   /* Remove extra gap */
+  padding-right: 4px !important;
+  /* Remove extra gap */
   width: 50% !important;
 }
 
 ::ng-deep .mat-mdc-select-value {
   padding-right: 0 !important;
 }
+
 ::ng-deep .mat-mdc-select {
   margin-left: 85px !important;
 }
+
 /* Selected option background */
 ::ng-deep .mat-mdc-option.mdc-list-item--selected {
   background-color: #2752E7 !important;
@@ -124,9 +190,58 @@
   color: #fff !important;
   border-color: #fff !important;
 }
+
 ::ng-deep .mat-mdc-option:hover {
   background-color: #345ff5 !important;
 }
+
 ::ng-deep .mat-mdc-select-panel {
   border-radius: 12px !important;
+}
+
+/* --- NEW ICON LAYOUT STYLES --- */
+.nav-logo {
+  height: 24px;
+  width: auto;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.action-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+}
+
+.action-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Ensure the popup panel has clean styles */
+::ng-deep .custom-lang-menu {
+  border-radius: 8px !important;
+  min-width: 140px !important;
+  margin-top: 5px !important;
+
+  .mat-mdc-menu-item {
+    font-family: 'Clash Display', sans-serif !important;
+    font-size: 15px !important;
+
+    &:hover {
+      background-color: rgba(0, 154, 68, 0.05) !important;
+    }
+  }
+
+  .active-lang {
+    color: #009A44 !important;
+    font-weight: 500 !important;
+  }
 }

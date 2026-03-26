@@ -1,11 +1,29 @@
-<div class="header">
+<div class="header" [ngClass]="{'transparent-header': isTransparent, 'white-header': isWhite}">
     <div class="logo-section">
-        <!-- <span class="logo">TMTB</span> -->
-         <img src="/logo.svg" alt="TMTB"/>
-        <mat-form-field class="language-selector" appearance="fill">
-            <mat-select [value]="selectedLang" (selectionChange)="onLanguageChange($event.value)">
-                <mat-option *ngFor="let lang of languages" [value]="lang">{{ lang }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+        <img src="/logo.svg" alt="DEEP TECHNOLOGIES" class="nav-logo" />
+        <div class="nav-actions">
+            <!-- Support Icon -->
+            <a class="action-icon" routerLink="/support">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#009A44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                </svg>
+            </a>
+
+            <!-- Globe Language Selector -->
+            <div class="action-icon" [matMenuTriggerFor]="langMenu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#009A44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+            </div>
+            
+            <mat-menu #langMenu="matMenu" class="custom-lang-menu" xPosition="before">
+                <button mat-menu-item *ngFor="let lang of languages" (click)="onLanguageChange(lang)" [class.active-lang]="lang === selectedLang">
+                    {{ lang }}
+                </button>
+            </mat-menu>
+        </div>
     </div>
 </div>

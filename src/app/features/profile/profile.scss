@@ -1,636 +1,410 @@
 .profile-container {
-  background: #f7f9fc;
-  min-height: 100vh;
-  font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
-  // gap:24px
+  min-height: 100vh;
+  background: #f7f9fc;
+  font-family: 'Clash Display', sans-serif;
+  padding-bottom: 80px;
+  /* Space for bottom nav */
+  overflow-x: hidden;
+  /* Global clamp for horizontal scrollbar */
 }
 
-/* 🔹 Banner Section */
+
+/* 🔹 Top Banner */
 .banner {
-  background: url('/common-top.svg') center/cover no-repeat;
-  height: 160px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  position: relative;
-  display: flex;
-  justify-content: center;
+  padding: 10px 16px 30px;
+  /* Reduced and fixed padding */
+  background: url('/mainbg.svg') no-repeat center top;
+  background-size: cover;
+  color: white;
+  // border-bottom-left-radius: 24px;
+  // border-bottom-right-radius: 24px;
+  box-sizing: border-box;
+  /* Ensures padding respects layout bonds instead of widening it */
 }
 
 .banner-content {
-  position: absolute;
-  bottom: -95px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
+  gap: 16px;
+  padding: 0 8px;
 }
 
 .profile-circle {
-  width: 90px;
-  height: 90px;
-  background: #DEE1EB;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 28px;
-  color: #2752e7;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  border: 3px solid #2752e7;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .user-info {
-  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+
   h2 {
-    font-size: 18px;
-    color: #282828;
-    font-weight: 600;
-    margin: 4px 0;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+
+    span {
+      font-weight: 400;
+    }
   }
+
   p {
-    color: #686868;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+    opacity: 1;
+
+    span {
+      font-weight: 400;
+    }
+
+    display: flex;
+    align-items: center;
+  }
+
+  .copy-icon {
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
+    cursor: pointer;
+  }
+}
+
+.edit-link {
+  font-size: 11px;
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 2px;
+  opacity: 0.95;
+
+  small {
+    margin-left: 4px;
+    text-decoration: none;
+  }
+}
+
+.profile-cards-grid-layer {
+  margin-top: 24px;
+  position: relative;
+  z-index: 5;
+}
+
+/* 🔹 9 Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  /* Sharper rectangular card */
+  padding: 16px 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateZ(0);
+  /* Prevent Safari blur streaks */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0, 0, 0, 0.05);
+  aspect-ratio: 0.9;
+  text-align: left;
+}
+
+.stat-value {
+  color: white;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1;
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.profile-cards {
+  padding: 0 16px;
+  /* margin-top is removed as the stats grid is now inside the banner */
+  margin-top: 24px;
+  position: relative;
+}
+
+/* 🔹 Guidelines Video */
+.guidelines-section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  margin-bottom: 12px;
+  display: block;
+  margin-left: 2px;
+}
+
+.video-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+
+  h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #111;
+    margin: 0 0 12px;
+  }
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 140px;
+  background: #eee;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.placeholder-vid {
+  width: 100%;
+  height: 100%;
+  background: url('/corosule1.svg') center/cover;
+  filter: brightness(0.7);
+}
+
+.play-btn {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+
+  svg {
+    margin-left: 3px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* 🔹 Other Settings */
+.other-section {
+  margin-bottom: 24px;
+}
+
+.settings-list {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #f2f2f2;
+  cursor: pointer;
+  background: white;
+  transition: background 0.2s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:active {
+    background: #fafafa;
+  }
+}
+
+.setting-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .ico-box {
+    width: 28px;
+    height: 28px;
+    background: #f4f6f9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 14px;
+      height: 14px;
+      opacity: 0.7;
+    }
+  }
+
+  p {
+    font-size: 11px;
+    font-weight: 500;
+    color: #111;
     margin: 0;
   }
 }
 
-/* 🔹 Card for Wallet Actions */
-.profile-card {
-  background: #fff;
+.logout-item {
   border-radius: 16px;
-  margin: 130px 16px 16px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  padding: 20px 10px;
+  border-bottom: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
 }
 
-.wallet-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #e3e6ef;
-  padding-bottom: 12px;
-
-  .wallet-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: #707070;
-    cursor: pointer;
-    img {
-      width: 26px;
-      height: 26px;
-    }
-  }
+.logout-text {
+  color: #E81A66 !important;
 }
 
- .wallet-values {
-    /* Frame 1948755402 */
-
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px 10px;
-    gap: 10px;
-    position: relative;
-    margin-top: 15px;
-    background: linear-gradient(180deg, #2752e7 27.4%, #2440a0 100%);
-    border-radius: 12px;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      bottom: 10px;
-      left: 50%;
-      width: 1.5px;
-      background: rgba(255, 255, 255, 0.4);
-      /* light white line */
-      transform: translateX(-50%);
-    }
-
-    .wallet-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      color: #ffffff;
-      .money-item {
-        display: flex;
-        align-items: baseline;
-        justify-content: center;
-        gap: 3px;
-      }
-      .ptag {
-        font-family: Poppins;
-        font-weight: 400;
-        font-size: 11px;
-        line-height: 140%;
-        text-align: center;
-        color: #ffffffcc;
-        margin: 0px;
-      }
-
-      .money {
-        font-family: Poppins;
-        font-weight: 600;
-        font-style: SemiBold;
-        font-size: 22px;
-        line-height: 140%;
-        letter-spacing: -1%;
-        text-align: center;
-      }
-      .curr {
-        font-family: Poppins;
-        font-weight: 500;
-        font-style: Medium;
-        font-size: 14px;
-        line-height: 140%;
-        letter-spacing: -1%;
-        text-align: center;
-      }
-    }
-  }
-
-/* 🔹 Wallet Summary */
-.wallet-summary {
-  margin: 0px 16px;
-gap: 6px;
-
-  .wallet-txt {
-font-family: Poppins;
-font-weight: 500;
-font-style: Medium;
-font-size: 12px;
-line-height: 140%;
-letter-spacing: -1%;
-    color: #606060;
-  }
-}
-
-.other-section {
-    span {
-font-family: Poppins;
-font-weight: 500;
-font-style: Medium;
-font-size: 12px;
-line-height: 140%;
-letter-spacing: -1%;
-    color: #606060;
-  }
-}
-
-.summary-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-bottom: 10px;
-  height: 50px;
-
-  .summary-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-      /* allow left side to shrink and let the text truncate */
-      flex: 1 1 auto;
-      p {
-        margin: 0;
-        font-size: 14px;
-        color: #333;
-        width:178px;
-        /* truncate long labels with ellipsis */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: block;
-      }
-    img {
-      width: 32px;
-      height: 32px;
-    }
-  }
-
-  .summary-right {
-    font-size: 14px;
-    color: #1db954;
-    font-weight: 600;
-  }
-  .summary-right-negative {
-    font-size: 14px;
-    color: #D11515;
-    font-weight: 600;
-  }
-}
-
-/* 🔹 Other Section */
-.other-section {
-  margin: 24px 16px 40px;
-
-  .setting-card,
-  .logout-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 14px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    transition: 0.2s;
-
-    &:hover {
-      background: #f7f9fc;
-    }
-  }
-
-  .logout-card {
-    color: red;
-    justify-content: flex-start;
-    gap: 10px;
-    p {
-      margin: 0;
-      font-weight: 600;
-      color: red;
-    }
-  }
-}
-
-.profile-cards{
-display: flex;
-flex-direction: column;
-opacity: 1;
-// gap: 24px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .wallet-balances {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-
-
-
-
-/* 🔹 Wallet Section */
-.wallet-section {
-    background: #E7EDFF;
-    border-radius: 14px;
-    padding: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    // margin-bottom: 16px;
-    margin: 120px 10px 0px 10px !important;
-
-
-    .wallet-buttons {
-        display: flex;
-        justify-content: space-around;
-        padding-bottom: 25px;
-        border-bottom: 1px #2752E747 solid;
-
-        .wallet-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #707070;
-            font-weight: 500;
-            gap: 6px;
-
-            img {
-                width: 48px;
-                height: 48px;
-            }
-            span{
-              font-size: 12px;
-              font-weight: 500;
-            }
-        }
-    }
-
-    .wallet-values {
-        display: flex;
-        justify-content: space-between;
-        text-align: start;
-        border-top: 1px solid #2752E747;
-        // padding-top: 12px;
-        background: linear-gradient(10deg, #2440A0, #2752E7, );
-        padding: 16px 24px 10px;
-        border-radius: 15px;
-        margin-top: 15px;
-
-        .wallet-item {
-            // flex: 1;
-
-            p {
-                font-size: 11px;
-                color: #FFFFFF;
-                margin-bottom: 4px;
-                opacity: 0.85;
-            }
-
-            h3 {
-                font-size: 18px;
-                font-weight: 600;
-                color: #FFFFFF;
-                margin-top: 6px;
-
-                span {
-                    font-size: 12px;
-                    color: #FFFFFF;
-                }
-            }
-        }
-    }
-}
-
-
-//support-popup
-
-/* 🔹 Overlay for blur background */
-.support-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(3px);
-    z-index: 99;
-}
-
-/* 🔹 Popup bottom sheet */
-.support-popup {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
-    z-index: 100;
-    padding: 18px;
-    animation: slideUp 0.3s ease;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(100%);
-    }
-
-    to {
-        transform: translateY(0);
-    }
-}
-
-/* Header */
-.support-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-
-    h3 {
-        font-size: 17px;
-        font-weight: 600;
-        color: #000;
-        margin: 0;
-    }
-
-    .close-btn {
-        background: none;
-        border: none;
-        font-size: 26px;
-        color: #333;
-        cursor: pointer;
-    }
-}
-
-/* Scrollable Content */
-.support-content {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 6px;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.6;
-
-    p {
-        margin-bottom: 10px;
-    }
-}
-
-/* Support Button */
-.support-btn {
-    background: #2752e7;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    height: 50px;
-    font-weight: 600;
-    width: 100%;
-    margin-top: 14px;
-    cursor: pointer;
-    font-size: 15px;
-    transition: 0.3s ease all;
-
-    &:hover {
-        background: #003ee6;
-    }
-}
-
-.setting-left {
-    display: flex;
-}
-
-/* Overlay */
+/* 🔹 Support & Logout Overlays (keep existing css for them) */
+.support-overlay,
 .logout-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(3px);
-  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
-/* Bottom Sheet Popup */
+.support-popup,
 .logout-popup {
   position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
-  background: #2752E7;
-  border-radius: 20px 20px 0 0 ;
-  padding: 0;
-  z-index: 300;
-  animation: slideUp 0.25s ease;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  .logout-body{
-    border-radius: 20px 20px 0 0 ;
-    background: #fff;
-  }
+  width: 100%;
+  background: #fff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 24px;
+  z-index: 1001;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
+.support-header,
 .logout-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
-  background: #2752E7;
- border-radius: 20px 20px 0 0 ;
-
-  h3 {
-    margin: 0;
-    font-size: 17px;
-    font-weight: 600;
-    color: #fff;
-    flex: 1;
-    text-align: center;
-  }
-
-  .close-btn {
-    background: none;
-    border: none;
-    font-size: 26px;
-    color: #fff;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  margin-bottom: 20px;
 }
 
-/* Content wrapper with white background and border radius */
-.logout-icon{
-  background: #fff;
-  border-radius: 20px 20px 0 0;
-}
-
-/* Image */
-.logout-icon {
-  padding-top: 20px;
-  text-align: center;
-
-  img {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 15px;
-    display: block;
-  }
-}
-
-/* Text */
-.logout-text {
-  padding: 0 20px;
-  text-align: center;
-
-  h4 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: #000;
-  }
-
-  p {
-    margin: 6px 0 20px;
-    font-size: 13px;
-    color: #646464;
-  }
-}
-
-/* Buttons */
-.logout-confirm {
-  width: calc(100% - 40px);
-  background: #2752E7;
-  color: #fff;
+.support-header h3,
+.logout-header h3 {
+  font-size: 18px;
   font-weight: 600;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
   border: none;
-  height: 56px;
-  border-radius: 8px;
-  font-size: 15px;
-  margin: 0 20px 12px 20px;
+  font-size: 24px;
   cursor: pointer;
+  color: #888;
+}
+
+.support-content {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.support-content p {
+  margin-bottom: 12px;
+}
+
+.support-btn,
+.logout-confirm {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: #00ca5f;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.logout-body {
+  text-align: center;
+}
+
+.logout-icon img {
+  width: 80px;
+  margin-bottom: 16px;
+}
+
+.logout-text h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.logout-text p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 24px;
+}
+
+.logout-confirm {
+  background: #E81A66;
+  margin-bottom: 12px;
 }
 
 .logout-cancel {
-  width: calc(100% - 40px);
-  background: transparent;
-  color: #000;
-  border: 1.5px solid #D6D6D6;
-  border-radius: 8px;
-  height: 56px;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
   font-weight: 600;
-  font-size: 15px;
-  margin: 0 20px 20px 20px;
+  color: #555;
+  background: #eee;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-}
-
-/* Animation */
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-
-
-
-
-
-/* 🔹 Transfer bar – attached to LIGHT BLUE container (exact) */
-.wallet-transfer-bar {
-
-  height: 40px;
-
-  margin: 0px 20px 24px;
-
-  /* blue strip */
-  background: linear-gradient(180deg, #2752e7 0%, #2440a0 100%);
-
-  /* SAME border-radius as wallet-section */
-  border-radius: 0 0 14px 14px;
-
-  /* IMPORTANT: keep light-blue border visible */
-  border-top: 1px solid rgba(39, 82, 231, 0.25);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 18px;
-
-  cursor: pointer;
-
-  /* subtle elevation like screenshot */
-  box-shadow: 0 6px 12px rgba(39, 82, 231, 0.35);
-}
-
-.wallet-transfer-bar span {
-  font-family: Poppins;
-  font-size: 10px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.wallet-transfer-bar img {
-  width: 16px;
-  height: 16px;
-  filter: brightness(0) invert(1);
-}
-
-
-.wallet-section {
-  overflow: hidden; // 🔥 important for rounded corners
 }

@@ -1,0 +1,24 @@
+<div class="page-container">
+  <app-top-nav [isWhite]="true"></app-top-nav>
+
+  <div class="content-body">
+    <button class="back-btn" (click)="goBack()">
+      <img src="/leftarrow-black.svg" alt="Back" onerror="this.onerror=null; this.src='/leftarraow.svg'; this.style.filter='invert(1)'" />
+    </button>
+    
+    <h2 class="title">Choose your Avatar</h2>
+
+    <div class="avatar-grid">
+      <div class="avatar-item" 
+           *ngFor="let avatar of avatars" 
+           [class.selected]="selectedAvatar === avatar"
+           (click)="selectAvatar(avatar)">
+        <img [src]="avatar" alt="Avatar" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\'><circle cx=\'40\' cy=\'40\' r=\'40\' fill=\'%23f0f0f0\'/><path d=\'M40 45c-8 0-15-5-18-12 10-5 26-5 36 0-3 7-10 12-18 12zm0-15a10 10 0 1 0 0-20 10 10 0 0 0 0 20z\' fill=\'%23ccc\'/></svg>'" />
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-actions">
+    <button class="apply-btn" (click)="applyAvatar()">Apply Avatar</button>
+  </div>
+</div>
