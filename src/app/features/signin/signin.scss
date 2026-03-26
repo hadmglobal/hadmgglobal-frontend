@@ -197,7 +197,7 @@
       }
 
       .mdc-checkbox__native-control:enabled:not(:checked) ~ .mdc-checkbox__background {
-        border-color: #009A44 !important;
+        border-color: #BFBFBF !important; // Requested gray before checking
         background-color: transparent !important;
       }
 
