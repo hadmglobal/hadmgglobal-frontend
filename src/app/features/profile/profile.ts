@@ -16,11 +16,11 @@ import { Transfer } from '../transfer/transfer';
 import { AuthService } from '../../services/auth.service';
 import { TranslatePipe } from '../../pipes/translate-pipe';
 
-import { TopNav } from '../top-nav/top-nav';
+// import { TopNav } from '../top-nav/top-nav';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, RouterModule, MatIconModule, Transfer, TranslatePipe, TopNav],
+  imports: [CommonModule, RouterModule, MatIconModule, TranslatePipe],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
@@ -111,7 +111,7 @@ export class Profile implements OnInit {
           this.user.avatar = data.avatar || localStorage.getItem('avatarUrl') || '/avatar1.svg';
           this.telegramLinkTwo = data.telegramLinkTwo;
           this.telegramLinkThree = data.telegramLinkThree;
-          
+
           // Using dummy values of 3.66 for now as placeholders for the 9-item grid mapping as requested
           this.walletSummary = [
             { label: "Recharge Amount", value: 3.66 },
