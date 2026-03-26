@@ -3,7 +3,7 @@
 .signin-container {
   display: flex !important;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 62px); // Substract top-nav height
   padding: 0 !important;
   margin: 0 !important;
   background: white !important;
@@ -16,18 +16,22 @@
   position: relative;
   z-index: 10;
   width: 100%;
+  flex: 1; // Grow to fill space
+  display: flex;
+  flex-direction: column;
 }
 
 /* 🔹 Header Banner (Synced with Sign Up) */
 .banner-content {
   position: relative;
   width: 100%;
-  height: clamp(240px, 35vh, 280px) !important;
+  height: clamp(180px, 25vh, 240px) !important; // Reduced slightly for better mobile fit
   background: url('/sign-in-bg.svg') center center / cover no-repeat, linear-gradient(135deg, #a80053 0%, #c4005c 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .banner-inner {
@@ -78,7 +82,7 @@
 /* 🔹 Content Card */
 .login-card {
   background: white;
-  padding: 24px 24px 10px !important;
+  padding: 16px 24px 10px !important; // Reduced padding
   width: 100% !important;
   max-width: 440px !important;
   margin: 0 auto;
