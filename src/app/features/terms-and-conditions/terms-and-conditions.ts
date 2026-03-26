@@ -12,7 +12,7 @@ import { TranslatePipe } from '../../pipes/translate-pipe';
   styleUrl: './terms-and-conditions.scss'
 })
 export class TermsAndConditions implements OnInit {
-  lastUpdated = '02-08-2025';
+  lastUpdated = '01-10-2024';
 
   constructor(private router: Router) { }
 

@@ -1,125 +1,136 @@
-<div class="layout-container" fxLayout="column" fxFlexFill>
-  <!-- 🔹 Top Navigation -->
+<div class="layout-container">
+  <!-- 🔹 Fixed Header Area (logo + icons) -->
   <header>
-    <app-top-nav></app-top-nav>
+    <app-top-nav [isTransparent]="true"></app-top-nav>
   </header>
 
-  <!-- 🔹 Banner -->
-  <div class="banner">
-    <div class="banner-align">
+  <!-- 🔹 Scrollable Content Section -->
+  <div class="scroll-section">
+    
+    <!-- 🔹 Banner / Hero Section -->
+    <div class="banner">
       <button class="back-btn" (click)="goBack()">
         <img src="/leftarraow.svg" alt="back" />
       </button>
-      <div class="banner-text">
-        <h2>{{ 'Terms and Conditions' | translate }}</h2>
+      <div class="banner-content">
+        <h1>{{ 'Terms and conditions' | translate }}</h1>
+        <p>{{ 'This agreement was last updated on' | translate }} {{ lastUpdated }}</p>
       </div>
     </div>
-    <p>{{ 'This agreement was last updated on' | translate }} {{ lastUpdated }}</p>
-  </div>
 
-  <!-- 🔹 Scrollable Content Section -->
-  <div class="content-container">
+    <!-- 🔹 Terms Body -->
+    <div class="terms-content">
+      <div class="service-header">
+        <h2>{{ 'Terms and Service' | translate }}</h2>
+        <p class="effective-date">{{ 'Effective Date: Mar-1 2026' | translate }}</p>
+      </div>
 
-    <h3>{{ 'TowerBNB Service Agreement: A Summary' | translate }}</h3>
+      <section>
+        <h4>1. Introduction</h4>
+        <p>Welcome to HADM GLOBAL Ltd ("HADM," "we," "us," or "our"). These Terms of Service ("Terms") govern your access to and use of the HADM GLOBAL Quantitative Tap-to-Earn application, website, and related services (collectively, the "Services").</p>
+        <p>By accessing or using our Services, you agree to these Terms. If you do not agree, please do not use the Services.</p>
+        <p>We may update or modify these Terms at any time. Significant changes will be communicated through the app or via email. Your continued use of the Services after such changes indicates your acceptance of the updated Terms.</p>
+      </section>
 
-    <p>
-      {{"This document outlines the Service Agreement for the use of products and services provided by" | translate}}
-      <strong>{{'TowerBNB Technologies Inc.' | translate}}</strong> {{" (referred to as " | translate}}
-      <strong>{{'TowerBNB' | translate}}</strong> {{" or \"the Platform\"). By registering or using the Platform, you
-      agree to be bound by all the terms herein. If you do not agree, you must not use the Platform’s services." |
-      translate}}
-    </p>
+      <section>
+        <h4>2. Eligibility</h4>
+        <p>To use the HADM GLOBAL platform, you must:</p>
+        <ul>
+          <li>Be at least 18 years old or of legal age in your country to form a binding contract.</li>
+          <li>Have full legal capacity and authority to agree to these Terms.</li>
+          <li>Not be subject to sanctions or restrictions under applicable international laws.</li>
+        </ul>
+        <p>If you are under 18, you may not register or use our Services.</p>
+      </section>
 
-    <h4>{{ 'Key Provisions of the Agreement' | translate }}</h4>
+      <section>
+        <h4>3. Account Registration</h4>
+        <p>When creating an account, you agree to:</p>
+        <ul>
+          <li>Provide accurate, current, and complete information.</li>
+          <li>Keep your login credentials confidential.</li>
+          <li>Accept responsibility for all activities that occur under your account.</li>
+        </ul>
+      </section>
 
-    <!-- User Eligibility -->
-    <h5>{{ 'User Eligibility and Registration (Article 2):' | translate }}</h5>
-    <ul>
-      <li>{{'You must be at least 18 years old and possess the full legal capacity to enter into this agreement.' |
-        translate}}</li>
-      <li>{{'All registration information must be true, accurate, complete, and kept up-to-date.' | translate}}</li>
-      <li>{{'You are prohibited from using the Platform for any illegal activities or those that infringe upon the
-        rights
-        of others.' | translate}}</li>
-    </ul>
+      <section>
+        <h4>4. Use of the Services</h4>
+        <p>The HADM platform allows users to earn cryptocurrency rewards by completing tasks, tapping activities, or participating in engagement programs ("Tap-to-Earn Activities").</p>
+        <p>You agree to use the Services lawfully and only for their intended purposes. You must not:</p>
+        <ul>
+          <li>Engage in fraudulent, misleading, or abusive behavior.</li>
+          <li>Use bots, scripts, or automated systems to manipulate activity.</li>
+          <li>Attempt to hack, interfere with, or disrupt the platform's integrity or security.</li>
+          <li>Do not use HADM GLOBAL for money laundering, scams, or any illegal financial activity.</li>
+        </ul>
+      </section>
 
-    <!-- Service Offerings -->
-    <h5>{{ 'Service Offerings (Article 3):' | translate }}</h5>
-    <p>{{'TowerBNB provides registered users with services including:' | translate}}</p>
-    <ul>
-      <li>{{"Digital asset management, staking functions, and fund circulation (e.g., USDT)." | translate}}</li>
-      <li>{{"A smartphone Tower mining system (running a computing power package to generate income)." | translate}}
-      </li>
-      <li>{{"Team incentive plans (fission income and node ecological incentives)." | translate}}</li>
-      <li>{{"Digital asset exchange and withdrawal services." | translate}}</li>
-    </ul>
-    <p>{{'TowerBNB reserves the right to adjust the services offered at its discretion.' | translate}}</p>
+      <section>
+        <h4>5. Rewards and Transactions</h4>
+        <ul>
+          <li>Rewards are earned through legitimate Tap-to-Earn actions as defined within the platform.</li>
+          <li>All earnings, bonuses, and referral rewards are subject to verification and system rules.</li>
+          <li>HADM reserves the right to adjust, withhold, or revoke rewards obtained through fraudulent or automated means.</li>
+          <li>Withdrawals are processed through blockchain networks and may require network fees or minimum thresholds.</li>
+          <li>Cryptocurrency prices are volatile; HADM is not responsible for any loss of value once assets are transferred to your wallet.</li>
+        </ul>
+      </section>
 
-    <!-- Account Security -->
-    <h5>{{ 'Account Security and Management (Article 4):' | translate }}</h5>
-    <ul>
-      <li>{{'You are solely responsible for the safekeeping of your account, password, transaction password, and other
-        key
-        information. Any asset loss resulting from your negligence is your responsibility.' | translate}}</li>
-      <li>{{'Accounts may not be transferred, rented, loaned, or authorized for use by others.' | translate}}</li>
-      <li>{{'You must immediately notify TowerBNB of any abnormal activity, password leaks, or unauthorized use.' |
-        translate}}</li>
-      <li>{{'The Platform reserves the right to freeze or restrict accounts for security purposes.' | translate}}</li>
-    </ul>
+      <section>
+        <h4>6. Referral Program</h4>
+        <ul>
+          <li>You may share your referral link and earn bonuses when new users join and activate their Tap-to-Earn accounts. Referral bonuses are governed by internal policies and may change without prior notice.</li>
+          <li>Abuse of the referral system, including false accounts or self-referrals, will result in forfeiture of rewards and potential account suspension.</li>
+        </ul>
+      </section>
 
-    <!-- Deposit / Withdraw -->
-    <h5>{{ 'Deposit and Withdrawal Rules (Article 5):' | translate }}</h5>
-    <ul>
-      <li>{{"You must ensure the correct currency, mainnet type, and address for all deposits, as incorrect operations
-        may result in asset loss for which you are responsible." | translate}}</li>
-      <li>{{"Withdrawals require a fund or payment password and must comply with the Platform's limits and fee
-        structures." | translate}}</li>
-      <li>{{"The Platform may delay processing withdrawals or deposits due to technical maintenance, compliance
-        requirements, or security reviews." | translate}}</li>
-    </ul>
+      <section>
+        <h4>7. Intellectual Property</h4>
+        <ul>
+          <li>All content, design, trademarks, and software associated with HADM GLOBAL are the exclusive property of HADM Ltd.</li>
+          <li>You may not copy, modify, distribute, sell, or lease any part of our platform without prior written permission.</li>
+        </ul>
+      </section>
 
-    <!-- Profit Distribution -->
-    <h5>{{ 'Profit Distribution and Disclaimer (Articles 6 & 8):' | translate }}</h5>
-    <ul>
-      <li>{{'Income is distributed in USDT tokens.' | translate}}</li>
-      <li><strong>{{'TowerBNB does not promise any fixed income.' | translate}}</strong> {{"All earnings depend on
-        actual mining operations, market fluctuations, and platform development." | translate}}</li>
-      <li>{{'The Platform is a technical service provider and does not guarantee user investment decisions or returns.'
-        | translate}}</li>
-      <li>{{'Users assume sole responsibility for risks associated with participating in digital asset activities.' |
-        translate}}</li>
-      <li>{{"TowerBNB is not liable for losses caused by force majeure (natural disasters, hacker attacks, blockchain
-        failures), but will attempt to assist in recovery." | translate}}</li>
-    </ul>
+      <section>
+        <h4>8. Third-Party Services</h4>
+        <ul>
+          <li>HADM may integrate with third-party payment processors, crypto wallets, or advertising partners.</li>
+          <li>We are not responsible for the content, reliability, or practices of these third parties. Use them at your own discretion and review their policies.</li>
+        </ul>
+      </section>
 
-    <!-- Prohibited Conduct -->
-    <h5>{{ 'Prohibited Conduct (Article 7):' | translate }}</h5>
-    <p>{{'Users are strictly forbidden from:' | translate}}</p>
-    <ul>
-      <li>{{'Exploiting vulnerabilities or using scripts to illegally profit.' | translate}}</li>
-      <li>{{'Engaging in illegal financial activities such as money laundering, fraud, or pyramid schemes.' |
-        translate}}</li>
-      <li>{{'Maliciously attacking the system or tampering with data.' | translate}}</li>
-      <li>{{"Publishing false information or damaging the Platform's reputation." | translate}}</li>
-    </ul>
-    <p>{{"TowerBNB has the right to suspend or terminate services and pursue legal action against users who engage in
-      these behaviors." | translate}}</p>
+      <section>
+        <h4>9. Limitation of Liability</h4>
+        <p>To the fullest extent permitted by law:</p>
+        <ul>
+          <li>HADM GLOBAL Ltd, its directors, employees, and affiliates shall not be liable for any indirect, incidental, or consequential damages, including loss of earnings, data, or assets.</li>
+          <li>The Services are provided "as is" and "as available" without warranties of any kind.</li>
+          <li>We do not guarantee continuous, error-free, or virus-free operation of the platform.</li>
+        </ul>
+      </section>
 
-    <!-- Intellectual Property -->
-    <h5>{{ 'Intellectual Property and Agreement Updates (Articles 9 & 10):' | translate }}</h5>
-    <ul>
-      <li>{{'All Platform content (trademarks, codes, etc.) is protected by law and cannot be used without
-        authorization.' | translate}}</li>
-      <li>{{'TowerBNB reserves the right to update this Agreement at any time. Continued use of the Platform after an
-        update constitutes acceptance of the revised terms.' | translate}}</li>
-      <li>{{'TowerBNB Technologies Inc. holds the final right of interpretation of this Agreement.' | translate}}</li>
-    </ul>
+      <section>
+        <h4>10. Termination</h4>
+        <ul>
+          <li>We may suspend or terminate your account at any time if you violate these Terms or engage in suspicious activity. Upon termination, all rights to access the platform and claim rewards will immediately cease.</li>
+          <li>You may close your account at any time by contacting our support team at.</li>
+        </ul>
+      </section>
 
-    <!-- Conclusion -->
-    <h5>{{ 'Conclusion' | translate }}</h5>
-    <p>{{'TowerBNB aims to be user-centric, ensuring asset security and promoting access to intelligent computing
-      power. By choosing TowerBNB, you agree to these terms as you embark on a journey of smart mining and asset
-      growth.' | translate}}</p>
+      <section>
+        <h4>11. Compliance and Risk Disclaimer</h4>
+        <ul>
+          <li>Cryptocurrency transactions involve market, technical, and regulatory risks.</li>
+          <li>By using HADM GLOBAL, you acknowledge and accept these risks, including the possibility of total asset loss due to market fluctuations or external attacks.</li>
+          <li>HADM is not a financial advisor and does not guarantee profit or investment returns.</li>
+        </ul>
+      </section>
 
+      <section>
+        <h4>12. Contact Information</h4>
+        <p>For questions, complaints, or support, contact us.</p>
+      </section>
+    </div>
   </div>
 </div>
