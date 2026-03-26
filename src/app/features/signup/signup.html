@@ -110,8 +110,10 @@
           <!-- Terms and Conditions -->
           <div class="form-options">
             <mat-checkbox class="remember-checkbox" formControlName="terms">
-              {{ 'By continuing, you acknowledge and agree to the' |translate }} 
-              <span [routerLink]="['/t&c']" class="signup-text">{{'Terms of Service and Privacy Policy.' | translate}}</span>
+              <span class="terms-text">
+                {{ 'By continuing, you acknowledge and agree to the' |translate }} 
+                <span [routerLink]="['/t&c']" class="green-link">{{'Terms of Service and Privacy Policy.' | translate}}</span>
+              </span>
             </mat-checkbox>
           </div>
         </form>
@@ -121,14 +123,12 @@
 
   <footer class="footer">
     <button mat-raised-button (click)="onSubmit()" type="submit" class="login-button" [disabled]="signupForm.invalid">
-      {{ 'Create Account' | translate }}
+      {{ 'Register an Account' | translate }}
     </button>
 
-    <div class="signup-link">
+    <div class="signup-link-box" [routerLink]="['/signin']">
       <span>{{ "Already have an account?" | translate }} </span>
-      <a [routerLink]="['/signin']" class="signup-text" style="margin-left: 3px;">
-        {{ "Log In" | translate }}
-      </a>
+      <span class="green-link" style="margin-left: 4px;"> {{'Log in' | translate}}</span>
     </div>
   </footer>
 </div>

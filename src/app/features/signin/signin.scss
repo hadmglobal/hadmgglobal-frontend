@@ -481,7 +481,7 @@ form {
   margin: 0 auto 10px auto;
   border-radius: 8px;
   font-weight: 500;
-  background: #009A44 !important;
+  background: #009A44 !important; // Green
   text-transform: none;
   letter-spacing: 0.3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
@@ -515,36 +515,39 @@ form {
   cursor: not-allowed;
 }
 
-.signup-link {
+.signup-link-box {
   width: 100%;
   max-width: 400px;
-  height: 48px; // Same height as Material button
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  background-color: #fff;
-  margin: 5px auto 0 auto; // Center horizontally
+  border: 1px solid #CFCFCF; // Match screenshot
+  border-radius: 12px; // Rounded corners
+  background-color: #f8fafc; // Light bg
+  margin: 12px auto 0 auto;
   padding: 0 16px;
   box-sizing: border-box;
   cursor: pointer;
-  font-weight: 500 !important;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 14px;
+  color: #1a1a1a;
 
   &:hover {
-    border-color: #2752E7;
-    background-color: #f8f9fa;
+    border-color: #009A44;
   }
 }
 
-.signup-text {
-  color: #2752E7;
+.green-link {
+  color: #009A44 !important;
+  font-weight: 600;
   text-decoration: none;
-}
+  cursor: pointer;
 
-.signup-text:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .signin-container {
@@ -826,7 +829,7 @@ form {
   width: 100%;
   box-sizing: border-box;
   padding: 12px 14px;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #D1E0F6; // Updated to requested blue
   border-radius: 6px;
   font-size: 14px;
   color: #333;

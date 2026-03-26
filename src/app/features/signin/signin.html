@@ -84,9 +84,9 @@
       {{'Log In' | translate}}
     </button>
     <!-- Sign Up Link -->
-    <div class="signup-link">
+    <div class="signup-link-box" [routerLink]="['/signup']">
       <span>{{"Don't have an account" | translate}} </span>
-      <a [routerLink]="['/signup']" class="signup-text" style="margin-left: 4px;"> {{'Sign Up' | translate}}</a>
+      <span class="green-link" style="margin-left: 4px;"> {{'Sign Up' | translate}}</span>
     </div>
   </footer>
 </div>
