@@ -109,12 +109,11 @@
 
           <!-- Terms and Conditions -->
           <div class="form-options">
-            <mat-checkbox class="remember-checkbox" formControlName="terms">
-              <span class="terms-text">
-                {{ 'By continuing, you acknowledge and agree to the' |translate }} 
-                <span [routerLink]="['/t&c']" class="green-link">{{'Terms of Service and Privacy Policy.' | translate}}</span>
-              </span>
-            </mat-checkbox>
+            <mat-checkbox class="remember-checkbox" formControlName="terms"></mat-checkbox>
+            <span class="terms-text">
+              {{ 'By continuing, you acknowledge and agree to the' |translate }} 
+              <span [routerLink]="['/t&c']" class="green-link">{{'Terms of Service and Privacy Policy.' | translate}}</span>
+            </span>
           </div>
         </form>
       </div>
