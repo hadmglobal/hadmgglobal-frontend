@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { TopNav } from '../top-nav/top-nav';
 import { TranslatePipe } from '../../pipes/translate-pipe';
@@ -10,38 +10,45 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-transaction-password',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, TopNav, TranslatePipe, MatSnackBarModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, TopNav, TranslatePipe, MatSnackBarModule],
   templateUrl: './transaction-password.html',
   styleUrl: './transaction-password.scss'
 })
 export class TransactionPassword implements OnInit {
-  password = '';
-  confirmPassword = '';
+  form: any;
   isLoading = false;
   lastUpdated = '01-10-2024';
 
   private router = inject(Router);
   private authService = inject(AuthService);
   private snackBar = inject(MatSnackBar);
+  private fb = inject(FormBuilder);
 
   ngOnInit() {
+    this.form = this.fb.group(
+      {
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', Validators.required]
+      },
+      {
+        validators: (group: any) => this.matchPasswords(group)
+      }
+    );
     console.log('Transaction Password Component Loaded');
   }
+
+  matchPasswords = (group: any) => {
+    const password = group.get('password')?.value;
+    const confirm = group.get('confirmPassword')?.value;
+    return password === confirm ? null : { mismatch: true };
+  };
 
   goBack() {
     this.router.navigate(['/profile']);
   }
 
   updatePassword() {
-    if (!this.password || !this.confirmPassword) {
-      this.snackBar.open('Please fill in both fields', 'Close', { duration: 3000 });
-      return;
-    }
-
-    if (this.password !== this.confirmPassword) {
-      this.snackBar.open('Passwords do not match', 'Close', { duration: 3000 });
-      return;
-    }
+    if (this.form.invalid) return;
 
     const userId = localStorage.getItem('userId');
     if (!userId) {
@@ -53,7 +60,7 @@ export class TransactionPassword implements OnInit {
     this.isLoading = true;
     const payload = {
       userId: userId,
-      password: this.password
+      password: this.form.value.password
     };
 
     console.log('📌 Calling Set Transaction Password API:', payload);

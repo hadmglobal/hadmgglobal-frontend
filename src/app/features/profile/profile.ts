@@ -64,11 +64,11 @@ export class Profile implements OnInit {
   ];
 
   settings = [
-    { label: 'Change password', icon: '/sync-outline.svg' },
-    { label: 'Terms and conditions', icon: '/document-text.svg' },
-    { label: 'Set Transaction Password', icon: '/lock-closed.svg' },
-    { label: 'Transaction History', icon: '/time-outline.svg' },
-    { label: 'Help & support', icon: '/help-circle.svg' }
+    { label: 'Change password', icon: '/change-password.svg' },
+    { label: 'Terms and conditions', icon: '/termsandc.svg' },
+    { label: 'Set Transaction Password', icon: '/transpass.svg' },
+    { label: 'Transaction History', icon: '/transh.svg' },
+    { label: 'Help & support', icon: '/h&su.svg' }
   ];
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
