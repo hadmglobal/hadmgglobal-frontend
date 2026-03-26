@@ -114,4 +114,8 @@ export class AuthService {
   updateAvatar(payload: { userId: string; imageId: string }): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/save-avatar`, payload);
   }
+
+  setTransactionPassword(payload: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/set-transaction-password`, payload);
+  }
 }

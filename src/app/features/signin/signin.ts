@@ -79,23 +79,32 @@ export class Signin implements OnInit {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
 
-      const ADMIN_EMAILS = ["vincentjhon7826@gmail.com"];
+      // ================================
+      // ⭐ HARDCODED CREDENTIALS (USER REQUEST)
+      // ================================
+      if (email === 'hadmgglobal' && password === '12345') {
+        this.safeSetLocalStorage('email', 'hadmgglobal@gmail.com');
+        this.safeSetLocalStorage('userId', 'HADM_USER_ID');
+        this.safeSetLocalStorage('isHumanVerified', 'true');
+
+        this.snackBar.open('Login Successful!', 'Close', {
+          duration: 3000,
+          panelClass: ['success-snackbar']
+        });
+
+        this.router.navigate(['/home']);
+        return;
+      }
+
+      const ADMIN_EMAILS = ["vincentjhon7826@gmail.com", "hadmgglobal@gmail.com"];
 
       // ================================
       // ⭐ 1. ADMIN QUICK LOGIN (NO API)
       // ================================
       if (ADMIN_EMAILS.includes(email) && password == 'Support@#&10981234') {
-
-        // Save to localStorage
+        // ... (rest of the logic remains for normal admins if any)
         this.safeSetLocalStorage('email', email);
-        // this.safeSetLocalStorage('userId', 'ADMIN_USER');
-
-        this.snackBar.open('Admin Login Successful!', 'Close', {
-          duration: 3000,
-          panelClass: ['success-snackbar']
-        });
-
-        // Redirect to admin dashboard
+        this.snackBar.open('Admin Login Successful!', 'Close', { duration: 3000 });
         this.router.navigate(['/admin/dashboard']);
         return;
       }

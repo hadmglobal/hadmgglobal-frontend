@@ -32,53 +32,62 @@ import { TeamDetails } from './admin/team-details/team-details'
 import { MasterData } from './admin/master-data/master-data'
 import { authGuard } from './guards/auth-guard';
 
-
-
 export const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
-   { path: 'signin', component: Signin },
-   { path: 'signup', component: Signup },
-   { path: 'forget', component: ForgetPassword },
-   { path: 'verify-email', component: VerifyEmail },
-   { path: 'email-confirm', component: EmailConfirmation },
-   { path: 'withdraw', component: Withdrawal },
-   { path: 'history', component: History },
-   { path: 'commission', component: Commision },
-   { path: 'members', component: Members },
-   { path: 'change-password', component: ChangePassword },
-   { path: 't&c', component: TermsAndConditions },
-   { path: 'payment', component: DepositOxapay },
-   { path: 'deposit', component: Deposit },
-   { path: 'success', component: Success },
-   { path: 'under-maintainance', component: Maintainance },
-{
+  { path: 'signin', component: Signin },
+  { path: 'signup', component: Signup },
+  { path: 'forget', component: ForgetPassword },
+  { path: 'verify-email', component: VerifyEmail },
+  { path: 'email-confirm', component: EmailConfirmation },
+  { path: 'under-maintainance', component: Maintainance },
+
+  // 🔹 Guarded User Routes (within Layout or standalone)
+  {
     path: '',
-    component: Layout,
     canActivate: [authGuard],
     children: [
-      { path: 'home', component: Home },
-      { path: 'rank', component: Position },
-      { path: 'tower', component: Game },
-      { path: 'team', component: Team },
-      { path: 'profile', component: Profile },
-    ],
+      {
+        path: '',
+        component: Layout,
+        children: [
+          { path: 'home', component: Home },
+          { path: 'rank', component: Position },
+          { path: 'tower', component: Game },
+          { path: 'team', component: Team },
+          { path: 'profile', component: Profile },
+        ]
+      },
+      { path: 'withdraw', component: Withdrawal },
+      { path: 'history', component: History },
+      { path: 'commission', component: Commision },
+      { path: 'members', component: Members },
+      { path: 'change-password', component: ChangePassword },
+      { path: 'smart-filters', loadComponent: () => import('./features/smart-filters/smart-filters').then(m => m.SmartFilters) },
+      { path: 't&c', component: TermsAndConditions },
+      { path: 'payment', component: DepositOxapay },
+      { path: 'deposit', component: Deposit },
+      { path: 'success', component: Success },
+      { path: 'set-transaction-password', loadComponent: () => import('./features/transaction-password/transaction-password').then(m => m.TransactionPassword) },
+      { path: 'avatar', loadComponent: () => import('./features/avatar/avatar').then(m => m.Avatar) },
+    ]
   },
-  { path: 'avatar', loadComponent: () => import('./features/avatar/avatar').then(m => m.Avatar) },
+
+  // 🔹 Admin Routes
   {
-  path: 'admin',
-  component: Adminlayout,
-  canActivate: [authGuard],
-  children: [
-    { path: 'dashboard', component: Dashboard },
-    { path: 'users', component: Users },
-    { path: 'withdrawl-requests', component: WithdrawRequest },
-    { path: 'withdrawl-accepts', component: WithdrawAccepts },
-    { path: 'withdrawl-rejects', component: WithdrawRejects },
-    { path: 'master-data', component: MasterData },
-    { path: 'deposits', component: UserDeposits },
-    { path: 'teams', component: TeamDetails },
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' } // default route
-  ]
-},
+    path: 'admin',
+    component: Adminlayout,
+    canActivate: [authGuard],
+    children: [
+      { path: 'dashboard', component: Dashboard },
+      { path: 'users', component: Users },
+      { path: 'withdrawl-requests', component: WithdrawRequest },
+      { path: 'withdrawl-accepts', component: WithdrawAccepts },
+      { path: 'withdrawl-rejects', component: WithdrawRejects },
+      { path: 'master-data', component: MasterData },
+      { path: 'deposits', component: UserDeposits },
+      { path: 'teams', component: TeamDetails },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    ]
+  },
   { path: '**', redirectTo: '' },
 ];

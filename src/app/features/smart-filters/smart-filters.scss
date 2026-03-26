@@ -1,0 +1,135 @@
+.page-container {
+  min-height: 100vh;
+  background: #f1f3f5; /* light grey from screenshot */
+  display: flex;
+  flex-direction: column;
+  font-family: 'Clash Display', sans-serif;
+}
+
+.header-section {
+  background: transparent;
+  padding-bottom: 20px;
+}
+
+.sub-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 24px;
+  margin-top: 10px;
+
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    cursor: pointer;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .settings-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.title-area {
+  padding: 10px 24px 0;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+}
+
+.content-section {
+  flex: 1;
+  padding: 24px;
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filter-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  .icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f1f5f9;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .item-text {
+    flex: 1;
+    margin-left: 16px;
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0 0 4px 0;
+    }
+
+    p {
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
+      color: #72849a;
+      margin: 0;
+    }
+  }
+
+  .chevron {
+    img {
+      width: 20px;
+      height: 20px;
+      opacity: 0.4;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0,0,0,0.05);
+  }
+}

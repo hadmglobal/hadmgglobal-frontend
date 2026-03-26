@@ -19,6 +19,7 @@ export class ChangePassword implements OnInit {
   form: any;
   urlEmail: string | null = null;
   otp: string | null = null;
+  isLoading = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private fb: FormBuilder, private router: Router, private auth: AuthService, private route: ActivatedRoute, private snackBar: MatSnackBar) { }
 
@@ -35,7 +36,7 @@ export class ChangePassword implements OnInit {
     console.log(this.urlEmail, this.otp)
     this.form = this.fb.group(
       {
-        newPassword: ['', [Validators.required]],
+        newPassword: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required]
       },
       {
@@ -66,10 +67,12 @@ export class ChangePassword implements OnInit {
       payload.otp = this.otp;
     }
     console.log(payload);
+    this.isLoading = true;
 
     if (!this.otp) {
       this.auth.changePassword(payload).subscribe({
         next: (res) => {
+          this.isLoading = false;
           if (res.statusCode === 200) {
             console.log("Done 200")
             setTimeout(() => {
@@ -78,12 +81,14 @@ export class ChangePassword implements OnInit {
           }
         },
         error: (err) => {
+          this.isLoading = false;
           console.error("Password changed", err);
         }
       });
     } else {
       this.auth.resetPassword(payload).subscribe({
         next: (res) => {
+          this.isLoading = false;
           console.log('Response:', res);
           if (res.statusCode === 200) {
             this.snackBar.open('Password changed Successful! Welcome back!', 'Close', {
@@ -98,6 +103,7 @@ export class ChangePassword implements OnInit {
           }
         },
         error: (err) => {
+          this.isLoading = false;
           console.error("Password changed", err);
         }
       });

@@ -32,8 +32,7 @@ export class Profile implements OnInit {
 
   @ViewChild('transferModal') transferModal!: Transfer;
 
-  showSupport = false;
-  showLogout = false;
+
   amount = 0;
 
   constructor(
@@ -64,11 +63,11 @@ export class Profile implements OnInit {
   ];
 
   settings = [
-    { label: 'Change password', icon: '/sync-outline.svg' },
-    { label: 'Terms and conditions', icon: '/document-text.svg' },
-    { label: 'Set Transaction Password', icon: '/lock-closed.svg' },
-    { label: 'Transaction History', icon: '/time-outline.svg' },
-    { label: 'Help & support', icon: '/help-circle.svg' }
+    { label: 'Change password', icon: '/change-password.svg' },
+    { label: 'Terms and conditions', icon: '/termsandc.svg' },
+    { label: 'Set Transaction Password', icon: '/transpass.svg' },
+    { label: 'Transaction History', icon: '/transh.svg' },
+    { label: 'Help & support', icon: '/h&su.svg' }
   ];
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -165,46 +164,32 @@ export class Profile implements OnInit {
       window.open(this.telegramLinkTwo, '_blank');
     }
   }
-  openSupportPopup() {
-    this.showSupport = true;
-  }
 
-  closeSupportPopup() {
-    this.showSupport = false;
-  }
-
-  onSupport() {
-    console.log("SUPPORT");
-    if (this.telegramLinkThree) {
-      window.open(this.telegramLinkThree, '_blank');
-    }
-  }
 
   onSetting(label: string) {
     console.log('Clicked setting:', label);
     if (label == 'Terms and conditions') {
       this.router.navigate(['/t&c']);
     } else if (label == 'Help & support') {
-      this.openSupportPopup();
+      // do nothing as of now
     } else if (label == 'Change password') {
       localStorage.setItem("email", this.user.email)
       this.router.navigate(['/change-password']);
+    } else if (label == 'Set Transaction Password') {
+      this.router.navigate(['/set-transaction-password']);
+    } else if (label == 'Transaction History') {
+      this.router.navigate(['/history']);
     }
   }
 
   logout() {
-    this.showLogout = true;
-  }
-
-  confirmLogout() {
     console.log('Logged out');
     localStorage.removeItem('userId');
+    localStorage.removeItem('email');
     this.router.navigate(['/signin']);
   }
 
-  closeLogout() {
-    this.showLogout = false
-  }
+
 
   onTransferClosed() {
     if (isPlatformBrowser(this.platformId)) {

@@ -37,7 +37,7 @@
           <div class="placeholder-vid"></div>
           <div class="play-btn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M8 5V19L19 12L8 5Z" fill="#fff"/>
+              <path d="M8 5V19L19 12L8 5Z" fill="#fff" />
             </svg>
           </div>
         </div>
@@ -62,8 +62,9 @@
       <!-- Logout -->
       <div class="setting-item logout-item" (click)="logout()">
         <div class="setting-left">
-          <div class="ico-box" style="background: rgba(255, 0, 0, 0.05)">
-            <img src="/logout.svg" alt="logout" style="filter: invert(35%) sepia(34%) saturate(4649%) hue-rotate(342deg) brightness(98%) contrast(93%);" />
+          <div class="ico-box">
+            <img src="/lOut.svg" alt="logout"
+              style="filter: invert(35%) sepia(34%) saturate(4649%) hue-rotate(342deg) brightness(98%) contrast(93%);" />
           </div>
           <p class="logout-text">{{ 'Log out' | translate }}</p>
         </div>
@@ -74,38 +75,7 @@
 </div>
 
 <!-- 🔹 Support Popup Overlay -->
-<div class="support-overlay" *ngIf="showSupport" (click)="closeSupportPopup()"></div>
 
-<div class="support-popup" *ngIf="showSupport">
-  <div class="support-header">
-    <h3>{{ 'We’re here to help' | translate }}</h3>
-    <button class="close-btn" (click)="closeSupportPopup()">×</button>
-  </div>
-  <div class="support-content">
-    <p>TowerBNB</p>
-    <p>{{ '• Sign-up and explore the Free Trial and earn 8 USDT fund.' | translate }}</p>
-    <p>{{ '• Join the group and contact your Manager or Customer Support to receive a 2 USDT joining bonus.' | translate }}</p>
-    <p>{{ '• Claim a total of 10 USDT and use the funds to circulate Tower Upgrade or withdraw upon upgrading to Core 1G Tower Computing.' | translate }}</p>
-    <p>{{ '• $2 bonus when activating your account with $50.' | translate }}</p>
-  </div>
-  <button class="support-btn" (click)="onSupport()">{{ 'Support' | translate }}</button>
-</div>
 
-<!-- 🔹 Logout Popup Overlay -->
-<div class="logout-overlay" *ngIf="showLogout" (click)="closeLogout()"></div>
 
-<div class="logout-popup" *ngIf="showLogout">
-  <div class="logout-header">
-    <h3>{{ 'Log out!' | translate }}</h3>
-    <button class="close-btn" (click)="closeLogout()">×</button>
-  </div>
-  <div class="logout-body">
-    <div class="logout-icon"><img src="logout.gif" alt="logout" /></div>
-    <div class="logout-text">
-      <h4>{{ 'Are you sure?' | translate }}</h4>
-      <p>{{ 'You will now be logged out of your current account' | translate }}</p>
-    </div>
-    <button class="logout-confirm" (click)="confirmLogout()">{{ 'Yes, log out' | translate }}</button>
-    <button class="logout-cancel" (click)="closeLogout()">{{ 'No, Cancel' | translate }}</button>
-  </div>
-</div>
+

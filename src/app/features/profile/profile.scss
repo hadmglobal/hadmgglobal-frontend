@@ -267,7 +267,7 @@
   .ico-box {
     width: 28px;
     height: 28px;
-    background: #f4f6f9;
+    // background: #f4f6f9;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -298,113 +298,4 @@
   color: #E81A66 !important;
 }
 
-/* 🔹 Support & Logout Overlays (keep existing css for them) */
-.support-overlay,
-.logout-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-}
-
-.support-popup,
-.logout-popup {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  padding: 24px;
-  z-index: 1001;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.support-header,
-.logout-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.support-header h3,
-.logout-header h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #888;
-}
-
-.support-content {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.support-content p {
-  margin-bottom: 12px;
-}
-
-.support-btn,
-.logout-confirm {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  background: #00ca5f;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.logout-body {
-  text-align: center;
-}
-
-.logout-icon img {
-  width: 80px;
-  margin-bottom: 16px;
-}
-
-.logout-text h4 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.logout-text p {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 24px;
-}
-
-.logout-confirm {
-  background: #E81A66;
-  margin-bottom: 12px;
-}
-
-.logout-cancel {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #555;
-  background: #eee;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
+

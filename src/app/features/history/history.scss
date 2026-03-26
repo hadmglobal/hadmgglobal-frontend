@@ -1,308 +1,205 @@
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-* {
-  font-family: 'Poppins';
-  box-sizing: border-box;
-}
-
-.layout-container {
+.page-container {
   min-height: 100vh;
+  background: #f1f3f5;
   display: flex;
   flex-direction: column;
+  font-family: 'Clash Display', sans-serif;
 }
 
-.withdrawal-container {
-  flex: 1;
-  background: #f8faff;
-  position: relative;
-  overflow-x: hidden;
-  padding-bottom: 40px;
+.header-section {
+  background: transparent;
+  padding-bottom: 20px;
 }
 
-/* 🔹 Two-tone Blue Banner */
-.blue-banner {
-  position: relative;
-  height: 180px;
-  text-align: center;
-  color: #fff;
+.sub-header {
   display: flex;
-  justify-content: center;
   align-items: center;
-}
+  padding: 10px 24px;
+  margin-top: 10px;
 
-.upper-blue {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  content: '';
-  top: -35px;
-  left: 0;
-  width: 100%;
-  background: url('/common-top.svg') center top / cover no-repeat;
-  opacity: 1;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-}
-
-.blue-banner h2 {
-  position: relative;
-  z-index: 2;
-  font-weight: 600;
-  font-size: 18px;
-  bottom: 20px;
-}
-
-.back-btn {
-  position: absolute;
-  left: 16px;
-  top: 60px;
-  background: none;
-  border: none;
-  color: white;
-  z-index: 3;
-  cursor: pointer;
-}
-
-.filter-btn {
-  position: absolute;
-  right: 16px;
-  top: 60px;
-  background: none;
-  border: none;
-  color: white;
-  z-index: 3;
-  cursor: pointer;
-}
-
-/* ✅ Responsive */
-@media (min-width: 768px) {
-  .withdrawal-container {
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    cursor: pointer;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
   }
 
-  .wallet-card,
-  .form-section,
-  .reminder-box {
-    width: 420px;
-  }
-}
-
-
-
-
-/* 🔹 Transaction Section */
-.transaction-section {
-  margin-top: -10px;
-  padding: 0 16px 50px;
-  background: #f8faff;
-}
-
-.date-label {
-  color: #7a7a7a;
-  font-size: 13px;
-  font-weight: 500;
-  margin: 20px 0 10px;
-}
-
-.transaction-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.tx-icon img {
-  width: 22px;
-  height: 22px;
-}
-
-.tx-details {
-  flex: 1;
-  padding: 0 12px;
-}
-
-.tx-type {
-  font-size: 12px;
-  color: #666;
-  margin: 0;
-}
-
-.tx-details h3 {
-  font-size: 17px;
-  font-weight: 400;
-  margin: 2px 0;
-}
-
-.tx-details h3 span {
-  font-size: 12px;
-  color: #666;
-  font-weight: 400;
-}
-
-.tx-id {
-  font-size: 11px;
-  color: #999;
-  margin: 0;
-  letter-spacing: 0.3px;
-}
-
-.copy-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.copy-btn img {
-  width: 16px;
-  height: 16px;
-}
-
-/* ✅ Colors for types */
-.credit {
-  color: #101432;
-}
-
-.deposit {
-  color: #101432;
-}
-
-.reward {
-  color: #101432;
-}
-
-/* ✅ Responsive */
-@media (min-width: 768px) {
-  .transaction-section {
-    max-width: 420px;
-    margin: 0 auto;
-  }
-}
-
-.back-btn,
-.filter-btn {
-  position: absolute;
-  z-index: 1000; /* higher than the banner */
-  pointer-events: auto; /* ensures clicks are registered */
-}
-
-
-/* 🔹 Overlay */
-.filter-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(3px);
-  z-index: 99;
-}
-
-/* 🔹 Popup Bottom Sheet */
-.filter-popup {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-  z-index: 100;
-  padding: 18px;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-.filter-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  border-bottom: 1px #DADADA solid;
-
-  h3 {
-    font-size: 17px;
-    font-weight: 600;
-    color: #000;
+  .spacer {
+    flex: 1;
   }
 
-  .close-btn {
+  .filter-btn {
     background: none;
     border: none;
-    font-size: 26px;
-    color: #333;
     cursor: pointer;
   }
 }
 
-.filter-option {
-  display: flex;
-  align-items: center;
-  background: #f7f8fa;
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-bottom: 10px;
-  transition: all 0.3s ease;
-  cursor: pointer;
+.title-area {
+  padding: 10px 24px;
 
-  &.active {
-    background: #2752E7;
-    color: #fff;
-
-    h4,
-    p,
-    .filter-arrow {
-      color: #fff !important;
-    }
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
   }
 
-  .filter-icon img {
-    width: 48px;
-    height: 48px;
-  }
-
-  .filter-text {
-    flex: 1;
-    margin-left: 12px;
-
-    h4 {
-      font-size: 15px;
-      font-weight: 600;
-      margin: 0;
-    }
-
-    p {
-      font-size: 13px;
-      color: #666;
-      margin: 3px 0 0;
-    }
-  }
-
-  .filter-arrow {
-    font-size: 22px;
-    color: #999;
+  p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #72849a;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 300px;
   }
 }
 
-.tx-status {
-  margin-left: 6px;
-  font-size: 11px;
-  color: #94A3B8; /* subtle status color */
-  font-weight: 500;
+.content-section {
+  flex: 1;
+  padding: 10px 24px 40px;
+}
+
+.date-group {
+  margin-bottom: 30px;
+}
+
+.date-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 15px 0;
+}
+
+.transaction-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+
+  .card-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .tx-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.withdraw {
+      background: rgba(232, 26, 102, 0.08); /* Light pinkish bg */
+    }
+    &.deposit, &.reward, &.credit {
+      background: rgba(0, 154, 68, 0.08); /* Light greenish bg */
+    }
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .tx-info {
+    .amount-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 4px;
+
+      .symbol {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+      .amount {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+      .currency {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-left: 2px;
+      }
+    }
+
+    .id-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .tx-id {
+        font-family: 'Poppins', sans-serif;
+        font-size: 9px;
+        color: #94a3b8;
+        letter-spacing: 0.2px;
+      }
+
+      .copy-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 10px;
+          height: 10px;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  .card-right {
+    .type-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+
+      &.withdraw {
+        color: #444; /* Dark grey for "WITHDRAW" */
+      }
+      &.deposit, &.reward, &.credit {
+        color: #00AA5B; /* Green for "DEPOSIT" */
+      }
+    }
+  }
+}
+
+.loading-state, .empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #72849a;
+  font-family: 'Poppins', sans-serif;
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0,0,0,0.05);
+  }
 }

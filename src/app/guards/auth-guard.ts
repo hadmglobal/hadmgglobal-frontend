@@ -1,11 +1,9 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
-const ADMIN_EMAILS = ["vincentjhon7826@gmail.com"];
+const ADMIN_EMAILS = ["vincentjhon7826@gmail.com", "hadmgglobal@gmail.com"];
 
 export const authGuard: CanActivateFn = (route, state) => {
-  return true;
-  /* TEMPORARILY DISABLED
   const router = inject(Router);
 
   const userId = localStorage.getItem("userId");
@@ -37,5 +35,4 @@ export const authGuard: CanActivateFn = (route, state) => {
   }
 
   return true; // admin allowed even if userId missing
-  */
 };

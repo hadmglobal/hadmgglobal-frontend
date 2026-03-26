@@ -1,0 +1,34 @@
+<div class="page-container">
+  <div class="header-section">
+    <app-top-nav [isTransparent]="false"></app-top-nav>
+    <div class="sub-header">
+      <button class="back-btn" (click)="goBack()">
+        <img src="/leftarraow.svg" alt="back" />
+      </button>
+      <div class="spacer"></div>
+      <button class="settings-btn">
+        <img src="/search.svg" alt="settings" style="width: 20px; opacity: 0.6;" />
+      </button>
+    </div>
+    <div class="title-area">
+      <h1>{{ 'Smart Filters' | translate }}</h1>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="filter-list">
+      <div class="filter-item" *ngFor="let filter of filters" (click)="selectFilter(filter.value)">
+        <div class="icon-box">
+          <img [src]="filter.icon" [alt]="filter.label" />
+        </div>
+        <div class="item-text">
+          <h3>{{ filter.label | translate }}</h3>
+          <p>{{ filter.desc | translate }}</p>
+        </div>
+        <div class="chevron">
+          <img src="/chevron_right.svg" alt="arrow" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

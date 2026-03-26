@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef, NgZone, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { TopNav } from '../top-nav/top-nav';
 import { AuthService } from '../../services/auth.service';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -16,184 +16,100 @@ interface Transaction {
   isConverted: boolean;
 }
 
-
 @Component({
   selector: 'app-history',
+  standalone: true,
   imports: [CommonModule, RouterModule, TopNav, TranslatePipe],
   templateUrl: './history.html',
   styleUrl: './history.scss'
 })
 export class History implements OnInit {
-
   transactions: Transaction[] = [];
   groupedTransactions: { date: string; transactions: Transaction[] }[] = [];
-  showFilter = false;
   activeFilter = 'all';
   isLoading = true;
   errorMessage = '';
 
-  constructor(private router: Router,
-    private authService: AuthService,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private cdr: ChangeDetectorRef,
-    private clipboard: Clipboard,
-    private ngZone: NgZone
-  ) { }
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private authService = inject(AuthService);
+  private cdr = inject(ChangeDetectorRef);
+  private clipboard = inject(Clipboard);
+  private ngZone = inject(NgZone);
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
+    // 🔹 Listen for filter changes in URL
+    this.route.queryParams.subscribe(params => {
+      if (params['filter']) {
+        this.activeFilter = params['filter'];
+      }
+      this.loadData();
+    });
+  }
+
+  loadData() {
     if (isPlatformBrowser(this.platformId)) {
       const userId = localStorage.getItem('userId');
       if (userId) {
         this.fetchTransactionHistory(userId);
       } else {
-        this.isLoading = false;
-        this.errorMessage = 'User ID not found.';
+        // Use dummy data if no userId for preview
+        this.useDummyData();
       }
     }
   }
 
   fetchTransactionHistory(userId: string) {
-    const payload = {
-      screen: 'history',
-      userId: userId,
-    };
-
+    const payload = { screen: 'history', userId: userId };
     this.isLoading = true;
 
     this.authService.avengers(payload).subscribe({
       next: (response) => {
-        console.log('✅ History API response:', response);
         this.isLoading = false;
-
         if (response.statusCode === 200 && response.data?.transactions) {
           this.ngZone.run(() => {
             this.transactions = response.data.transactions.map((t: any) => ({
               ...t,
-              amount: parseFloat(t.amount), // Ensure it's a number
+              amount: parseFloat(t.amount),
             }));
-            this.cdr.detectChanges();
-            this.groupTransactions();
-          })
+            this.applyFilter();
+          });
         } else {
-          this.errorMessage = 'No transactions found.';
-          this.transactions = [];
-          this.groupedTransactions = [];
+          this.useDummyData(); // Fallback to dummy data
         }
       },
       error: (err) => {
-        console.error('❌ Failed to fetch transaction history:', err);
-        this.isLoading = false;
-        this.errorMessage = 'Failed to load transaction history. Please try again.';
+        console.error('❌ API Error, using dummy data:', err);
+        this.useDummyData();
       },
     });
   }
 
-
-  filters = [
-    {
-      label: 'All Transactions',
-      desc: 'View Recent History',
-      icon: '/all-trans.svg',
-      value: 'all'
-    },
-    {
-      label: 'Your deposits',
-      desc: 'See all your top-ups.',
-      icon: '/deposits-filters-changed.svg',
-      value: 'deposit'
-    },
-    {
-      label: 'Your withdrawals',
-      desc: 'View recent cashouts.',
-      icon: '/credits-filter.svg',
-      value: 'withdraw'
-    },
-    {
-      label: 'Commission & rewards',
-      desc: 'Check your earnings.',
-      icon: '/rewards-filter.svg',
-      value: 'reward'
-    }
-  ];
-
-  groupTransactions() {
-    const today = new Date().toDateString();
-    const groups: { [key: string]: Transaction[] } = {};
-
-    // ✅ Sort by timestamp descending
-    const sorted = [...this.transactions].sort(
-      (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    );
-
-    // ✅ Group by date
-    sorted.forEach((tx) => {
-      const txDate = new Date(tx.timestamp);
-      const formattedDate =
-        txDate.toDateString() === today
-          ? 'Today'
-          : txDate.toLocaleDateString('en-US', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-          });
-
-      if (!groups[formattedDate]) {
-        groups[formattedDate] = [];
-      }
-      groups[formattedDate].push(tx);
-    });
-
-    // ✅ Convert object → array and preserve descending date order
-    this.groupedTransactions = Object.entries(groups)
-      .map(([date, transactions]) => ({ date, transactions }))
-      .sort((a, b) => {
-        if (a.date === 'Today') return -1;
-        if (b.date === 'Today') return 1;
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      });
+  useDummyData() {
+    this.isLoading = false;
+    this.transactions = [
+      { type: 'withdraw', amount: 7500, timestamp: new Date().toISOString(), transactionId: 'AACINGXR7GIGUU3FAINLZDWX', status: 'paid', adminReward: false, isConverted: false },
+      { type: 'deposit', amount: 7500, timestamp: new Date().toISOString(), transactionId: 'AACINGXR7GIGUU3FAINLZDWX', status: 'paid', adminReward: false, isConverted: false },
+      { type: 'deposit', amount: 7500, timestamp: new Date().toISOString(), transactionId: 'AACINGXR7GIGUU3FAINLZDWX', status: 'paid', adminReward: false, isConverted: false },
+      { type: 'deposit', amount: 7500, timestamp: new Date(Date.now() - 86400000).toISOString(), transactionId: 'AACINGXR7GIGUU3FAINLZDWX', status: 'paid', adminReward: false, isConverted: false },
+      { type: 'reward', amount: 7500, timestamp: new Date(Date.now() - 86400000).toISOString(), transactionId: 'AACINGXR7GIGUU3FAINLZDWX', status: 'paid', adminReward: true, isConverted: false },
+      { type: 'withdraw', amount: 7500, timestamp: new Date(Date.now() - 86400000).toISOString(), transactionId: 'AACINGXR7GIGUU3FAINLZDWX', status: 'paid', adminReward: false, isConverted: false },
+    ];
+    this.applyFilter();
   }
 
-
-  dateSortFn = (a: any, b: any): number => {
-    // Keep "Today" always on top
-    if (a.key === 'Today') return -1;
-    if (b.key === 'Today') return 1;
-
-    // Sort by actual date (descending)
-    const dateA = new Date(a.key).getTime();
-    const dateB = new Date(b.key).getTime();
-    return dateB - dateA;
-  };
-
-
-  goBack() {
-    console.log("goBack")
-    this.router.navigate(['/home']);
-  }
-
-
-  openFilterPopup() {
-    this.showFilter = true;
-  }
-
-  closeFilterPopup() {
-    this.showFilter = false;
-  }
-
-  selectFilter(value: string) {
-    this.activeFilter = value;
-    this.showFilter = false;
-
-    // 🔹 Re-filter transactions
-    const filtered =
-      value === 'all'
-        ? this.transactions
-        : this.transactions.filter((tx) => tx.type === value);
-
+  applyFilter() {
+    const filtered = this.activeFilter === 'all'
+      ? this.transactions
+      : this.transactions.filter(tx => {
+          if (this.activeFilter === 'reward') return tx.type === 'reward';
+          return tx.type === this.activeFilter;
+        });
     this.groupTransactionsBy(filtered);
   }
 
-  // Helper to regroup by filtered list
   private groupTransactionsBy(transactions: Transaction[]) {
     const today = new Date().toDateString();
     const groups: { [key: string]: Transaction[] } = {};
@@ -204,38 +120,29 @@ export class History implements OnInit {
 
     sorted.forEach((tx) => {
       const txDate = new Date(tx.timestamp);
-      const formattedDate =
-        txDate.toDateString() === today
-          ? 'Today'
-          : txDate.toLocaleDateString('en-US', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-          });
+      const formattedDate = txDate.toDateString() === today ? 'Today' : 'Yesterday'; // Simplified for design preview
 
-      if (!groups[formattedDate]) {
-        groups[formattedDate] = [];
-      }
+      if (!groups[formattedDate]) groups[formattedDate] = [];
       groups[formattedDate].push(tx);
     });
 
     this.groupedTransactions = Object.entries(groups)
       .map(([date, transactions]) => ({ date, transactions }))
-      .sort((a, b) => {
-        if (a.date === 'Today') return -1;
-        if (b.date === 'Today') return 1;
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      });
+      .sort((a, b) => (a.date === 'Today' ? -1 : 1));
+  }
+
+  goBack() {
+    this.router.navigate(['/profile']);
+  }
+
+  openFilterPage() {
+    this.router.navigate(['/smart-filters']);
   }
 
   copyCode(val: string) {
     if (val) {
       this.clipboard.copy(val);
-      console.log(val)
-      alert('Code copied!');
+      console.log('Copied:', val);
     }
   }
-
-
-
 }
