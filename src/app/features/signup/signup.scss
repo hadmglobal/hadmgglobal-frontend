@@ -25,12 +25,12 @@
 .banner-content {
   position: relative;
   width: 100%;
-  height: clamp(180px, 24vh, 220px) !important; // Reduced for reachability
+  height: 200px !important; // Shorter like target image
   background: url('/sign-in-bg.svg') center center / cover no-repeat, linear-gradient(135deg, #a80053 0%, #c4005c 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible; // Allow popping out
   flex-shrink: 0;
 }
 
@@ -44,6 +44,7 @@
   align-items: center !important;
   padding: 20px 24px;
   box-sizing: border-box;
+  overflow: visible !important;
 }
 
 .welcome-section {
@@ -56,11 +57,11 @@
 }
 
 .welcome-section .welcome-text {
-  font-size: 34px !important;
+  font-size: 32px !important;
   font-weight: 600 !important;
   font-family: 'Clash Display', sans-serif !important;
   margin: 0;
-  margin-bottom: 25px;
+  margin-bottom: 15px !important; // Match shorter banner
 }
 
 .welcome-section .bnb-text {
@@ -72,11 +73,14 @@
 }
 
 .hero-image-banner {
-  height: clamp(160px, 28vh, 220px) !important;
+  height: 300px !important; // Massive size like target
+  width: auto !important;
   position: absolute !important;
-  right: 10px !important;
-  bottom: 0px !important;
-  z-index: 5;
+  right: -25px !important;
+  bottom: -35px !important; // Overlap significantly
+  z-index: 50;
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.25));
+  pointer-events: none;
 }
 
 /* 🔹 Content Card */
