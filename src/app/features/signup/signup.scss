@@ -16,7 +16,7 @@
   position: relative;
   z-index: 10;
   width: 100%;
-  flex: 1; 
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -73,14 +73,16 @@
 }
 
 .hero-image-banner {
-  height: 300px !important; // Massive size like target
+  height: 280px !important;
   width: auto !important;
   position: absolute !important;
-  right: -25px !important;
-  bottom: -35px !important; // Overlap significantly
+  right: 0px !important;
+  bottom: 0px !important;
+  top: -1px !important;
   z-index: 50;
-  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.25));
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
   pointer-events: none;
+  object-fit: contain;
 }
 
 /* 🔹 Content Card */
@@ -188,7 +190,7 @@
     margin-right: 12px !important;
     flex-shrink: 0 !important;
 
-    .mdc-checkbox__native-control:enabled:not(:checked) ~ .mdc-checkbox__background {
+    .mdc-checkbox__native-control:enabled:not(:checked)~.mdc-checkbox__background {
       border-color: #BFBFBF !important;
       background-color: transparent !important;
     }

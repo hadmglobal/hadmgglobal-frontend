@@ -41,7 +41,7 @@
   height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center !important; 
+  align-items: center !important;
   padding: 20px 24px;
   box-sizing: border-box;
   overflow: visible !important; // CRITICAL: Allow image to be bigger than banner
@@ -73,14 +73,16 @@
 }
 
 .hero-image-banner {
-  height: 300px !important; // Massive increase
+  height: 280px !important; // Massive size
   width: auto !important;
   position: absolute !important;
-  right: -25px !important; // Push right
-  bottom: -35px !important; // Sit on the very bottom
-  z-index: 50; // Ensure it stays on top
-  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.25));
-  pointer-events: none; // Don't block clicks to card below
+  right: 0px !important;
+  bottom: 0px !important; // STICK TO BOTTOM
+  top: -1px !important;
+  z-index: 50;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+  pointer-events: none;
+  object-fit: contain;
 }
 
 /* 🔹 Content Card */
@@ -155,11 +157,11 @@
 
 /* 🔹 Checkbox & Options */
 .form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 15px; // Increased to be less clumsy
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 15px; // Increased to be less clumsy
 }
 
 .forgot-password-text {
@@ -204,12 +206,12 @@
         left: 0 !important;
       }
 
-      .mdc-checkbox__native-control:enabled:not(:checked) ~ .mdc-checkbox__background {
+      .mdc-checkbox__native-control:enabled:not(:checked)~.mdc-checkbox__background {
         border-color: #BFBFBF !important; // Requested gray before checking
         background-color: transparent !important;
       }
 
-      .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
+      .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
         border-color: #009A44 !important;
         background-color: #009A44 !important;
       }
@@ -219,54 +221,55 @@
       }
     }
 
-    .mat-mdc-checkbox-ripple, .mdc-checkbox__ripple {
+    .mat-mdc-checkbox-ripple,
+    .mdc-checkbox__ripple {
       display: none !important;
     }
   }
 }
 
 .remember-me-label {
-    font-size: 14px;
-    font-weight: 400;
-    color: #1a1a1a;
-    cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a1a1a;
+  cursor: pointer;
 }
 
 .forgot-password {
-    font-size: 14px;
-    color: #009A44;
-    text-decoration: none;
-    font-weight: 500;
+  font-size: 14px;
+  color: #009A44;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 /* 🔹 Captcha Styling */
 .captcha-placeholder-container {
-    margin-top: 10px;
-    margin-bottom: 25px;
-    border: 1px solid #D1E0F6;
-    border-radius: 4px;
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  border: 1px solid #D1E0F6;
+  border-radius: 4px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
 }
 
 .captcha-content {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .captcha-text {
-    font-family: 'Clash Display', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
 }
 
 .captcha-img {
-    height: 35px;
-    width: auto;
+  height: 35px;
+  width: auto;
 }
 
 /* 🔹 Footer Actions */
