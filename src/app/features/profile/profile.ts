@@ -33,7 +33,6 @@ export class Profile implements OnInit {
   @ViewChild('transferModal') transferModal!: Transfer;
 
   showSupport = false;
-  showLogout = false;
   amount = 0;
 
   constructor(
@@ -195,18 +194,12 @@ export class Profile implements OnInit {
   }
 
   logout() {
-    this.showLogout = true;
-  }
-
-  confirmLogout() {
     console.log('Logged out');
     localStorage.removeItem('userId');
     this.router.navigate(['/signin']);
   }
 
-  closeLogout() {
-    this.showLogout = false
-  }
+
 
   onTransferClosed() {
     if (isPlatformBrowser(this.platformId)) {

@@ -298,9 +298,8 @@
   color: #E81A66 !important;
 }
 
-/* 🔹 Support & Logout Overlays (keep existing css for them) */
-.support-overlay,
-.logout-overlay {
+/* 🔹 Support Popup Styling */
+.support-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -310,8 +309,7 @@
   z-index: 1000;
 }
 
-.support-popup,
-.logout-popup {
+.support-popup {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -324,16 +322,14 @@
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.support-header,
-.logout-header {
+.support-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.support-header h3,
-.logout-header h3 {
+.support-header h3 {
   font-size: 18px;
   font-weight: 600;
   margin: 0;
@@ -352,14 +348,13 @@
   color: #555;
   line-height: 1.6;
   margin-bottom: 24px;
+
+  p {
+    margin-bottom: 12px;
+  }
 }
 
-.support-content p {
-  margin-bottom: 12px;
-}
-
-.support-btn,
-.logout-confirm {
+.support-btn {
   width: 100%;
   padding: 14px;
   font-size: 16px;
@@ -369,42 +364,4 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-}
-
-.logout-body {
-  text-align: center;
-}
-
-.logout-icon img {
-  width: 80px;
-  margin-bottom: 16px;
-}
-
-.logout-text h4 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.logout-text p {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 24px;
-}
-
-.logout-confirm {
-  background: #E81A66;
-  margin-bottom: 12px;
-}
-
-.logout-cancel {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #555;
-  background: #eee;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
+}

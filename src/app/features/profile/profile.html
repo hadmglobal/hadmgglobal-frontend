@@ -94,21 +94,5 @@
   <button class="support-btn" (click)="onSupport()">{{ 'Support' | translate }}</button>
 </div>
 
-<!-- 🔹 Logout Popup Overlay -->
-<div class="logout-overlay" *ngIf="showLogout" (click)="closeLogout()"></div>
 
-<div class="logout-popup" *ngIf="showLogout">
-  <div class="logout-header">
-    <h3>{{ 'Log out!' | translate }}</h3>
-    <button class="close-btn" (click)="closeLogout()">×</button>
-  </div>
-  <div class="logout-body">
-    <div class="logout-icon"><img src="logout.gif" alt="logout" /></div>
-    <div class="logout-text">
-      <h4>{{ 'Are you sure?' | translate }}</h4>
-      <p>{{ 'You will now be logged out of your current account' | translate }}</p>
-    </div>
-    <button class="logout-confirm" (click)="confirmLogout()">{{ 'Yes, log out' | translate }}</button>
-    <button class="logout-cancel" (click)="closeLogout()">{{ 'No, Cancel' | translate }}</button>
-  </div>
-</div>
+
